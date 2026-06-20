@@ -1,0 +1,396 @@
+[
+  {
+    "model": "catalog.service",
+    "pk": 1,
+    "fields": {
+      "slug": "solaranlagen-installation",
+      "icon": "sun-medium",
+      "audience": "both",
+      "order": 1,
+      "is_active": true,
+      "title_de": "Installation von Solaranlagen",
+      "title_en": "Solar Panel Installation",
+      "summary_de": "Schlüsselfertige Photovoltaik-Anlagen für Dach und Fassade – geplant, montiert und angeschlossen.",
+      "summary_en": "Turnkey photovoltaic systems for roof and façade – planned, mounted and connected.",
+      "description_de": "Von der ersten Beratung bis zur Inbetriebnahme übernehmen wir die komplette Planung und Montage Ihrer Solaranlage mit hochwertigen Modulen und Wechselrichtern.",
+      "description_en": "From the first consultation to commissioning, we handle the complete planning and installation of your solar system with premium modules and inverters."
+    }
+  },
+  {
+    "model": "catalog.service",
+    "pk": 2,
+    "fields": {
+      "slug": "batteriespeicher",
+      "icon": "battery-charging",
+      "audience": "both",
+      "order": 2,
+      "is_active": true,
+      "title_de": "Batterie- & Stromspeicher",
+      "title_en": "Battery & Energy Storage",
+      "summary_de": "Speichern Sie Ihren Solarstrom und nutzen Sie ihn dann, wenn Sie ihn wirklich brauchen.",
+      "summary_en": "Store your solar power and use it exactly when you need it most.",
+      "description_de": "Moderne Lithium-Speicher erhöhen Ihren Eigenverbrauch auf bis zu 80 % und machen Sie unabhängiger vom Netz.",
+      "description_en": "Modern lithium storage raises your self-consumption up to 80 % and makes you more independent from the grid."
+    }
+  },
+  {
+    "model": "catalog.service",
+    "pk": 3,
+    "fields": {
+      "slug": "wallbox-ladeloesungen",
+      "icon": "plug-zap",
+      "audience": "both",
+      "order": 3,
+      "is_active": true,
+      "title_de": "Wallbox & E-Auto-Laden",
+      "title_en": "EV Charging (Wallbox)",
+      "summary_de": "Laden Sie Ihr E-Auto bequem zu Hause mit Ihrem eigenen Solarstrom.",
+      "summary_en": "Charge your EV conveniently at home with your own solar power.",
+      "description_de": "Wir installieren intelligente Wallboxen, die das Laden automatisch mit Ihrem Solarüberschuss steuern.",
+      "description_en": "We install smart wallboxes that automatically balance charging with your solar surplus."
+    }
+  },
+  {
+    "model": "catalog.service",
+    "pk": 4,
+    "fields": {
+      "slug": "anlagenpruefung",
+      "icon": "search-check",
+      "audience": "both",
+      "order": 4,
+      "is_active": true,
+      "title_de": "Anlagenprüfung",
+      "title_en": "System Inspection",
+      "summary_de": "Professionelle Prüfung der Leistung und Sicherheit Ihrer bestehenden Anlage.",
+      "summary_en": "Professional inspection of the performance and safety of your existing system.",
+      "description_de": "Unsere Techniker prüfen Verkabelung, Module und Wechselrichter und erstellen einen detaillierten Bericht.",
+      "description_en": "Our technicians check wiring, modules and inverters and provide a detailed report."
+    }
+  },
+  {
+    "model": "catalog.service",
+    "pk": 5,
+    "fields": {
+      "slug": "wartung",
+      "icon": "wrench",
+      "audience": "both",
+      "order": 5,
+      "is_active": true,
+      "title_de": "Wartung & Instandhaltung",
+      "title_en": "Maintenance & Service",
+      "summary_de": "Vorbeugende und korrektive Wartung für maximale Erträge über Jahrzehnte.",
+      "summary_en": "Preventive and corrective maintenance for maximum yield over decades.",
+      "description_de": "Mit regelmäßiger Wartung sichern Sie die volle Leistung und Lebensdauer Ihrer Solaranlage.",
+      "description_en": "Regular maintenance secures the full performance and lifespan of your solar system."
+    }
+  },
+  {
+    "model": "catalog.service",
+    "pk": 6,
+    "fields": {
+      "slug": "gewerbeloesungen",
+      "icon": "building-2",
+      "audience": "commercial",
+      "order": 6,
+      "is_active": true,
+      "title_de": "Lösungen für Unternehmen",
+      "title_en": "Commercial Solutions",
+      "summary_de": "Maßgeschneiderte Energielösungen für Hallen, Büros und Industrie.",
+      "summary_en": "Tailored energy solutions for warehouses, offices and industry.",
+      "description_de": "Wir entwickeln skalierbare PV-Projekte, die Ihre Betriebskosten senken und Ihre CO₂-Bilanz verbessern.",
+      "description_en": "We develop scalable PV projects that cut your operating costs and improve your carbon footprint."
+    }
+  },
+  {
+    "model": "catalog.faq",
+    "pk": 1,
+    "fields": {
+      "category": "installation",
+      "order": 1,
+      "is_active": true,
+      "question_de": "Wie lange dauert die Installation einer Solaranlage?",
+      "question_en": "How long does a solar installation take?",
+      "answer_de": "Eine typische Einfamilienhaus-Anlage installieren wir in der Regel an 1 bis 2 Tagen. Die Planung und Genehmigung im Vorfeld dauert meist 2 bis 4 Wochen.",
+      "answer_en": "A typical single-family system is usually installed within 1 to 2 days. The preceding planning and approval normally takes 2 to 4 weeks."
+    }
+  },
+  {
+    "model": "catalog.faq",
+    "pk": 2,
+    "fields": {
+      "category": "warranty",
+      "order": 2,
+      "is_active": true,
+      "question_de": "Welche Garantie erhalte ich auf meine Anlage?",
+      "question_en": "What warranty do I get on my system?",
+      "answer_de": "Auf die Module gewähren die Hersteller in der Regel 25 Jahre Leistungsgarantie, auf Wechselrichter und Speicher meist 10 Jahre. Auf unsere Montage geben wir zusätzlich eine Gewährleistung.",
+      "answer_en": "Manufacturers typically grant a 25-year performance warranty on modules and around 10 years on inverters and storage. We additionally provide a warranty on our installation work."
+    }
+  },
+  {
+    "model": "catalog.faq",
+    "pk": 3,
+    "fields": {
+      "category": "maintenance",
+      "order": 3,
+      "is_active": true,
+      "question_de": "Muss eine Solaranlage gewartet werden?",
+      "question_en": "Does a solar system need maintenance?",
+      "answer_de": "Solaranlagen sind sehr wartungsarm. Wir empfehlen eine fachliche Prüfung alle paar Jahre, um Erträge und Sicherheit dauerhaft zu sichern.",
+      "answer_en": "Solar systems are very low-maintenance. We recommend a professional inspection every few years to keep yields and safety at their best."
+    }
+  },
+  {
+    "model": "catalog.faq",
+    "pk": 4,
+    "fields": {
+      "category": "battery",
+      "order": 4,
+      "is_active": true,
+      "question_de": "Lohnt sich ein Batteriespeicher?",
+      "question_en": "Is a battery storage worth it?",
+      "answer_de": "Ein Speicher erhöht Ihren Eigenverbrauch deutlich und macht Sie unabhängiger von steigenden Strompreisen. Wir berechnen die optimale Größe für Ihren Haushalt.",
+      "answer_en": "Storage significantly increases your self-consumption and makes you more independent from rising electricity prices. We calculate the optimal size for your household."
+    }
+  },
+  {
+    "model": "catalog.faq",
+    "pk": 5,
+    "fields": {
+      "category": "consumption",
+      "order": 5,
+      "is_active": true,
+      "question_de": "Wie viel Strom kann ich selbst nutzen?",
+      "question_en": "How much electricity can I use myself?",
+      "answer_de": "Ohne Speicher liegt der Eigenverbrauch meist bei 25–35 %. Mit einem Batteriespeicher steigt er auf 60–80 %.",
+      "answer_en": "Without storage, self-consumption is usually 25–35 %. With a battery it rises to 60–80 %."
+    }
+  },
+  {
+    "model": "catalog.faq",
+    "pk": 6,
+    "fields": {
+      "category": "permits",
+      "order": 6,
+      "is_active": true,
+      "question_de": "Welche Genehmigungen werden benötigt?",
+      "question_en": "Which permits are required?",
+      "answer_de": "Die Anlage wird beim Netzbetreiber und im Marktstammdatenregister angemeldet. Diese Anmeldungen übernehmen wir vollständig für Sie.",
+      "answer_en": "The system is registered with the grid operator and in the market master data register. We handle these registrations entirely for you."
+    }
+  },
+  {
+    "model": "catalog.faq",
+    "pk": 7,
+    "fields": {
+      "category": "technical",
+      "order": 7,
+      "is_active": true,
+      "question_de": "Funktioniert die Anlage auch bei bewölktem Himmel?",
+      "question_en": "Does the system work on cloudy days?",
+      "answer_de": "Ja. Moderne Module erzeugen auch bei diffusem Licht Strom – die Leistung ist dann geringer, aber die Anlage produziert weiterhin.",
+      "answer_en": "Yes. Modern modules also generate electricity in diffuse light – output is lower, but the system keeps producing."
+    }
+  },
+  {
+    "model": "catalog.faq",
+    "pk": 8,
+    "fields": {
+      "category": "general",
+      "order": 8,
+      "is_active": true,
+      "question_de": "In welchen Regionen ist Kresh Energy tätig?",
+      "question_en": "Which regions does Kresh Energy serve?",
+      "answer_de": "Wir sind in weiten Teilen Deutschlands aktiv. Geben Sie Ihre Postleitzahl im Angebotsformular an und wir prüfen die Verfügbarkeit.",
+      "answer_en": "We operate across large parts of Germany. Enter your postal code in the quote form and we will check availability."
+    }
+  },
+  {
+    "model": "catalog.testimonial",
+    "pk": 1,
+    "fields": {
+      "author_name": "Familie Becker",
+      "city": "München",
+      "rating": 5,
+      "is_featured": true,
+      "order": 1,
+      "is_active": true,
+      "role_de": "Eigenheimbesitzer",
+      "role_en": "Homeowner",
+      "quote_de": "Von der Beratung bis zur Inbetriebnahme lief alles reibungslos. Unsere Stromrechnung hat sich mehr als halbiert.",
+      "quote_en": "Everything ran smoothly from consultation to commissioning. Our electricity bill has more than halved."
+    }
+  },
+  {
+    "model": "catalog.testimonial",
+    "pk": 2,
+    "fields": {
+      "author_name": "Stefan Vogel",
+      "city": "Stuttgart",
+      "rating": 5,
+      "is_featured": true,
+      "order": 2,
+      "is_active": true,
+      "role_de": "Geschäftsführer",
+      "role_en": "Managing Director",
+      "quote_de": "Die PV-Anlage auf unserer Lagerhalle amortisiert sich schneller als geplant. Ein sehr professionelles Team.",
+      "quote_en": "The PV system on our warehouse pays off faster than planned. A very professional team."
+    }
+  },
+  {
+    "model": "catalog.testimonial",
+    "pk": 3,
+    "fields": {
+      "author_name": "Aylin Demir",
+      "city": "Köln",
+      "rating": 5,
+      "is_featured": true,
+      "order": 3,
+      "is_active": true,
+      "role_de": "Eigenheimbesitzerin",
+      "role_en": "Homeowner",
+      "quote_de": "Mit Speicher und Wallbox laden wir unser Auto fast komplett mit Sonnenstrom. Absolut empfehlenswert.",
+      "quote_en": "With storage and a wallbox we charge our car almost entirely with solar power. Highly recommended."
+    }
+  },
+  {
+    "model": "catalog.testimonial",
+    "pk": 4,
+    "fields": {
+      "author_name": "Familie Hofmann",
+      "city": "Hamburg",
+      "rating": 5,
+      "is_featured": true,
+      "order": 4,
+      "is_active": true,
+      "role_de": "Eigenheimbesitzer",
+      "role_en": "Homeowner",
+      "quote_de": "Transparente Beratung, faire Preise und saubere Montage. Wir fühlen uns rundum gut betreut.",
+      "quote_en": "Transparent advice, fair prices and clean installation. We feel very well looked after."
+    }
+  },
+  {
+    "model": "catalog.servicearea",
+    "pk": 1,
+    "fields": {
+      "name": "München", "postal_code": "80331", "latitude": "48.137154", "longitude": "11.576124",
+      "contact_phone": "+49 89 1234567", "contact_email": "muenchen@kresh-energy.de", "order": 1, "is_active": true
+    }
+  },
+  {
+    "model": "catalog.servicearea",
+    "pk": 2,
+    "fields": {
+      "name": "Stuttgart", "postal_code": "70173", "latitude": "48.775846", "longitude": "9.182932",
+      "contact_phone": "+49 711 1234567", "contact_email": "stuttgart@kresh-energy.de", "order": 2, "is_active": true
+    }
+  },
+  {
+    "model": "catalog.servicearea",
+    "pk": 3,
+    "fields": {
+      "name": "Köln", "postal_code": "50667", "latitude": "50.937531", "longitude": "6.960279",
+      "contact_phone": "+49 221 1234567", "contact_email": "koeln@kresh-energy.de", "order": 3, "is_active": true
+    }
+  },
+  {
+    "model": "catalog.servicearea",
+    "pk": 4,
+    "fields": {
+      "name": "Frankfurt am Main", "postal_code": "60311", "latitude": "50.110924", "longitude": "8.682127",
+      "contact_phone": "+49 69 1234567", "contact_email": "frankfurt@kresh-energy.de", "order": 4, "is_active": true
+    }
+  },
+  {
+    "model": "catalog.servicearea",
+    "pk": 5,
+    "fields": {
+      "name": "Hamburg", "postal_code": "20095", "latitude": "53.550341", "longitude": "10.000654",
+      "contact_phone": "+49 40 1234567", "contact_email": "hamburg@kresh-energy.de", "order": 5, "is_active": true
+    }
+  },
+  {
+    "model": "catalog.servicearea",
+    "pk": 6,
+    "fields": {
+      "name": "Berlin", "postal_code": "10115", "latitude": "52.520008", "longitude": "13.404954",
+      "contact_phone": "+49 30 1234567", "contact_email": "berlin@kresh-energy.de", "order": 6, "is_active": true
+    }
+  },
+  {
+    "model": "catalog.project",
+    "pk": 1,
+    "fields": {
+      "slug": "efh-muenchen-9-8-kwp",
+      "city": "München",
+      "size_kwp": "9.80",
+      "panel_count": 24,
+      "date_completed": "2025-09-12",
+      "audience": "residential",
+      "is_featured": true,
+      "order": 1,
+      "is_active": true,
+      "title_de": "Einfamilienhaus mit Speicher",
+      "title_en": "Single-family home with storage",
+      "description_de": "Dachanlage mit 9,8 kWp und 10 kWh Speicher – deckt rund 75 % des Jahresbedarfs.",
+      "description_en": "Rooftop system with 9.8 kWp and 10 kWh storage – covering around 75 % of annual demand."
+    }
+  },
+  {
+    "model": "catalog.project",
+    "pk": 2,
+    "fields": {
+      "slug": "lagerhalle-stuttgart-120-kwp",
+      "city": "Stuttgart",
+      "size_kwp": "120.00",
+      "panel_count": 280,
+      "date_completed": "2025-07-03",
+      "audience": "commercial",
+      "is_featured": true,
+      "order": 2,
+      "is_active": true,
+      "title_de": "Lagerhalle mit Großanlage",
+      "title_en": "Warehouse with large-scale system",
+      "description_de": "120 kWp Aufdachanlage für einen Logistikbetrieb mit hohem Eigenverbrauch.",
+      "description_en": "120 kWp rooftop system for a logistics company with high self-consumption."
+    }
+  },
+  {
+    "model": "catalog.project",
+    "pk": 3,
+    "fields": {
+      "slug": "doppelhaus-koeln-7-2-kwp",
+      "city": "Köln",
+      "size_kwp": "7.20",
+      "panel_count": 18,
+      "date_completed": "2025-10-20",
+      "audience": "residential",
+      "is_featured": true,
+      "order": 3,
+      "is_active": true,
+      "title_de": "Doppelhaus mit Wallbox",
+      "title_en": "Semi-detached house with wallbox",
+      "description_de": "7,2 kWp Anlage mit Speicher und Wallbox für das Laden des E-Autos.",
+      "description_en": "7.2 kWp system with storage and a wallbox for EV charging."
+    }
+  },
+  {
+    "model": "catalog.project",
+    "pk": 4,
+    "fields": {
+      "slug": "buerogebaeude-frankfurt-45-kwp",
+      "city": "Frankfurt am Main",
+      "size_kwp": "45.00",
+      "panel_count": 104,
+      "date_completed": "2025-05-15",
+      "audience": "commercial",
+      "is_featured": false,
+      "order": 4,
+      "is_active": true,
+      "title_de": "Bürogebäude Innenstadt",
+      "title_en": "City-centre office building",
+      "description_de": "45 kWp Anlage zur Deckung des Tagesstrombedarfs eines Bürogebäudes.",
+      "description_en": "45 kWp system covering the daytime electricity demand of an office building."
+    }
+  }
+]
