@@ -6,7 +6,7 @@ from django.utils.translation import get_language
 from rest_framework import serializers
 
 DEFAULT_LANGUAGE = "de"
-SUPPORTED_LANGUAGES = ("de", "en")
+SUPPORTED_LANGUAGES = ("de", "en", "ar")
 
 
 def resolve_language() -> str:

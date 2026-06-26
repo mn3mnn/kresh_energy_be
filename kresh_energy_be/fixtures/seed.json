@@ -10,10 +10,13 @@
       "is_active": true,
       "title_de": "Installation von Solaranlagen",
       "title_en": "Solar Panel Installation",
+      "title_ar": "تركيب أنظمة الطاقة الشمسية",
       "summary_de": "Schlüsselfertige Photovoltaik-Anlagen für Dach und Fassade – geplant, montiert und angeschlossen.",
       "summary_en": "Turnkey photovoltaic systems for roof and façade – planned, mounted and connected.",
+      "summary_ar": "أنظمة كهروضوئية متكاملة للأسطح والواجهات – تصميم وتركيب وتوصيل.",
       "description_de": "Von der ersten Beratung bis zur Inbetriebnahme übernehmen wir die komplette Planung und Montage Ihrer Solaranlage mit hochwertigen Modulen und Wechselrichtern.",
-      "description_en": "From the first consultation to commissioning, we handle the complete planning and installation of your solar system with premium modules and inverters."
+      "description_en": "From the first consultation to commissioning, we handle the complete planning and installation of your solar system with premium modules and inverters.",
+      "description_ar": "من أول استشارة وحتى التشغيل، نتولّى التخطيط والتركيب الكامل لنظامك الشمسي باستخدام ألواح ومحوّلات عالية الجودة."
     }
   },
   {
@@ -27,10 +30,13 @@
       "is_active": true,
       "title_de": "Batterie- & Stromspeicher",
       "title_en": "Battery & Energy Storage",
+      "title_ar": "البطاريات وتخزين الطاقة",
       "summary_de": "Speichern Sie Ihren Solarstrom und nutzen Sie ihn dann, wenn Sie ihn wirklich brauchen.",
       "summary_en": "Store your solar power and use it exactly when you need it most.",
+      "summary_ar": "خزّن طاقتك الشمسية واستخدمها عندما تحتاجها فعلاً.",
       "description_de": "Moderne Lithium-Speicher erhöhen Ihren Eigenverbrauch auf bis zu 80 % und machen Sie unabhängiger vom Netz.",
-      "description_en": "Modern lithium storage raises your self-consumption up to 80 % and makes you more independent from the grid."
+      "description_en": "Modern lithium storage raises your self-consumption up to 80 % and makes you more independent from the grid.",
+      "description_ar": "ترفع بطاريات الليثيوم الحديثة نسبة استهلاكك الذاتي إلى ما يصل إلى 80% وتجعلك أقل اعتماداً على الشبكة."
     }
   },
   {
@@ -44,10 +50,13 @@
       "is_active": true,
       "title_de": "Wallbox & E-Auto-Laden",
       "title_en": "EV Charging (Wallbox)",
+      "title_ar": "شحن السيارات الكهربائية (والبوكس)",
       "summary_de": "Laden Sie Ihr E-Auto bequem zu Hause mit Ihrem eigenen Solarstrom.",
       "summary_en": "Charge your EV conveniently at home with your own solar power.",
+      "summary_ar": "اشحن سيارتك الكهربائية بسهولة في المنزل بطاقتك الشمسية.",
       "description_de": "Wir installieren intelligente Wallboxen, die das Laden automatisch mit Ihrem Solarüberschuss steuern.",
-      "description_en": "We install smart wallboxes that automatically balance charging with your solar surplus."
+      "description_en": "We install smart wallboxes that automatically balance charging with your solar surplus.",
+      "description_ar": "نركّب وحدات والبوكس ذكية تتحكم تلقائياً في الشحن باستخدام فائض طاقتك الشمسية."
     }
   },
   {
@@ -61,10 +70,13 @@
       "is_active": true,
       "title_de": "Anlagenprüfung",
       "title_en": "System Inspection",
+      "title_ar": "فحص الأنظمة",
       "summary_de": "Professionelle Prüfung der Leistung und Sicherheit Ihrer bestehenden Anlage.",
       "summary_en": "Professional inspection of the performance and safety of your existing system.",
+      "summary_ar": "فحص احترافي لأداء وسلامة نظامك القائم.",
       "description_de": "Unsere Techniker prüfen Verkabelung, Module und Wechselrichter und erstellen einen detaillierten Bericht.",
-      "description_en": "Our technicians check wiring, modules and inverters and provide a detailed report."
+      "description_en": "Our technicians check wiring, modules and inverters and provide a detailed report.",
+      "description_ar": "يفحص فنيّونا الأسلاك والألواح والمحوّلات ويقدّمون تقريراً مفصّلاً."
     }
   },
   {
@@ -78,10 +90,13 @@
       "is_active": true,
       "title_de": "Wartung & Instandhaltung",
       "title_en": "Maintenance & Service",
+      "title_ar": "الصيانة والخدمة",
       "summary_de": "Vorbeugende und korrektive Wartung für maximale Erträge über Jahrzehnte.",
       "summary_en": "Preventive and corrective maintenance for maximum yield over decades.",
+      "summary_ar": "صيانة وقائية وتصحيحية لأقصى إنتاج على مدى عقود.",
       "description_de": "Mit regelmäßiger Wartung sichern Sie die volle Leistung und Lebensdauer Ihrer Solaranlage.",
-      "description_en": "Regular maintenance secures the full performance and lifespan of your solar system."
+      "description_en": "Regular maintenance secures the full performance and lifespan of your solar system.",
+      "description_ar": "تضمن الصيانة الدورية الأداء الكامل والعمر الافتراضي الطويل لنظامك الشمسي."
     }
   },
   {
@@ -95,10 +110,13 @@
       "is_active": true,
       "title_de": "Lösungen für Unternehmen",
       "title_en": "Commercial Solutions",
+      "title_ar": "حلول للشركات",
       "summary_de": "Maßgeschneiderte Energielösungen für Hallen, Büros und Industrie.",
       "summary_en": "Tailored energy solutions for warehouses, offices and industry.",
+      "summary_ar": "حلول طاقة مصمّمة خصيصاً للمستودعات والمكاتب والصناعة.",
       "description_de": "Wir entwickeln skalierbare PV-Projekte, die Ihre Betriebskosten senken und Ihre CO₂-Bilanz verbessern.",
-      "description_en": "We develop scalable PV projects that cut your operating costs and improve your carbon footprint."
+      "description_en": "We develop scalable PV projects that cut your operating costs and improve your carbon footprint.",
+      "description_ar": "نطوّر مشاريع كهروضوئية قابلة للتوسّع تخفّض تكاليف تشغيلك وتحسّن بصمتك الكربونية."
     }
   },
   {
@@ -110,8 +128,10 @@
       "is_active": true,
       "question_de": "Wie lange dauert die Installation einer Solaranlage?",
       "question_en": "How long does a solar installation take?",
+      "question_ar": "كم تستغرق عملية تركيب نظام الطاقة الشمسية؟",
       "answer_de": "Eine typische Einfamilienhaus-Anlage installieren wir in der Regel an 1 bis 2 Tagen. Die Planung und Genehmigung im Vorfeld dauert meist 2 bis 4 Wochen.",
-      "answer_en": "A typical single-family system is usually installed within 1 to 2 days. The preceding planning and approval normally takes 2 to 4 weeks."
+      "answer_en": "A typical single-family system is usually installed within 1 to 2 days. The preceding planning and approval normally takes 2 to 4 weeks.",
+      "answer_ar": "نركّب نظام منزل عائلي نموذجي عادةً خلال يوم إلى يومين. أما التخطيط والحصول على الموافقات مسبقاً فيستغرق غالباً من أسبوعين إلى أربعة أسابيع."
     }
   },
   {
@@ -123,8 +143,10 @@
       "is_active": true,
       "question_de": "Welche Garantie erhalte ich auf meine Anlage?",
       "question_en": "What warranty do I get on my system?",
+      "question_ar": "ما الضمان الذي أحصل عليه على نظامي؟",
       "answer_de": "Auf die Module gewähren die Hersteller in der Regel 25 Jahre Leistungsgarantie, auf Wechselrichter und Speicher meist 10 Jahre. Auf unsere Montage geben wir zusätzlich eine Gewährleistung.",
-      "answer_en": "Manufacturers typically grant a 25-year performance warranty on modules and around 10 years on inverters and storage. We additionally provide a warranty on our installation work."
+      "answer_en": "Manufacturers typically grant a 25-year performance warranty on modules and around 10 years on inverters and storage. We additionally provide a warranty on our installation work.",
+      "answer_ar": "يمنح المصنّعون عادةً ضمان أداء لمدة 25 عاماً على الألواح، ونحو 10 أعوام على المحوّلات والبطاريات. كما نقدّم ضماناً إضافياً على أعمال التركيب لدينا."
     }
   },
   {
@@ -136,8 +158,10 @@
       "is_active": true,
       "question_de": "Muss eine Solaranlage gewartet werden?",
       "question_en": "Does a solar system need maintenance?",
+      "question_ar": "هل يحتاج نظام الطاقة الشمسية إلى صيانة؟",
       "answer_de": "Solaranlagen sind sehr wartungsarm. Wir empfehlen eine fachliche Prüfung alle paar Jahre, um Erträge und Sicherheit dauerhaft zu sichern.",
-      "answer_en": "Solar systems are very low-maintenance. We recommend a professional inspection every few years to keep yields and safety at their best."
+      "answer_en": "Solar systems are very low-maintenance. We recommend a professional inspection every few years to keep yields and safety at their best.",
+      "answer_ar": "أنظمة الطاقة الشمسية قليلة الصيانة للغاية. نوصي بفحص متخصّص كل بضع سنوات للحفاظ على الإنتاج والسلامة على أفضل حال."
     }
   },
   {
@@ -149,8 +173,10 @@
       "is_active": true,
       "question_de": "Lohnt sich ein Batteriespeicher?",
       "question_en": "Is a battery storage worth it?",
+      "question_ar": "هل تستحق بطارية التخزين العناء؟",
       "answer_de": "Ein Speicher erhöht Ihren Eigenverbrauch deutlich und macht Sie unabhängiger von steigenden Strompreisen. Wir berechnen die optimale Größe für Ihren Haushalt.",
-      "answer_en": "Storage significantly increases your self-consumption and makes you more independent from rising electricity prices. We calculate the optimal size for your household."
+      "answer_en": "Storage significantly increases your self-consumption and makes you more independent from rising electricity prices. We calculate the optimal size for your household.",
+      "answer_ar": "ترفع البطارية استهلاكك الذاتي بشكل كبير وتجعلك أقل تأثّراً بارتفاع أسعار الكهرباء. ونحسب لك الحجم الأمثل لمنزلك."
     }
   },
   {
@@ -162,8 +188,10 @@
       "is_active": true,
       "question_de": "Wie viel Strom kann ich selbst nutzen?",
       "question_en": "How much electricity can I use myself?",
+      "question_ar": "ما مقدار الكهرباء التي يمكنني استخدامها بنفسي؟",
       "answer_de": "Ohne Speicher liegt der Eigenverbrauch meist bei 25–35 %. Mit einem Batteriespeicher steigt er auf 60–80 %.",
-      "answer_en": "Without storage, self-consumption is usually 25–35 %. With a battery it rises to 60–80 %."
+      "answer_en": "Without storage, self-consumption is usually 25–35 %. With a battery it rises to 60–80 %.",
+      "answer_ar": "من دون بطارية يكون الاستهلاك الذاتي عادةً بين 25 و35٪. ومع البطارية يرتفع إلى ما بين 60 و80٪."
     }
   },
   {
@@ -175,8 +203,10 @@
       "is_active": true,
       "question_de": "Welche Genehmigungen werden benötigt?",
       "question_en": "Which permits are required?",
+      "question_ar": "ما التصاريح المطلوبة؟",
       "answer_de": "Die Anlage wird beim Netzbetreiber und im Marktstammdatenregister angemeldet. Diese Anmeldungen übernehmen wir vollständig für Sie.",
-      "answer_en": "The system is registered with the grid operator and in the market master data register. We handle these registrations entirely for you."
+      "answer_en": "The system is registered with the grid operator and in the market master data register. We handle these registrations entirely for you.",
+      "answer_ar": "يُسجَّل النظام لدى مشغّل الشبكة وفي سجلّ البيانات الرئيسية للسوق. ونتولّى هذه التسجيلات بالكامل نيابةً عنك."
     }
   },
   {
@@ -188,8 +218,10 @@
       "is_active": true,
       "question_de": "Funktioniert die Anlage auch bei bewölktem Himmel?",
       "question_en": "Does the system work on cloudy days?",
+      "question_ar": "هل يعمل النظام في الأيام الغائمة؟",
       "answer_de": "Ja. Moderne Module erzeugen auch bei diffusem Licht Strom – die Leistung ist dann geringer, aber die Anlage produziert weiterhin.",
-      "answer_en": "Yes. Modern modules also generate electricity in diffuse light – output is lower, but the system keeps producing."
+      "answer_en": "Yes. Modern modules also generate electricity in diffuse light – output is lower, but the system keeps producing.",
+      "answer_ar": "نعم. تنتج الألواح الحديثة الكهرباء حتى في الضوء المنتشر – يكون الإنتاج أقل، لكن النظام يستمر في العمل."
     }
   },
   {
@@ -201,8 +233,10 @@
       "is_active": true,
       "question_de": "In welchen Regionen ist Kresh Energy tätig?",
       "question_en": "Which regions does Kresh Energy serve?",
+      "question_ar": "ما المناطق التي تخدمها Kresh Energy؟",
       "answer_de": "Wir sind in weiten Teilen Deutschlands aktiv. Geben Sie Ihre Postleitzahl im Angebotsformular an und wir prüfen die Verfügbarkeit.",
-      "answer_en": "We operate across large parts of Germany. Enter your postal code in the quote form and we will check availability."
+      "answer_en": "We operate across large parts of Germany. Enter your postal code in the quote form and we will check availability.",
+      "answer_ar": "نعمل في أنحاء واسعة من ألمانيا. أدخل رمزك البريدي في نموذج طلب العرض وسنتحقّق من توفّر الخدمة."
     }
   },
   {
@@ -217,8 +251,10 @@
       "is_active": true,
       "role_de": "Eigenheimbesitzer",
       "role_en": "Homeowner",
+      "role_ar": "صاحب منزل",
       "quote_de": "Von der Beratung bis zur Inbetriebnahme lief alles reibungslos. Unsere Stromrechnung hat sich mehr als halbiert.",
-      "quote_en": "Everything ran smoothly from consultation to commissioning. Our electricity bill has more than halved."
+      "quote_en": "Everything ran smoothly from consultation to commissioning. Our electricity bill has more than halved.",
+      "quote_ar": "سار كل شيء بسلاسة من الاستشارة حتى التشغيل. وانخفضت فاتورة الكهرباء لدينا إلى أقل من النصف."
     }
   },
   {
@@ -233,8 +269,10 @@
       "is_active": true,
       "role_de": "Geschäftsführer",
       "role_en": "Managing Director",
+      "role_ar": "المدير العام",
       "quote_de": "Die PV-Anlage auf unserer Lagerhalle amortisiert sich schneller als geplant. Ein sehr professionelles Team.",
-      "quote_en": "The PV system on our warehouse pays off faster than planned. A very professional team."
+      "quote_en": "The PV system on our warehouse pays off faster than planned. A very professional team.",
+      "quote_ar": "نظام الطاقة الشمسية على مستودعنا يسترد تكلفته أسرع مما خطّطنا. فريق محترف جداً."
     }
   },
   {
@@ -249,8 +287,10 @@
       "is_active": true,
       "role_de": "Eigenheimbesitzerin",
       "role_en": "Homeowner",
+      "role_ar": "صاحبة منزل",
       "quote_de": "Mit Speicher und Wallbox laden wir unser Auto fast komplett mit Sonnenstrom. Absolut empfehlenswert.",
-      "quote_en": "With storage and a wallbox we charge our car almost entirely with solar power. Highly recommended."
+      "quote_en": "With storage and a wallbox we charge our car almost entirely with solar power. Highly recommended.",
+      "quote_ar": "مع البطارية ووحدة الوالبوكس نشحن سيارتنا بالكامل تقريباً بالطاقة الشمسية. أنصح بها بشدّة."
     }
   },
   {
@@ -265,8 +305,10 @@
       "is_active": true,
       "role_de": "Eigenheimbesitzer",
       "role_en": "Homeowner",
+      "role_ar": "صاحب منزل",
       "quote_de": "Transparente Beratung, faire Preise und saubere Montage. Wir fühlen uns rundum gut betreut.",
-      "quote_en": "Transparent advice, fair prices and clean installation. We feel very well looked after."
+      "quote_en": "Transparent advice, fair prices and clean installation. We feel very well looked after.",
+      "quote_ar": "استشارة شفافة وأسعار عادلة وتركيب نظيف. نشعر أننا في رعاية ممتازة من كل النواحي."
     }
   },
   {
@@ -332,8 +374,10 @@
       "is_active": true,
       "title_de": "Einfamilienhaus mit Speicher",
       "title_en": "Single-family home with storage",
+      "title_ar": "منزل عائلي مع بطارية تخزين",
       "description_de": "Dachanlage mit 9,8 kWp und 10 kWh Speicher – deckt rund 75 % des Jahresbedarfs.",
-      "description_en": "Rooftop system with 9.8 kWp and 10 kWh storage – covering around 75 % of annual demand."
+      "description_en": "Rooftop system with 9.8 kWp and 10 kWh storage – covering around 75 % of annual demand.",
+      "description_ar": "نظام على السطح بقدرة 9.8 كيلوواط ذروة وبطارية 10 كيلوواط ساعة – يغطّي نحو 75٪ من الاحتياج السنوي."
     }
   },
   {
@@ -351,8 +395,10 @@
       "is_active": true,
       "title_de": "Lagerhalle mit Großanlage",
       "title_en": "Warehouse with large-scale system",
+      "title_ar": "مستودع بنظام واسع النطاق",
       "description_de": "120 kWp Aufdachanlage für einen Logistikbetrieb mit hohem Eigenverbrauch.",
-      "description_en": "120 kWp rooftop system for a logistics company with high self-consumption."
+      "description_en": "120 kWp rooftop system for a logistics company with high self-consumption.",
+      "description_ar": "نظام على السطح بقدرة 120 كيلوواط ذروة لشركة خدمات لوجستية ذات استهلاك ذاتي مرتفع."
     }
   },
   {
@@ -370,8 +416,10 @@
       "is_active": true,
       "title_de": "Doppelhaus mit Wallbox",
       "title_en": "Semi-detached house with wallbox",
+      "title_ar": "منزل متلاصق مع والبوكس",
       "description_de": "7,2 kWp Anlage mit Speicher und Wallbox für das Laden des E-Autos.",
-      "description_en": "7.2 kWp system with storage and a wallbox for EV charging."
+      "description_en": "7.2 kWp system with storage and a wallbox for EV charging.",
+      "description_ar": "نظام بقدرة 7.2 كيلوواط ذروة مع بطارية ووحدة والبوكس لشحن السيارة الكهربائية."
     }
   },
   {
@@ -389,8 +437,10 @@
       "is_active": true,
       "title_de": "Bürogebäude Innenstadt",
       "title_en": "City-centre office building",
+      "title_ar": "مبنى مكاتب في وسط المدينة",
       "description_de": "45 kWp Anlage zur Deckung des Tagesstrombedarfs eines Bürogebäudes.",
-      "description_en": "45 kWp system covering the daytime electricity demand of an office building."
+      "description_en": "45 kWp system covering the daytime electricity demand of an office building.",
+      "description_ar": "نظام بقدرة 45 كيلوواط ذروة لتغطية احتياج مبنى مكاتب من الكهرباء خلال النهار."
     }
   }
 ]

@@ -13,7 +13,14 @@ class ServiceAdmin(admin.ModelAdmin):
     list_display = ["title_de", "audience", "order", "is_active"]
     list_editable = ["order", "is_active"]
     list_filter = ["audience", "is_active"]
-    search_fields = ["title_de", "title_en", "summary_de", "summary_en"]
+    search_fields = [
+        "title_de",
+        "title_en",
+        "title_ar",
+        "summary_de",
+        "summary_en",
+        "summary_ar",
+    ]
     prepopulated_fields = {"slug": ("title_de",)}
 
 
@@ -29,7 +36,7 @@ class ProjectAdmin(admin.ModelAdmin):
     ]
     list_editable = ["is_featured", "is_active"]
     list_filter = ["audience", "is_featured", "is_active", "city"]
-    search_fields = ["title_de", "title_en", "city"]
+    search_fields = ["title_de", "title_en", "title_ar", "city"]
     prepopulated_fields = {"slug": ("title_de",)}
     readonly_fields = ["image_preview"]
 
@@ -48,7 +55,14 @@ class FAQAdmin(admin.ModelAdmin):
     list_display = ["question_de", "category", "order", "is_active"]
     list_editable = ["order", "is_active"]
     list_filter = ["category", "is_active"]
-    search_fields = ["question_de", "question_en", "answer_de", "answer_en"]
+    search_fields = [
+        "question_de",
+        "question_en",
+        "question_ar",
+        "answer_de",
+        "answer_en",
+        "answer_ar",
+    ]
 
 
 @admin.register(Testimonial)
@@ -56,7 +70,7 @@ class TestimonialAdmin(admin.ModelAdmin):
     list_display = ["author_name", "city", "rating", "is_featured", "is_active"]
     list_editable = ["is_featured", "is_active"]
     list_filter = ["rating", "is_featured", "is_active"]
-    search_fields = ["author_name", "city", "quote_de", "quote_en"]
+    search_fields = ["author_name", "city", "quote_de", "quote_en", "quote_ar"]
 
 
 @admin.register(ServiceArea)

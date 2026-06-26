@@ -30,10 +30,13 @@ class Service(TimeStampedModel):
 
     title_de = models.CharField(_("Title (DE)"), max_length=160)
     title_en = models.CharField(_("Title (EN)"), max_length=160, blank=True)
+    title_ar = models.CharField(_("Title (AR)"), max_length=160, blank=True)
     summary_de = models.CharField(_("Summary (DE)"), max_length=280)
     summary_en = models.CharField(_("Summary (EN)"), max_length=280, blank=True)
+    summary_ar = models.CharField(_("Summary (AR)"), max_length=280, blank=True)
     description_de = models.TextField(_("Description (DE)"), blank=True)
     description_en = models.TextField(_("Description (EN)"), blank=True)
+    description_ar = models.TextField(_("Description (AR)"), blank=True)
 
     class Meta:
         verbose_name = _("Service")
@@ -69,8 +72,10 @@ class Project(TimeStampedModel):
 
     title_de = models.CharField(_("Title (DE)"), max_length=180)
     title_en = models.CharField(_("Title (EN)"), max_length=180, blank=True)
+    title_ar = models.CharField(_("Title (AR)"), max_length=180, blank=True)
     description_de = models.TextField(_("Description (DE)"), blank=True)
     description_en = models.TextField(_("Description (EN)"), blank=True)
+    description_ar = models.TextField(_("Description (AR)"), blank=True)
 
     class Meta:
         verbose_name = _("Project")
@@ -106,8 +111,10 @@ class FAQ(TimeStampedModel):
 
     question_de = models.CharField(_("Question (DE)"), max_length=255)
     question_en = models.CharField(_("Question (EN)"), max_length=255, blank=True)
+    question_ar = models.CharField(_("Question (AR)"), max_length=255, blank=True)
     answer_de = models.TextField(_("Answer (DE)"))
     answer_en = models.TextField(_("Answer (EN)"), blank=True)
+    answer_ar = models.TextField(_("Answer (AR)"), blank=True)
 
     class Meta:
         verbose_name = _("FAQ")
@@ -131,8 +138,10 @@ class Testimonial(TimeStampedModel):
 
     role_de = models.CharField(_("Role (DE)"), max_length=120, blank=True)
     role_en = models.CharField(_("Role (EN)"), max_length=120, blank=True)
+    role_ar = models.CharField(_("Role (AR)"), max_length=120, blank=True)
     quote_de = models.TextField(_("Quote (DE)"))
     quote_en = models.TextField(_("Quote (EN)"), blank=True)
+    quote_ar = models.TextField(_("Quote (AR)"), blank=True)
 
     class Meta:
         verbose_name = _("Testimonial")

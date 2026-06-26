@@ -32,7 +32,7 @@ from django.utils.translation import gettext_lazy as _  # noqa: E402
 LANGUAGES = [
     ("de", _("German")),
     ("en", _("English")),
-    # ("ar", _("Arabic")),  # Phase 2 (RTL)
+    ("ar", _("Arabic")),  # RTL
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
