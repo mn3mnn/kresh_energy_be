@@ -183,3 +183,120 @@ class ServiceArea(TimeStampedModel):
 
     def __str__(self) -> str:
         return self.name
+
+
+class CalculatorConfig(TimeStampedModel):
+    """Admin-editable assumptions for the solar calculator (singleton, pk=1).
+
+    Mirrors the constants the frontend ships as defaults (``solar.ts``); editing
+    these here lets staff tune the estimator without a code deploy.
+    """
+
+    # Tariffs
+    electricity_price = models.DecimalField(
+        _("Electricity price (€/kWh)"),
+        max_digits=6,
+        decimal_places=3,
+        default=0.350,
+        help_text=_("German household average, e.g. 0.350."),
+    )
+    feed_in_tariff = models.DecimalField(
+        _("Feed-in tariff (€/kWh)"),
+        max_digits=6,
+        decimal_places=3,
+        default=0.080,
+        help_text=_("Paid for surplus fed into the grid."),
+    )
+
+    # Production
+    specific_yield = models.PositiveIntegerField(
+        _("Specific yield (kWh/kWp·yr)"),
+        default=950,
+        help_text=_("Annual yield per kWp in Germany."),
+    )
+    panel_kwp = models.DecimalField(
+        _("Panel power (kWp)"),
+        max_digits=5,
+        decimal_places=3,
+        default=0.430,
+        help_text=_("Per-module peak power, e.g. 0.430 for a 430 Wp module."),
+    )
+    panel_area_m2 = models.DecimalField(
+        _("Panel area (m²)"),
+        max_digits=5,
+        decimal_places=2,
+        default=1.85,
+        help_text=_("Usable area per module incl. framing."),
+    )
+
+    # Consumption
+    base_consumption = models.PositiveIntegerField(
+        _("Base consumption (kWh/yr)"),
+        default=1500,
+        help_text=_("Household base load before per-member additions."),
+    )
+    per_member_consumption = models.PositiveIntegerField(
+        _("Per-member consumption (kWh/yr)"),
+        default=900,
+    )
+    ev_consumption = models.PositiveIntegerField(
+        _("EV consumption (kWh/yr)"),
+        default=2500,
+        help_text=_("Added when the customer wants an EV charger."),
+    )
+
+    # Self-consumption rates (share of production used on site)
+    self_consumption_no_battery = models.DecimalField(
+        _("Self-consumption without battery"),
+        max_digits=4,
+        decimal_places=2,
+        default=0.30,
+        help_text=_("Fraction 0–1, e.g. 0.30."),
+    )
+    self_consumption_with_battery = models.DecimalField(
+        _("Self-consumption with battery"),
+        max_digits=4,
+        decimal_places=2,
+        default=0.65,
+        help_text=_("Fraction 0–1, e.g. 0.65."),
+    )
+
+    # Usable-roof factors per roof type (share of roof area usable for panels)
+    usable_roof_factor_pitched = models.DecimalField(
+        _("Usable roof factor – pitched"),
+        max_digits=4,
+        decimal_places=2,
+        default=0.75,
+    )
+    usable_roof_factor_flat = models.DecimalField(
+        _("Usable roof factor – flat"),
+        max_digits=4,
+        decimal_places=2,
+        default=0.50,
+    )
+    usable_roof_factor_other = models.DecimalField(
+        _("Usable roof factor – other"),
+        max_digits=4,
+        decimal_places=2,
+        default=0.60,
+    )
+
+    class Meta:
+        verbose_name = _("Calculator configuration")
+        verbose_name_plural = _("Calculator configuration")
+
+    def __str__(self) -> str:
+        return "Calculator configuration"
+
+    def save(self, *args, **kwargs):
+        self.pk = 1  # enforce a single row
+        super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        # The singleton is never deleted.
+        pass
+
+    @classmethod
+    def get_instance(cls) -> "CalculatorConfig":
+        obj, _created = cls.objects.get_or_create(pk=1)
+        return obj

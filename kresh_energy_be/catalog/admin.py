@@ -1,7 +1,10 @@
 from django.contrib import admin
+from django.shortcuts import redirect
+from django.urls import reverse
 from django.utils.html import format_html
 
 from .models import FAQ
+from .models import CalculatorConfig
 from .models import Project
 from .models import Service
 from .models import ServiceArea
@@ -79,3 +82,62 @@ class ServiceAreaAdmin(admin.ModelAdmin):
     list_editable = ["order", "is_active"]
     list_filter = ["is_active"]
     search_fields = ["name", "postal_code"]
+
+
+@admin.register(CalculatorConfig)
+class CalculatorConfigAdmin(admin.ModelAdmin):
+    """Single editable record of solar-calculator assumptions."""
+
+    fieldsets = (
+        (
+            "Tariffs",
+            {"fields": ("electricity_price", "feed_in_tariff")},
+        ),
+        (
+            "Production",
+            {"fields": ("specific_yield", "panel_kwp", "panel_area_m2")},
+        ),
+        (
+            "Consumption",
+            {
+                "fields": (
+                    "base_consumption",
+                    "per_member_consumption",
+                    "ev_consumption",
+                ),
+            },
+        ),
+        (
+            "Self-consumption",
+            {
+                "fields": (
+                    "self_consumption_no_battery",
+                    "self_consumption_with_battery",
+                ),
+            },
+        ),
+        (
+            "Usable-roof factors",
+            {
+                "fields": (
+                    "usable_roof_factor_pitched",
+                    "usable_roof_factor_flat",
+                    "usable_roof_factor_other",
+                ),
+            },
+        ),
+    )
+
+    def has_add_permission(self, request):
+        # Singleton: only allow adding when no row exists yet.
+        return not CalculatorConfig.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def changelist_view(self, request, extra_context=None):
+        # Skip the one-row list and jump straight to the singleton's edit page.
+        obj = CalculatorConfig.get_instance()
+        return redirect(
+            reverse("admin:catalog_calculatorconfig_change", args=[obj.pk]),
+        )

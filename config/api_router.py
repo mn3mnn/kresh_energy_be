@@ -2,6 +2,7 @@ from django.conf import settings
 from rest_framework.routers import DefaultRouter
 from rest_framework.routers import SimpleRouter
 
+from kresh_energy_be.catalog.views import CalculatorConfigViewSet
 from kresh_energy_be.catalog.views import FAQViewSet
 from kresh_energy_be.catalog.views import ProjectViewSet
 from kresh_energy_be.catalog.views import ServiceAreaViewSet
@@ -19,6 +20,11 @@ router.register("projects", ProjectViewSet, basename="project")
 router.register("faqs", FAQViewSet, basename="faq")
 router.register("testimonials", TestimonialViewSet, basename="testimonial")
 router.register("service-areas", ServiceAreaViewSet, basename="servicearea")
+router.register(
+    "calculator-config",
+    CalculatorConfigViewSet,
+    basename="calculator-config",
+)
 router.register("quotes", QuoteRequestViewSet, basename="quote")
 router.register("bookings", InspectionBookingViewSet, basename="booking")
 
