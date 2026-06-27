@@ -88,6 +88,7 @@ LOCAL_APPS = [
     "kresh_energy_be.users",
     "kresh_energy_be.catalog",
     "kresh_energy_be.leads",
+    "kresh_energy_be.assistant",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -298,10 +299,37 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     # Only lead-create endpoints are throttled (see leads.views.LeadRateThrottle);
     # read endpoints stay unthrottled so SSR (single server IP) isn't blocked.
+    # Layered limits for the AI assistant (cost/abuse protection): a per-IP burst
+    # cap, a per-IP hourly cap, and a global daily ceiling across all clients.
     "DEFAULT_THROTTLE_RATES": {
         "leads": "20/hour",
+        "assistant_burst": env("ASSISTANT_THROTTLE_BURST", default="8/min"),
+        "assistant": env("ASSISTANT_THROTTLE_HOUR", default="30/hour"),
+        "assistant_global": env("ASSISTANT_THROTTLE_GLOBAL", default="1000/day"),
     },
+    # Number of proxies (e.g. Traefik) in front of the app, so DRF derives the
+    # real client IP from X-Forwarded-For for per-IP throttling. Without this,
+    # all traffic looks like the proxy's IP and shares one bucket.
+    "NUM_PROXIES": env.int("DJANGO_NUM_PROXIES", default=0),
 }
+
+# AI ASSISTANT
+# ------------------------------------------------------------------------------
+# OpenAI-backed chat assistant (stateless). Key lives only on the backend.
+OPENAI_API_KEY = env("OPENAI_API_KEY", default="")
+OPENAI_MODEL = env("OPENAI_MODEL", default="gpt-4o-mini")
+# Optional: point the OpenAI-compatible SDK at a different gateway (e.g. OpenRouter
+# at https://openrouter.ai/api/v1). Leave blank to use OpenAI directly.
+OPENAI_BASE_URL = env("OPENAI_BASE_URL", default="")
+# Cap on reply length. Lower it if your provider account has limited credits.
+OPENAI_MAX_TOKENS = env.int("OPENAI_MAX_TOKENS", default=500)
+# Human-handoff contact details surfaced by the assistant.
+# Single source of truth lives in the frontend `src/lib/config.ts` (siteConfig);
+# these env vars must mirror those contact values. Defaults match the current
+# placeholders — override per environment.
+COMPANY_PHONE = env("COMPANY_PHONE", default="+49 30 1234567")
+COMPANY_WHATSAPP = env("COMPANY_WHATSAPP", default="+49 1512 3456789")
+COMPANY_EMAIL = env("COMPANY_EMAIL", default="info@kresh-energy.de")
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
 CORS_URLS_REGEX = r"^/api/.*$"

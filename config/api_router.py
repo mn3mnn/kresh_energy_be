@@ -1,7 +1,9 @@
 from django.conf import settings
+from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework.routers import SimpleRouter
 
+from kresh_energy_be.assistant.views import AssistantChatView
 from kresh_energy_be.catalog.views import CalculatorConfigViewSet
 from kresh_energy_be.catalog.views import FAQViewSet
 from kresh_energy_be.catalog.views import ProjectViewSet
@@ -30,4 +32,7 @@ router.register("bookings", InspectionBookingViewSet, basename="booking")
 
 
 app_name = "api"
-urlpatterns = router.urls
+urlpatterns = [
+    *router.urls,
+    path("assistant/chat/", AssistantChatView.as_view(), name="assistant-chat"),
+]
