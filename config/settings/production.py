@@ -11,7 +11,7 @@ from .base import env
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[".service.kresh-gmbh.de"])
+ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[".kresh-gmbh.de"])
 # https://docs.djangoproject.com/en/dev/ref/settings/#csrf-trusted-origins
 # Needed for admin/session POSTs behind Traefik (HTTPS terminated at the proxy).
 CSRF_TRUSTED_ORIGINS = env.list(
@@ -19,7 +19,7 @@ CSRF_TRUSTED_ORIGINS = env.list(
     default=[
         "https://service.kresh-gmbh.de",
         "https://www.service.kresh-gmbh.de",
-        "https://api.service.kresh-gmbh.de",
+        "https://api.kresh-gmbh.de",
     ],
 )
 
@@ -212,7 +212,7 @@ LOGGING = {
 # -------------------------------------------------------------------------------
 # Tools that generate code samples can use SERVERS to point to the correct domain
 SPECTACULAR_SETTINGS["SERVERS"] = [
-    {"url": "https://api.service.kresh-gmbh.de", "description": "Production server"},
+    {"url": "https://api.kresh-gmbh.de", "description": "Production server"},
 ]
 # Your stuff...
 # ------------------------------------------------------------------------------

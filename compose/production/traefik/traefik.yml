@@ -37,9 +37,9 @@ http:
       tls:
         certResolver: letsencrypt
 
-    # api.service.kresh-gmbh.de -> Django (DRF API, admin, static & media).
+    # api.kresh-gmbh.de -> Django (DRF API, admin, static & media).
     api-router:
-      rule: 'Host(`api.service.kresh-gmbh.de`)'
+      rule: 'Host(`api.kresh-gmbh.de`)'
       entryPoints:
         - web-secure
       middlewares:
