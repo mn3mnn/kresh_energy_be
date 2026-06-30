@@ -2,6 +2,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from model_utils.models import TimeStampedModel
 
+from kresh_energy_be.common.storages import private_media_storage
+
 
 class LeadStatus(models.TextChoices):
     NEW = "new", _("New")
@@ -29,11 +31,13 @@ class QuoteRequest(TimeStampedModel):
     electricity_bill = models.FileField(
         _("Electricity bill"),
         upload_to="quotes/bills/",
+        storage=private_media_storage,
         blank=True,
     )
     meter_photo = models.ImageField(
         _("Meter photo"),
         upload_to="quotes/meters/",
+        storage=private_media_storage,
         blank=True,
     )
 
@@ -86,7 +90,11 @@ class QuoteRoofPhoto(models.Model):
         related_name="roof_photos",
         on_delete=models.CASCADE,
     )
-    image = models.ImageField(_("Roof photo"), upload_to="quotes/roofs/")
+    image = models.ImageField(
+        _("Roof photo"),
+        upload_to="quotes/roofs/",
+        storage=private_media_storage,
+    )
 
     def __str__(self) -> str:
         return f"Roof photo #{self.pk}"

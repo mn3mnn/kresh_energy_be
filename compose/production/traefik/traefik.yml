@@ -30,16 +30,16 @@ http:
     # Root domain -> Next.js frontend (runs in the kresh_energy_fe compose project,
     # reachable over the shared external "kresh_web" docker network).
     frontend-router:
-      rule: 'Host(`kresh-energy.de`) || Host(`www.kresh-energy.de`)'
+      rule: 'Host(`service.kresh-gmbh.de`) || Host(`www.service.kresh-gmbh.de`)'
       entryPoints:
         - web-secure
       service: frontend
       tls:
         certResolver: letsencrypt
 
-    # api.kresh-energy.de -> Django (DRF API, admin, static & media).
+    # api.service.kresh-gmbh.de -> Django (DRF API, admin, static & media).
     api-router:
-      rule: 'Host(`api.kresh-energy.de`)'
+      rule: 'Host(`api.service.kresh-gmbh.de`)'
       entryPoints:
         - web-secure
       middlewares:

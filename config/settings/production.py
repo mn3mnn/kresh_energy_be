@@ -11,7 +11,17 @@ from .base import env
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["kresh-energy.de"])
+ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[".service.kresh-gmbh.de"])
+# https://docs.djangoproject.com/en/dev/ref/settings/#csrf-trusted-origins
+# Needed for admin/session POSTs behind Traefik (HTTPS terminated at the proxy).
+CSRF_TRUSTED_ORIGINS = env.list(
+    "DJANGO_CSRF_TRUSTED_ORIGINS",
+    default=[
+        "https://service.kresh-gmbh.de",
+        "https://www.service.kresh-gmbh.de",
+        "https://api.service.kresh-gmbh.de",
+    ],
+)
 
 # DATABASES
 # ------------------------------------------------------------------------------
@@ -69,9 +79,27 @@ AWS_ACCESS_KEY_ID = env("DJANGO_AWS_ACCESS_KEY_ID")
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
 AWS_SECRET_ACCESS_KEY = env("DJANGO_AWS_SECRET_ACCESS_KEY")
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
+# Public bucket for marketing media (project photos, testimonials), served via
+# the custom domain below. Sensitive lead uploads go to AWS_PRIVATE_STORAGE_BUCKET_NAME.
 AWS_STORAGE_BUCKET_NAME = env("DJANGO_AWS_STORAGE_BUCKET_NAME")
+# Separate private bucket for sensitive lead uploads (signed URLs). See
+# kresh_energy_be/common/storages.py::PrivateMediaStorage.
+AWS_PRIVATE_STORAGE_BUCKET_NAME = env(
+    "DJANGO_AWS_PRIVATE_STORAGE_BUCKET_NAME",
+    default="",
+)
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
+# Public bucket is served through a custom domain, so no signed query strings.
 AWS_QUERYSTRING_AUTH = False
+
+# Cloudflare R2 (S3-compatible) endpoint configuration.
+# https://developers.cloudflare.com/r2/api/s3/api/
+# Endpoint format: https://<account_id>.r2.cloudflarestorage.com
+AWS_S3_ENDPOINT_URL = env("DJANGO_AWS_S3_ENDPOINT_URL", default=None)
+# R2 uses path-style addressing and SigV4; it has no regions or ACLs.
+AWS_S3_ADDRESSING_STYLE = "path"
+AWS_S3_SIGNATURE_VERSION = "s3v4"
+AWS_DEFAULT_ACL = None
 # DO NOT change these unless you know what you're doing.
 _AWS_EXPIRY = 60 * 60 * 24 * 7
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
@@ -109,7 +137,7 @@ MEDIA_URL = f"https://{aws_s3_domain}/media/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
 DEFAULT_FROM_EMAIL = env(
     "DJANGO_DEFAULT_FROM_EMAIL",
-    default="Kresh Energy BE <noreply@kresh-energy.de>",
+    default="Kresh Energy <noreply@kresh-gmbh.de>",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
@@ -184,7 +212,7 @@ LOGGING = {
 # -------------------------------------------------------------------------------
 # Tools that generate code samples can use SERVERS to point to the correct domain
 SPECTACULAR_SETTINGS["SERVERS"] = [
-    {"url": "https://kresh-energy.de", "description": "Production server"},
+    {"url": "https://api.service.kresh-gmbh.de", "description": "Production server"},
 ]
 # Your stuff...
 # ------------------------------------------------------------------------------

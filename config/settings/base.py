@@ -229,6 +229,16 @@ EMAIL_BACKEND = env(
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-timeout
 EMAIL_TIMEOUT = 5
+# SMTP credentials (Hostinger by default). Hostinger uses implicit SSL on port
+# 465, so EMAIL_USE_SSL=True and EMAIL_USE_TLS=False (only one may be enabled).
+# In local dev the console backend is used (see settings/local.py), so these are
+# only exercised in production.
+EMAIL_HOST = env("EMAIL_HOST", default="smtp.hostinger.com")
+EMAIL_PORT = env.int("EMAIL_PORT", default=465)
+EMAIL_USE_SSL = env.bool("EMAIL_USE_SSL", default=True)
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=False)
+EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")
 
 # ADMIN
 # ------------------------------------------------------------------------------

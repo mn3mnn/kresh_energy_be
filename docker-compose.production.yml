@@ -14,11 +14,11 @@ networks:
 
 services:
   django:
-    build:
-      context: .
-      dockerfile: ./compose/production/django/Dockerfile
-
-    image: kresh_energy_be_production_django
+    # Image is built and pushed to GHCR by .github/workflows/deploy.yml; the VPS
+    # pulls it (no on-server build). Tag is overridable via the DJANGO_IMAGE env
+    # var so a deploy can pin a specific SHA instead of latest.
+    image: ${DJANGO_IMAGE:-ghcr.io/mn3mnn/kresh_energy_be:latest}
+    restart: unless-stopped
     depends_on:
       - postgres
       - redis
@@ -32,6 +32,7 @@ services:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
     image: kresh_energy_be_production_postgres
+    restart: unless-stopped
     volumes:
       - production_postgres_data:/var/lib/postgresql/data
       - production_postgres_data_backups:/backups
@@ -43,6 +44,7 @@ services:
       context: .
       dockerfile: ./compose/production/traefik/Dockerfile
     image: kresh_energy_be_production_traefik
+    restart: unless-stopped
     depends_on:
       - django
     volumes:
@@ -57,6 +59,7 @@ services:
 
   redis:
     image: docker.io/redis:7.2
+    restart: unless-stopped
 
 
   awscli:

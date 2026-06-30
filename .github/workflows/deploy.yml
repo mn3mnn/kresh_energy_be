@@ -1,0 +1,93 @@
+name: Deploy
+
+# Manual deploys only. Builds the production image, pushes it to GHCR, then
+# SSHes into the VPS to pull + migrate + restart the stack.
+on:
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/kresh_energy_be
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image: ${{ steps.meta.outputs.image }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compute image tags
+        id: meta
+        run: |
+          echo "image=${IMAGE_NAME,,}:latest" >> "$GITHUB_OUTPUT"
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./compose/production/django/Dockerfile
+          push: true
+          tags: |
+            ${{ steps.meta.outputs.image }}
+            ${{ format('{0}:{1}', steps.meta.outputs.image, github.sha) }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        env:
+          DJANGO_ENV: ${{ secrets.PRODUCTION_DJANGO_ENV }}
+          POSTGRES_ENV: ${{ secrets.PRODUCTION_POSTGRES_ENV }}
+        with:
+          host: ${{ secrets.PRODUCTION_HOST }}
+          username: ${{ secrets.PRODUCTION_USER }}
+          key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          port: ${{ secrets.PRODUCTION_SSH_PORT }}
+          envs: DJANGO_ENV,POSTGRES_ENV
+          script: |
+            set -e
+            cd ${{ secrets.PRODUCTION_APP_DIR }}
+
+            # Materialize prod env files from secrets (never committed).
+            mkdir -p .envs/.production
+            printf '%s' "$DJANGO_ENV" > .envs/.production/.django
+            printf '%s' "$POSTGRES_ENV" > .envs/.production/.postgres
+
+            # Pull latest compose/Traefik config.
+            git pull origin main
+
+            # Shared edge network for Traefik <-> frontend (idempotent).
+            docker network inspect kresh_web >/dev/null 2>&1 || docker network create kresh_web
+
+            # Authenticate to GHCR so the VPS can pull the private django image.
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+
+            # Pull the freshly-pushed django image; build the lightweight local
+            # support images (postgres/traefik/awscli) on-server.
+            docker compose -f docker-compose.production.yml pull django
+            docker compose -f docker-compose.production.yml build postgres traefik awscli
+
+            # Apply migrations, then (re)start the stack.
+            docker compose -f docker-compose.production.yml run --rm django python manage.py migrate
+            docker compose -f docker-compose.production.yml up -d --remove-orphans
+
+            docker image prune -f
