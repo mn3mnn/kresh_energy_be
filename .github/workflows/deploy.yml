@@ -71,8 +71,9 @@ jobs:
             printf '%s' "$DJANGO_ENV" > .envs/.production/.django
             printf '%s' "$POSTGRES_ENV" > .envs/.production/.postgres
 
-            # Pull latest compose/Traefik config.
-            git pull origin main
+            # Pull latest compose/Traefik config. The repo is private, so
+            # authenticate the pull inline with the PAT (not persisted in git config).
+            git pull "https://x-access-token:${{ secrets.GHCR_PAT }}@github.com/${{ github.repository }}.git" main
 
             # Shared edge network for Traefik <-> frontend (idempotent).
             docker network inspect kresh_web >/dev/null 2>&1 || docker network create kresh_web
