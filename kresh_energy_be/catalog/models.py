@@ -37,6 +37,15 @@ class Service(TimeStampedModel):
     description_de = models.TextField(_("Description (DE)"), blank=True)
     description_en = models.TextField(_("Description (EN)"), blank=True)
     description_ar = models.TextField(_("Description (AR)"), blank=True)
+    body_de = models.TextField(
+        _("Body (DE)"),
+        blank=True,
+        help_text=_(
+            "Long-form landing-page content. Separate paragraphs with a blank line.",
+        ),
+    )
+    body_en = models.TextField(_("Body (EN)"), blank=True)
+    body_ar = models.TextField(_("Body (AR)"), blank=True)
 
     class Meta:
         verbose_name = _("Service")

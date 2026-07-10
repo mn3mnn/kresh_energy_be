@@ -11,7 +11,7 @@ from .models import Testimonial
 
 
 class ServiceSerializer(TranslatedFieldsMixin, serializers.ModelSerializer):
-    translated_fields = ("title", "summary", "description")
+    translated_fields = ("title", "summary", "description", "body")
 
     class Meta:
         model = Service
