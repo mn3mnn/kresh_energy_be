@@ -123,120 +123,75 @@
     "model": "catalog.faq",
     "pk": 1,
     "fields": {
-      "category": "installation",
+      "category": "general",
       "order": 1,
       "is_active": true,
-      "question_de": "Wie lange dauert die Installation einer Solaranlage?",
-      "question_en": "How long does a solar installation take?",
-      "question_ar": "كم تستغرق عملية تركيب نظام الطاقة الشمسية؟",
-      "answer_de": "Eine typische Einfamilienhaus-Anlage installieren wir in der Regel an 1 bis 2 Tagen. Die Planung und Genehmigung im Vorfeld dauert meist 2 bis 4 Wochen.",
-      "answer_en": "A typical single-family system is usually installed within 1 to 2 days. The preceding planning and approval normally takes 2 to 4 weeks.",
-      "answer_ar": "نركّب نظام منزل عائلي نموذجي عادةً خلال يوم إلى يومين. أما التخطيط والحصول على الموافقات مسبقاً فيستغرق غالباً من أسبوعين إلى أربعة أسابيع."
+      "question_de": "Lohnt sich Photovoltaik für jedes Haus?",
+      "question_en": "Is solar worth it for every home?",
+      "question_ar": "هل تناسب الطاقة الشمسية كل منزل؟",
+      "answer_de": "Nicht immer gleich. Entscheidend sind Dachfläche, Ausrichtung, Verbrauch und Stromkosten. Deshalb prüfen wir jedes Projekt individuell.",
+      "answer_en": "Not always in the same way. What matters is roof area, orientation, consumption and electricity costs. That's why we assess every project individually.",
+      "answer_ar": "ليس دائماً بنفس الطريقة. العوامل المهمة هي مساحة السقف، الاتجاه، الاستهلاك، وتكاليف الكهرباء. لذلك نفحص كل مشروع بشكل فردي."
     }
   },
   {
     "model": "catalog.faq",
     "pk": 2,
     "fields": {
-      "category": "warranty",
+      "category": "battery",
       "order": 2,
       "is_active": true,
-      "question_de": "Welche Garantie erhalte ich auf meine Anlage?",
-      "question_en": "What warranty do I get on my system?",
-      "question_ar": "ما الضمان الذي أحصل عليه على نظامي؟",
-      "answer_de": "Auf die Module gewähren die Hersteller in der Regel 25 Jahre Leistungsgarantie, auf Wechselrichter und Speicher meist 10 Jahre. Auf unsere Montage geben wir zusätzlich eine Gewährleistung.",
-      "answer_en": "Manufacturers typically grant a 25-year performance warranty on modules and around 10 years on inverters and storage. We additionally provide a warranty on our installation work.",
-      "answer_ar": "يمنح المصنّعون عادةً ضمان أداء لمدة 25 عاماً على الألواح، ونحو 10 أعوام على المحوّلات والبطاريات. كما نقدّم ضماناً إضافياً على أعمال التركيب لدينا."
+      "question_de": "Brauche ich unbedingt einen Batteriespeicher?",
+      "question_en": "Do I necessarily need a battery storage system?",
+      "question_ar": "هل أحتاج بالضرورة إلى بطارية تخزين؟",
+      "answer_de": "Nicht unbedingt. Ein Speicher kann sinnvoll sein, wenn Sie mehr eigenen Solarstrom selbst nutzen möchten. Die passende Größe hängt vom Verbrauch ab.",
+      "answer_en": "Not necessarily. A storage system can make sense if you want to use more of your own solar power yourself. The right size depends on your consumption.",
+      "answer_ar": "ليس بالضرورة. البطارية قد تكون مفيدة إذا كنت تريد استخدام جزء أكبر من الكهرباء الشمسية بنفسك. الحجم المناسب يعتمد على استهلاكك."
     }
   },
   {
     "model": "catalog.faq",
     "pk": 3,
     "fields": {
-      "category": "maintenance",
+      "category": "technical",
       "order": 3,
       "is_active": true,
-      "question_de": "Muss eine Solaranlage gewartet werden?",
-      "question_en": "Does a solar system need maintenance?",
-      "question_ar": "هل يحتاج نظام الطاقة الشمسية إلى صيانة؟",
-      "answer_de": "Solaranlagen sind sehr wartungsarm. Wir empfehlen eine fachliche Prüfung alle paar Jahre, um Erträge und Sicherheit dauerhaft zu sichern.",
-      "answer_en": "Solar systems are very low-maintenance. We recommend a professional inspection every few years to keep yields and safety at their best.",
-      "answer_ar": "أنظمة الطاقة الشمسية قليلة الصيانة للغاية. نوصي بفحص متخصّص كل بضع سنوات للحفاظ على الإنتاج والسلامة على أفضل حال."
+      "question_de": "Kann ich mein E-Auto mit Solarstrom laden?",
+      "question_en": "Can I charge my EV with solar power?",
+      "question_ar": "هل يمكنني شحن سيارتي الكهربائية بالطاقة الشمسية؟",
+      "answer_de": "Ja. Eine Wallbox kann mit der Photovoltaikanlage und optional mit einem Speicher kombiniert werden.",
+      "answer_en": "Yes. A wallbox can be combined with your solar system and, optionally, with a battery storage system.",
+      "answer_ar": "نعم. يمكن ربط شاحن السيارة الكهربائية مع نظام الطاقة الشمسية، ومع بطارية تخزين إذا كان ذلك مناسباً."
     }
   },
   {
     "model": "catalog.faq",
     "pk": 4,
     "fields": {
-      "category": "battery",
+      "category": "general",
       "order": 4,
       "is_active": true,
-      "question_de": "Lohnt sich ein Batteriespeicher?",
-      "question_en": "Is a battery storage worth it?",
-      "question_ar": "هل تستحق بطارية التخزين العناء؟",
-      "answer_de": "Ein Speicher erhöht Ihren Eigenverbrauch deutlich und macht Sie unabhängiger von steigenden Strompreisen. Wir berechnen die optimale Größe für Ihren Haushalt.",
-      "answer_en": "Storage significantly increases your self-consumption and makes you more independent from rising electricity prices. We calculate the optimal size for your household.",
-      "answer_ar": "ترفع البطارية استهلاكك الذاتي بشكل كبير وتجعلك أقل تأثّراً بارتفاع أسعار الكهرباء. ونحسب لك الحجم الأمثل لمنزلك."
+      "question_de": "Wie bekomme ich ein Angebot?",
+      "question_en": "How do I get a quote?",
+      "question_ar": "كيف أحصل على عرض؟",
+      "answer_de": "Sie senden uns Ihre Anfrage. Danach prüfen wir Ihre Angaben und melden uns mit einer ersten Einschätzung.",
+      "answer_en": "You send us your request. We then review your details and get back to you with an initial assessment.",
+      "answer_ar": "ترسل لنا طلبك. بعد ذلك نراجع المعلومات ونتواصل معك بتقييم أولي."
     }
   },
   {
     "model": "catalog.faq",
     "pk": 5,
     "fields": {
-      "category": "consumption",
+      "category": "general",
       "order": 5,
       "is_active": true,
-      "question_de": "Wie viel Strom kann ich selbst nutzen?",
-      "question_en": "How much electricity can I use myself?",
-      "question_ar": "ما مقدار الكهرباء التي يمكنني استخدامها بنفسي؟",
-      "answer_de": "Ohne Speicher liegt der Eigenverbrauch meist bei 25–35 %. Mit einem Batteriespeicher steigt er auf 60–80 %.",
-      "answer_en": "Without storage, self-consumption is usually 25–35 %. With a battery it rises to 60–80 %.",
-      "answer_ar": "من دون بطارية يكون الاستهلاك الذاتي عادةً بين 25 و35٪. ومع البطارية يرتفع إلى ما بين 60 و80٪."
-    }
-  },
-  {
-    "model": "catalog.faq",
-    "pk": 6,
-    "fields": {
-      "category": "permits",
-      "order": 6,
-      "is_active": true,
-      "question_de": "Welche Genehmigungen werden benötigt?",
-      "question_en": "Which permits are required?",
-      "question_ar": "ما التصاريح المطلوبة؟",
-      "answer_de": "Die Anlage wird beim Netzbetreiber und im Marktstammdatenregister angemeldet. Diese Anmeldungen übernehmen wir vollständig für Sie.",
-      "answer_en": "The system is registered with the grid operator and in the market master data register. We handle these registrations entirely for you.",
-      "answer_ar": "يُسجَّل النظام لدى مشغّل الشبكة وفي سجلّ البيانات الرئيسية للسوق. ونتولّى هذه التسجيلات بالكامل نيابةً عنك."
-    }
-  },
-  {
-    "model": "catalog.faq",
-    "pk": 7,
-    "fields": {
-      "category": "technical",
-      "order": 7,
-      "is_active": true,
-      "question_de": "Funktioniert die Anlage auch bei bewölktem Himmel?",
-      "question_en": "Does the system work on cloudy days?",
-      "question_ar": "هل يعمل النظام في الأيام الغائمة؟",
-      "answer_de": "Ja. Moderne Module erzeugen auch bei diffusem Licht Strom – die Leistung ist dann geringer, aber die Anlage produziert weiterhin.",
-      "answer_en": "Yes. Modern modules also generate electricity in diffuse light – output is lower, but the system keeps producing.",
-      "answer_ar": "نعم. تنتج الألواح الحديثة الكهرباء حتى في الضوء المنتشر – يكون الإنتاج أقل، لكن النظام يستمر في العمل."
-    }
-  },
-  {
-    "model": "catalog.faq",
-    "pk": 8,
-    "fields": {
-      "category": "general",
-      "order": 8,
-      "is_active": true,
-      "question_de": "In welchen Regionen ist Kresh Energy tätig?",
-      "question_en": "Which regions does Kresh Energy serve?",
-      "question_ar": "ما المناطق التي تخدمها Kresh Energy؟",
-      "answer_de": "Wir sind in weiten Teilen Deutschlands aktiv. Geben Sie Ihre Postleitzahl im Angebotsformular an und wir prüfen die Verfügbarkeit.",
-      "answer_en": "We operate across large parts of Germany. Enter your postal code in the quote form and we will check availability.",
-      "answer_ar": "نعمل في أنحاء واسعة من ألمانيا. أدخل رمزك البريدي في نموذج طلب العرض وسنتحقّق من توفّر الخدمة."
+      "question_de": "Ist die Beratung kostenlos?",
+      "question_en": "Is the consultation free?",
+      "question_ar": "هل الاستشارة مجانية؟",
+      "answer_de": "Die erste Einschätzung ist kostenlos und unverbindlich.",
+      "answer_en": "The initial assessment is free and non-binding.",
+      "answer_ar": "التقييم الأولي مجاني وبدون التزام."
     }
   },
   {
