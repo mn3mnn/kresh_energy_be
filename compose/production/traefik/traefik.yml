@@ -27,19 +27,19 @@ certificatesResolvers:
 
 http:
   routers:
-    # Root domain -> Next.js frontend (runs in the kresh_energy_fe compose project,
+    # energy.kresh-ng.de -> Next.js frontend (runs in the kresh_energy_fe compose project,
     # reachable over the shared external "kresh_web" docker network).
     frontend-router:
-      rule: 'Host(`service.kresh-gmbh.de`) || Host(`www.service.kresh-gmbh.de`)'
+      rule: 'Host(`energy.kresh-ng.de`) || Host(`www.energy.kresh-ng.de`)'
       entryPoints:
         - web-secure
       service: frontend
       tls:
         certResolver: letsencrypt
 
-    # api.kresh-gmbh.de -> Django (DRF API, admin, static & media).
+    # energy-api.kresh-ng.de -> Django (DRF API, admin, static & media).
     api-router:
-      rule: 'Host(`api.kresh-gmbh.de`)'
+      rule: 'Host(`energy-api.kresh-ng.de`)'
       entryPoints:
         - web-secure
       middlewares:
@@ -49,12 +49,41 @@ http:
         # https://doc.traefik.io/traefik/routing/routers/#certresolver
         certResolver: letsencrypt
 
+    # Brand-protection domains: energy.kresh-ng.com / .org 301-redirect to the
+    # canonical energy.kresh-ng.de. No app runs behind these.
+    redirect-com-router:
+      rule: 'Host(`energy.kresh-ng.com`)'
+      entryPoints:
+        - web-secure
+      middlewares:
+        - redirect-canonical
+      service: frontend
+      tls:
+        certResolver: letsencrypt
+
+    redirect-org-router:
+      rule: 'Host(`energy.kresh-ng.org`)'
+      entryPoints:
+        - web-secure
+      middlewares:
+        - redirect-canonical
+      service: frontend
+      tls:
+        certResolver: letsencrypt
+
   middlewares:
     csrf:
       # https://doc.traefik.io/traefik/master/middlewares/http/headers/#hostsproxyheaders
       # https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
       headers:
         hostsProxyHeaders: ['X-CSRFToken']
+
+    redirect-canonical:
+      # https://doc.traefik.io/traefik/middlewares/http/redirectregex/
+      redirectRegex:
+        regex: '^https://energy\.kresh-ng\.(?:com|org)(/.*)?$'
+        replacement: 'https://energy.kresh-ng.de${1}'
+        permanent: true
 
   services:
     django:

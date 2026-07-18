@@ -7,8 +7,8 @@
 # This VPS owns the edge: the backend compose project runs Traefik (binds
 # 80/443 + Let's Encrypt), Django, Postgres and Redis; the frontend compose
 # project runs only the Next.js container. Both attach to the shared external
-# "kresh_web" docker network so Traefik can route service.kresh-gmbh.de to the
-# frontend and api.service.kresh-gmbh.de to Django.
+# "kresh_web" docker network so Traefik can route energy.kresh-ng.de to the
+# frontend and energy-api.kresh-ng.de to Django.
 
 set -euo pipefail
 
@@ -95,12 +95,16 @@ echo "------------------------------------------------------------------------"
 cat "$DEPLOY_KEY"
 echo "------------------------------------------------------------------------"
 echo ""
-echo "2. DNS A records -> this VPS IP:"
-echo "     service.kresh-gmbh.de"
-echo "     www.service.kresh-gmbh.de"
-echo "     api.service.kresh-gmbh.de"
+echo "2. DNS A records -> this VPS IP (all proxied through Cloudflare):"
+echo "     energy.kresh-ng.de"
+echo "     www.energy.kresh-ng.de"
+echo "     energy-api.kresh-ng.de"
+echo "     energy.kresh-ng.com   (redirects to energy.kresh-ng.de)"
+echo "     energy.kresh-ng.org   (redirects to energy.kresh-ng.de)"
 echo "   DNS CNAME for public R2 media:"
-echo "     media.service.kresh-gmbh.de -> <public R2 bucket domain>"
+echo "     energy-media.kresh-ng.de -> <public R2 bucket domain>"
+echo "   NOTE: apex domains (kresh-ng.de/.com/.org, no subdomain) are reserved"
+echo "   for a separate site and are NOT part of this setup."
 echo ""
 echo "3. Clone the frontend repo into its own directory on this VPS."
 echo ""

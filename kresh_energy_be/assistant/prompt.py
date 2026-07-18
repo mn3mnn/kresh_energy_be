@@ -19,7 +19,7 @@ def build_system_prompt(lang: str) -> str:
 
     phone = getattr(settings, "COMPANY_PHONE", "+49 30 1234567")
     whatsapp = getattr(settings, "COMPANY_WHATSAPP", "+49 1512 3456789")
-    email = getattr(settings, "COMPANY_EMAIL", "info@kresh-energy.de")
+    email = getattr(settings, "COMPANY_EMAIL", "info@kresh-ng.de")
 
     return f"""You are the virtual assistant for Kresh Energy, a German solar-energy \
 company serving residential and commercial customers. You help website visitors \

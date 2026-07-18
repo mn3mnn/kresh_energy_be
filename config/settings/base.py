@@ -339,7 +339,7 @@ OPENAI_MAX_TOKENS = env.int("OPENAI_MAX_TOKENS", default=500)
 # placeholders — override per environment.
 COMPANY_PHONE = env("COMPANY_PHONE", default="+49 30 1234567")
 COMPANY_WHATSAPP = env("COMPANY_WHATSAPP", default="+49 1512 3456789")
-COMPANY_EMAIL = env("COMPANY_EMAIL", default="info@kresh-energy.de")
+COMPANY_EMAIL = env("COMPANY_EMAIL", default="info@kresh-ng.de")
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
 CORS_URLS_REGEX = r"^/api/.*$"

@@ -11,15 +11,15 @@ from .base import env
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[".kresh-gmbh.de"])
+ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[".kresh-ng.de"])
 # https://docs.djangoproject.com/en/dev/ref/settings/#csrf-trusted-origins
 # Needed for admin/session POSTs behind Traefik (HTTPS terminated at the proxy).
 CSRF_TRUSTED_ORIGINS = env.list(
     "DJANGO_CSRF_TRUSTED_ORIGINS",
     default=[
-        "https://service.kresh-gmbh.de",
-        "https://www.service.kresh-gmbh.de",
-        "https://api.kresh-gmbh.de",
+        "https://energy.kresh-ng.de",
+        "https://www.energy.kresh-ng.de",
+        "https://energy-api.kresh-ng.de",
     ],
 )
 
@@ -137,7 +137,7 @@ MEDIA_URL = f"https://{aws_s3_domain}/media/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
 DEFAULT_FROM_EMAIL = env(
     "DJANGO_DEFAULT_FROM_EMAIL",
-    default="Kresh Energy <noreply@kresh-gmbh.de>",
+    default="Kresh Energy <noreply@kresh-ng.de>",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
@@ -212,7 +212,7 @@ LOGGING = {
 # -------------------------------------------------------------------------------
 # Tools that generate code samples can use SERVERS to point to the correct domain
 SPECTACULAR_SETTINGS["SERVERS"] = [
-    {"url": "https://api.kresh-gmbh.de", "description": "Production server"},
+    {"url": "https://energy-api.kresh-ng.de", "description": "Production server"},
 ]
 # Your stuff...
 # ------------------------------------------------------------------------------
