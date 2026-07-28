@@ -80,6 +80,9 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount",
     "rest_framework",
     "rest_framework.authtoken",
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
+    "phonenumber_field",
     "corsheaders",
     "drf_spectacular",
 ]
@@ -89,6 +92,7 @@ LOCAL_APPS = [
     "kresh_energy_be.catalog",
     "kresh_energy_be.leads",
     "kresh_energy_be.assistant",
+    "kresh_energy_be.referrals",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -282,10 +286,11 @@ REDIS_SSL = REDIS_URL.startswith("rediss://")
 # django-allauth
 # ------------------------------------------------------------------------------
 ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
+# Consumer-facing signup: log in with email, no separate username to invent.
 # https://docs.allauth.org/en/latest/account/configuration.html
-ACCOUNT_LOGIN_METHODS = {"username"}
+ACCOUNT_LOGIN_METHODS = {"email"}
 # https://docs.allauth.org/en/latest/account/configuration.html
-ACCOUNT_SIGNUP_FIELDS = ["email*", "username*", "password1*", "password2*"]
+ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
 # https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # https://docs.allauth.org/en/latest/account/configuration.html
@@ -296,6 +301,18 @@ ACCOUNT_FORMS = {"signup": "kresh_energy_be.users.forms.UserSignupForm"}
 SOCIALACCOUNT_ADAPTER = "kresh_energy_be.users.adapters.SocialAccountAdapter"
 # https://docs.allauth.org/en/latest/socialaccount/configuration.html
 SOCIALACCOUNT_FORMS = {"signup": "kresh_energy_be.users.forms.UserSocialSignupForm"}
+
+# dj-rest-auth
+# ------------------------------------------------------------------------------
+# JSON registration/login/logout on top of allauth, reusing its mandatory
+# email verification. Token auth (not JWT/sessions) matches the existing
+# api/auth-token/ endpoint and REST_FRAMEWORK auth classes below.
+REST_AUTH = {
+    "USE_JWT": False,
+    "SESSION_LOGIN": False,
+    "TOKEN_MODEL": "rest_framework.authtoken.models.Token",
+    "REGISTER_SERIALIZER": "kresh_energy_be.referrals.serializers.ReferralRegisterSerializer",
+}
 
 # django-rest-framework
 # -------------------------------------------------------------------------------
@@ -313,6 +330,8 @@ REST_FRAMEWORK = {
     # cap, a per-IP hourly cap, and a global daily ceiling across all clients.
     "DEFAULT_THROTTLE_RATES": {
         "leads": "20/hour",
+        "auth": "10/min",
+        "referrals": "60/hour",
         "assistant_burst": env("ASSISTANT_THROTTLE_BURST", default="8/min"),
         "assistant": env("ASSISTANT_THROTTLE_HOUR", default="30/hour"),
         "assistant_global": env("ASSISTANT_THROTTLE_GLOBAL", default="1000/day"),
@@ -348,6 +367,10 @@ CORS_ALLOWED_ORIGINS = env.list(
     "DJANGO_CORS_ALLOWED_ORIGINS",
     default=["http://localhost:3000", "http://127.0.0.1:3000"],
 )
+
+# Frontend origin, used server-side only to build absolute referral links
+# (e.g. https://energy.kresh-ng.de/en/refer?ref=CODE). Not exposed to clients.
+FRONTEND_URL = env("DJANGO_FRONTEND_URL", default="http://localhost:3000")
 
 # By Default swagger ui is available only to admin user(s). You can change permission classes to change that
 # See more configuration options at https://drf-spectacular.readthedocs.io/en/latest/settings.html#settings

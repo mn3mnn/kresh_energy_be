@@ -73,6 +73,23 @@ class QuoteRequest(TimeStampedModel):
         default=LeadStatus.NEW,
     )
 
+    submitted_by = models.ForeignKey(
+        "users.User",
+        verbose_name=_("Submitted by"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    redeem_credit = models.BooleanField(
+        _("Apply referral credit to this request"),
+        default=False,
+        help_text=_(
+            "Set when the submitter asked to redeem their referral credit "
+            "balance against this request.",
+        ),
+    )
+
     class Meta:
         verbose_name = _("Quote request")
         verbose_name_plural = _("Quote requests")
@@ -136,6 +153,23 @@ class InspectionBooking(TimeStampedModel):
         max_length=20,
         choices=BookingStatus.choices,
         default=BookingStatus.REQUESTED,
+    )
+
+    submitted_by = models.ForeignKey(
+        "users.User",
+        verbose_name=_("Submitted by"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    redeem_credit = models.BooleanField(
+        _("Apply referral credit to this request"),
+        default=False,
+        help_text=_(
+            "Set when the submitter asked to redeem their referral credit "
+            "balance against this request.",
+        ),
     )
 
     class Meta:

@@ -1,0 +1,13 @@
+{% autoescape on %}
+<p>Hi {{ referrer.name|default:referrer.email }},</p>
+
+<p>Great news — a friend you referred to Kresh EcoSolaris just submitted
+their request, and you've earned a <strong>€{{ amount }}</strong> referral
+credit!</p>
+
+<p>Log in to your account's referral dashboard to see your updated balance
+and referral history. You can apply this credit toward your own future
+quote with us.</p>
+
+<p>Thanks for spreading the word about solar!<br>The Kresh EcoSolaris team</p>
+{% endautoescape %}

@@ -12,6 +12,9 @@ from kresh_energy_be.catalog.views import ServiceViewSet
 from kresh_energy_be.catalog.views import TestimonialViewSet
 from kresh_energy_be.leads.views import InspectionBookingViewSet
 from kresh_energy_be.leads.views import QuoteRequestViewSet
+from kresh_energy_be.referrals.views import MyReferralDashboardView
+from kresh_energy_be.referrals.views import ReferralCodeCheckView
+from kresh_energy_be.referrals.views import RedemptionRequestViewSet
 from kresh_energy_be.users.api.views import UserViewSet
 
 router = DefaultRouter() if settings.DEBUG else SimpleRouter()
@@ -29,10 +32,21 @@ router.register(
 )
 router.register("quotes", QuoteRequestViewSet, basename="quote")
 router.register("bookings", InspectionBookingViewSet, basename="booking")
+router.register(
+    "referrals/redemptions",
+    RedemptionRequestViewSet,
+    basename="redemption",
+)
 
 
 app_name = "api"
 urlpatterns = [
     *router.urls,
     path("assistant/chat/", AssistantChatView.as_view(), name="assistant-chat"),
+    path(
+        "referrals/check-code/",
+        ReferralCodeCheckView.as_view(),
+        name="referral-check-code",
+    ),
+    path("referrals/me/", MyReferralDashboardView.as_view(), name="referral-dashboard"),
 ]

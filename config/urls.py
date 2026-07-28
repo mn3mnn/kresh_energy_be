@@ -37,6 +37,9 @@ urlpatterns += [
     path("api/", include("config.api_router")),
     # DRF auth token
     path("api/auth-token/", obtain_auth_token, name="obtain_auth_token"),
+    # JSON registration/login/logout on top of allauth (dj-rest-auth)
+    path("api/auth/registration/", include("dj_rest_auth.registration.urls")),
+    path("api/auth/", include("dj_rest_auth.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
     path(
         "api/docs/",

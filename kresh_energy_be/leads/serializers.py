@@ -38,6 +38,7 @@ class QuoteRequestSerializer(serializers.ModelSerializer):
             "locale",
             "roof_photos",
             "roof_photo_uploads",
+            "redeem_credit",
             "created",
         ]
         read_only_fields = ["id", "created"]
@@ -64,6 +65,7 @@ class InspectionBookingSerializer(serializers.ModelSerializer):
             "time_slot",
             "notes",
             "locale",
+            "redeem_credit",
             "created",
         ]
         read_only_fields = ["id", "created"]
