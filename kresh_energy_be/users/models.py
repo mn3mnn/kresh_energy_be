@@ -3,7 +3,6 @@ from django.db.models import SET_NULL
 from django.db.models import BooleanField
 from django.db.models import CharField
 from django.db.models import ForeignKey
-from django.urls import reverse
 from django.utils.crypto import get_random_string
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
@@ -66,12 +65,3 @@ class User(AbstractUser):
                 return code
         msg = "Could not generate a unique referral code after 10 attempts."
         raise RuntimeError(msg)
-
-    def get_absolute_url(self) -> str:
-        """Get URL for user's detail view.
-
-        Returns:
-            str: URL for user detail.
-
-        """
-        return reverse("users:detail", kwargs={"username": self.username})
