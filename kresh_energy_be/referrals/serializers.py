@@ -92,7 +92,7 @@ class ReferredPersonSerializer(serializers.Serializer):
     def get_email_masked(self, referral: Referral) -> str:
         email = referral.referred_user.email
         name, _sep, domain = email.partition("@")
-        masked = name[0] + "***" if name else "***"
+        masked = name[:4] + "***" if name else "***"
         return f"{masked}@{domain}" if domain else masked
 
 
