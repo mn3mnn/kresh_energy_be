@@ -1,0 +1,1 @@
+{% load i18n %}{% autoescape off %}{% get_current_language as LANGUAGE_CODE %}{% if LANGUAGE_CODE == "de" %}Bitte bestätige deine E-Mail-Adresse{% else %}Please confirm your email address{% endif %}{% endautoescape %}

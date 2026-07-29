@@ -13,6 +13,7 @@ from kresh_energy_be.leads.models import QuoteRequest
 from kresh_energy_be.users.models import User
 
 from .emails import send_referral_reward_email
+from .emails import send_referred_discount_applied_email
 from .models import CreditEntryType
 from .models import Referral
 from .models import ReferralCredit
@@ -127,4 +128,13 @@ def credit_referral_reward(lead_instance: QuoteRequest | InspectionBooking) -> N
         user.referral_reward_granted = True
         user.save(update_fields=["referral_reward_granted"])
 
-    send_referral_reward_email(referral.referrer, settings_row.referrer_reward_amount)
+    send_referral_reward_email(
+        referral.referrer,
+        settings_row.referrer_reward_amount,
+        locale=lead_instance.locale,
+    )
+    send_referred_discount_applied_email(
+        user,
+        settings_row.referred_reward_amount,
+        locale=lead_instance.locale,
+    )

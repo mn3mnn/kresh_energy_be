@@ -1,0 +1,31 @@
+{% autoescape off %}{% if locale == "de" %}Hallo {{ booking.full_name }},
+
+vielen Dank für deine Terminanfrage für eine Vor-Ort-Besichtigung bei
+Kresh EcoSolaris! Wir haben deine Anfrage erhalten und melden uns in
+Kürze bei dir, um den Termin zu bestätigen.
+
+Deine Angaben:
+Name: {{ booking.full_name }}
+Telefon: {{ booking.phone }}
+E-Mail: {{ booking.email }}
+Adresse: {{ booking.address }}
+Wunschtermin: {{ booking.preferred_date }} ({{ booking.get_time_slot_display }})
+
+Falls du Fragen hast, antworte einfach auf diese E-Mail.
+
+Dein Kresh EcoSolaris Team{% else %}Hi {{ booking.full_name }},
+
+Thank you for booking an on-site inspection with Kresh EcoSolaris!
+We've received your request and will get back to you shortly to
+confirm the appointment.
+
+Your details:
+Name: {{ booking.full_name }}
+Phone: {{ booking.phone }}
+Email: {{ booking.email }}
+Address: {{ booking.address }}
+Preferred date: {{ booking.preferred_date }} ({{ booking.get_time_slot_display }})
+
+If you have any questions, just reply to this email.
+
+The Kresh EcoSolaris team{% endif %}{% endautoescape %}

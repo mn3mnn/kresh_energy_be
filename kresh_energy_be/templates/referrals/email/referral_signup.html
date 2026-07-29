@@ -1,0 +1,23 @@
+{% autoescape on %}{% if locale == "de" %}
+<p>Hi {{ referrer.name|default:referrer.email }},</p>
+
+<p>jemand hat sich gerade mit deinem Empfehlungscode bei
+<strong>Kresh EcoSolaris</strong> registriert!</p>
+
+<p>Sobald diese Person eine Angebots- oder Besichtigungsanfrage abschickt,
+wird dir deine Empfehlungsprämie automatisch gutgeschrieben — du bekommst
+dann eine weitere E-Mail von uns.</p>
+
+<p>Dein Kresh EcoSolaris Team</p>
+{% else %}
+<p>Hi {{ referrer.name|default:referrer.email }},</p>
+
+<p>Someone just signed up with <strong>Kresh EcoSolaris</strong> using your
+referral code!</p>
+
+<p>Once they submit a quote or inspection request, your referral reward
+will be credited automatically — we'll email you again when that
+happens.</p>
+
+<p>The Kresh EcoSolaris team</p>
+{% endif %}{% endautoescape %}

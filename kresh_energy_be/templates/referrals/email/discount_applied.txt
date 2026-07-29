@@ -1,0 +1,16 @@
+{% autoescape off %}{% if locale == "de" %}Hi {{ user.name|default:user.email }},
+
+gute Nachrichten — dein Empfehlungsrabatt in Höhe von €{{ amount }} wurde
+automatisch auf deine gerade eingereichte Anfrage bei Kresh EcoSolaris
+angerechnet!
+
+Wir melden uns in Kürze bei dir.
+
+Dein Kresh EcoSolaris Team{% else %}Hi {{ user.name|default:user.email }},
+
+Good news — your €{{ amount }} referral discount was automatically
+applied to the request you just submitted to Kresh EcoSolaris!
+
+We'll be in touch shortly.
+
+The Kresh EcoSolaris team{% endif %}{% endautoescape %}

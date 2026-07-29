@@ -10,6 +10,8 @@ from rest_framework.viewsets import GenericViewSet
 from kresh_energy_be.referrals.services import credit_referral_reward
 from kresh_energy_be.referrals.services import request_redemption
 
+from .emails import send_booking_confirmation_email
+from .emails import send_quote_confirmation_email
 from .models import InspectionBooking
 from .models import QuoteRequest
 from .serializers import InspectionBookingSerializer
@@ -63,6 +65,7 @@ class QuoteRequestViewSet(CreateModelMixin, GenericViewSet):
             ),
             fail_silently=True,
         )
+        send_quote_confirmation_email(quote)
         credit_referral_reward(quote)
         _maybe_request_redemption(quote, quote_for_link=quote)
 
@@ -90,5 +93,6 @@ class InspectionBookingViewSet(CreateModelMixin, GenericViewSet):
             ),
             fail_silently=True,
         )
+        send_booking_confirmation_email(booking)
         credit_referral_reward(booking)
         _maybe_request_redemption(booking)

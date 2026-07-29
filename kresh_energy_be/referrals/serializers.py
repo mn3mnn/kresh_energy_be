@@ -4,6 +4,7 @@ from rest_framework import serializers
 
 from kresh_energy_be.users.models import User
 
+from .emails import send_referral_signup_email
 from .models import Referral
 from .models import ReferralStatus
 from .models import RedemptionRequest
@@ -66,7 +67,7 @@ class ReferralRegisterSerializer(RegisterSerializer):
         user.save(update_fields=["name", "phone", "referred_by"])
 
         if user.referred_by_id:
-            Referral.objects.get_or_create(
+            _referral, created = Referral.objects.get_or_create(
                 referred_user=user,
                 defaults={
                     "referrer": user.referred_by,
@@ -74,6 +75,8 @@ class ReferralRegisterSerializer(RegisterSerializer):
                     "status": ReferralStatus.SIGNED_UP,
                 },
             )
+            if created:
+                send_referral_signup_email(user.referred_by)
         return user
 
 

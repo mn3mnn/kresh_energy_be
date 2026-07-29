@@ -1,11 +1,22 @@
-Hi {{ referrer.name|default:referrer.email }},
+{% autoescape off %}{% if locale == "de" %}Hi {{ referrer.name|default:referrer.email }},
 
-Great news — a friend you referred to Kresh EcoSolaris just submitted their
-request, and you've earned a €{{ amount }} referral credit!
+tolle Neuigkeiten — ein von dir geworbener Freund hat gerade seine
+Anfrage bei Kresh EcoSolaris eingereicht, und du hast eine
+Empfehlungsprämie von €{{ amount }} verdient!
 
-Log in to your account's referral dashboard to see your updated balance and
-referral history. You can apply this credit toward your own future quote
-with us.
+Logge dich in dein Empfehlungs-Dashboard ein, um deinen aktuellen
+Kontostand und deine Empfehlungshistorie zu sehen. Du kannst dieses
+Guthaben auf deine eigene zukünftige Angebotsanfrage anrechnen lassen.
+
+Danke, dass du Solar weiterempfiehlst!
+Dein Kresh EcoSolaris Team{% else %}Hi {{ referrer.name|default:referrer.email }},
+
+Great news — a friend you referred to Kresh EcoSolaris just submitted
+their request, and you've earned a €{{ amount }} referral credit!
+
+Log in to your account's referral dashboard to see your updated balance
+and referral history. You can apply this credit toward your own future
+quote with us.
 
 Thanks for spreading the word about solar!
-The Kresh EcoSolaris team
+The Kresh EcoSolaris team{% endif %}{% endautoescape %}

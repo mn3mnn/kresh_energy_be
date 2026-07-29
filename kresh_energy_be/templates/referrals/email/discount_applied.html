@@ -1,0 +1,21 @@
+{% autoescape on %}{% if locale == "de" %}
+<p>Hi {{ user.name|default:user.email }},</p>
+
+<p>gute Nachrichten — dein Empfehlungsrabatt in Höhe von
+<strong>€{{ amount }}</strong> wurde automatisch auf deine gerade
+eingereichte Anfrage bei Kresh EcoSolaris angerechnet!</p>
+
+<p>Wir melden uns in Kürze bei dir.</p>
+
+<p>Dein Kresh EcoSolaris Team</p>
+{% else %}
+<p>Hi {{ user.name|default:user.email }},</p>
+
+<p>Good news — your <strong>€{{ amount }}</strong> referral discount was
+automatically applied to the request you just submitted to
+Kresh EcoSolaris!</p>
+
+<p>We'll be in touch shortly.</p>
+
+<p>The Kresh EcoSolaris team</p>
+{% endif %}{% endautoescape %}

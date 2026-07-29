@@ -1,4 +1,16 @@
-{% autoescape on %}
+{% autoescape on %}{% if locale == "de" %}
+<p>Hi {{ referrer.name|default:referrer.email }},</p>
+
+<p>Tolle Neuigkeiten — ein von dir geworbener Freund hat gerade seine
+Anfrage bei Kresh EcoSolaris eingereicht, und du hast eine
+Empfehlungsprämie von <strong>€{{ amount }}</strong> verdient!</p>
+
+<p>Logge dich in dein Empfehlungs-Dashboard ein, um deinen aktuellen
+Kontostand und deine Empfehlungshistorie zu sehen. Du kannst dieses
+Guthaben auf deine eigene zukünftige Angebotsanfrage anrechnen lassen.</p>
+
+<p>Danke, dass du Solar weiterempfiehlst!<br>Dein Kresh EcoSolaris Team</p>
+{% else %}
 <p>Hi {{ referrer.name|default:referrer.email }},</p>
 
 <p>Great news — a friend you referred to Kresh EcoSolaris just submitted
@@ -10,4 +22,4 @@ and referral history. You can apply this credit toward your own future
 quote with us.</p>
 
 <p>Thanks for spreading the word about solar!<br>The Kresh EcoSolaris team</p>
-{% endautoescape %}
+{% endif %}{% endautoescape %}

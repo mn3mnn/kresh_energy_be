@@ -1,0 +1,18 @@
+{% autoescape off %}{% if locale == "de" %}Hi {{ referrer.name|default:referrer.email }},
+
+jemand hat sich gerade mit deinem Empfehlungscode bei Kresh EcoSolaris
+registriert!
+
+Sobald diese Person eine Angebots- oder Besichtigungsanfrage abschickt,
+wird dir deine Empfehlungsprämie automatisch gutgeschrieben — du
+bekommst dann eine weitere E-Mail von uns.
+
+Dein Kresh EcoSolaris Team{% else %}Hi {{ referrer.name|default:referrer.email }},
+
+Someone just signed up with Kresh EcoSolaris using your referral code!
+
+Once they submit a quote or inspection request, your referral reward
+will be credited automatically — we'll email you again when that
+happens.
+
+The Kresh EcoSolaris team{% endif %}{% endautoescape %}

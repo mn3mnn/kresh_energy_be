@@ -1,0 +1,42 @@
+{% load i18n %}{% autoescape on %}{% get_current_language as LANGUAGE_CODE %}{% if LANGUAGE_CODE == "de" %}
+<p>Hallo {{ user.name|default:user.email }},</p>
+
+<p>vielen Dank für deine Registrierung bei <strong>Kresh EcoSolaris</strong>!
+Bitte bestätige deine E-Mail-Adresse, um dein Konto zu aktivieren.</p>
+
+<p>
+  <a href="{{ activate_url }}"
+     style="display:inline-block;padding:12px 24px;background-color:#ffb232;
+            color:#000000;text-decoration:none;border-radius:6px;font-weight:bold;">
+    E-Mail-Adresse bestätigen
+  </a>
+</p>
+
+<p>Falls der Button nicht funktioniert, kopiere diesen Link in deinen
+Browser:<br>{{ activate_url }}</p>
+
+<p>Falls du dich nicht registriert hast, kannst du diese E-Mail einfach
+ignorieren.</p>
+
+<p>Dein Kresh EcoSolaris Team</p>
+{% else %}
+<p>Hi {{ user.name|default:user.email }},</p>
+
+<p>Thanks for signing up with <strong>Kresh EcoSolaris</strong>! Please
+confirm your email address to activate your account.</p>
+
+<p>
+  <a href="{{ activate_url }}"
+     style="display:inline-block;padding:12px 24px;background-color:#ffb232;
+            color:#000000;text-decoration:none;border-radius:6px;font-weight:bold;">
+    Confirm email address
+  </a>
+</p>
+
+<p>If the button doesn't work, copy this link into your browser:<br>
+{{ activate_url }}</p>
+
+<p>If you didn't create this account, you can safely ignore this email.</p>
+
+<p>The Kresh EcoSolaris team</p>
+{% endif %}{% endautoescape %}
