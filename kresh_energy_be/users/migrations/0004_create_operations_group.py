@@ -1,3 +1,5 @@
+from django.apps import apps as global_apps
+from django.contrib.auth.management import create_permissions
 from django.db import migrations
 
 OPERATIONS_GROUP_NAME = "Operations"
@@ -17,6 +19,24 @@ OPERATIONS_PERMISSIONS = [
 def create_operations_group(apps, schema_editor):
     Group = apps.get_model("auth", "Group")
     Permission = apps.get_model("auth", "Permission")
+
+    # Default add/change/delete/view permissions are normally created by the
+    # post_migrate signal — but that only fires once, after every migration
+    # in this *entire* `migrate` run has applied, not incrementally after
+    # each app's own migrations. Since this migration runs mid-plan, the
+    # leads/referrals permissions declared as dependencies above may not
+    # exist in the database yet on a fresh database (e.g. CI). Force-create
+    # them now via Django's real permission-creation routine — it needs the
+    # actual app registry/model classes (not this migration's frozen
+    # historical `apps`), since it inspects Meta.permissions/
+    # default_permissions.
+    using = schema_editor.connection.alias
+    for app_label in {app_label for app_label, _codename in OPERATIONS_PERMISSIONS}:
+        create_permissions(
+            global_apps.get_app_config(app_label),
+            verbosity=0,
+            using=using,
+        )
 
     group, _created = Group.objects.get_or_create(name=OPERATIONS_GROUP_NAME)
 
