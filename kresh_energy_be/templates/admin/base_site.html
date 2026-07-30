@@ -1,0 +1,32 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<div id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></div>
+{% if user.is_anonymous %}
+  {% include "admin/color_theme_toggle.html" %}
+{% endif %}
+{% endblock %}
+
+{% block nav-global %}
+<form action="{% url 'set_language' %}" method="post" id="language-switcher-form">
+  {% csrf_token %}
+  <input name="next" type="hidden" value="{{ request.get_full_path }}">
+  {% get_current_language as LANGUAGE_CODE %}
+  {% get_available_languages as LANGUAGES %}
+  {% get_language_info_list for LANGUAGES as languages %}
+  <label for="language-switcher-select" style="color: var(--body-quiet-color, inherit); margin-right: 6px;">
+    {% translate "Language" %}:
+  </label>
+  <select name="language" id="language-switcher-select" onchange="document.getElementById('language-switcher-form').submit();">
+    {% for language in languages %}
+      <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+        {{ language.name_local }} ({{ language.code }})
+      </option>
+    {% endfor %}
+  </select>
+  <noscript><input type="submit" value="{% translate 'Go' %}"></noscript>
+</form>
+{% endblock %}
