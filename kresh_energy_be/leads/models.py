@@ -81,13 +81,22 @@ class QuoteRequest(TimeStampedModel):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    redeem_credit = models.BooleanField(
-        _("Apply referral credit to this request"),
-        default=False,
+
+    quoted_price = models.DecimalField(
+        _("Quoted price (€)"),
+        max_digits=9,
+        decimal_places=2,
+        null=True,
+        blank=True,
         help_text=_(
-            "Set when the submitter asked to redeem their referral credit "
-            "balance against this request.",
+            "Price sent to the customer. Fill in before sending the "
+            "priced-quote email.",
         ),
+    )
+    quoted_price_sent_at = models.DateTimeField(
+        _("Priced quote email sent at"),
+        null=True,
+        blank=True,
     )
 
     class Meta:

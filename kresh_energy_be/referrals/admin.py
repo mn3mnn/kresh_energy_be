@@ -2,12 +2,9 @@ from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import reverse
 
-from .models import CreditEntryType
 from .models import Referral
-from .models import ReferralCredit
+from .models import ReferralDiscount
 from .models import ReferralRewardSettings
-from .models import RedemptionRequest
-from .models import RedemptionRequestStatus
 
 
 @admin.register(ReferralRewardSettings)
@@ -47,36 +44,10 @@ class ReferralAdmin(admin.ModelAdmin):
     readonly_fields = ["created", "modified"]
 
 
-@admin.register(ReferralCredit)
-class ReferralCreditAdmin(admin.ModelAdmin):
-    list_display = ["user", "entry_type", "amount", "referral", "created"]
-    list_filter = ["entry_type", "created"]
-    search_fields = ["user__email"]
-    date_hierarchy = "created"
-    readonly_fields = ["created", "modified"]
-
-
-@admin.register(RedemptionRequest)
-class RedemptionRequestAdmin(admin.ModelAdmin):
-    list_display = ["user", "amount_requested", "quote_request", "status", "created"]
-    list_editable = ["status"]
+@admin.register(ReferralDiscount)
+class ReferralDiscountAdmin(admin.ModelAdmin):
+    list_display = ["owner", "referral", "amount", "status", "quote_request", "applied_at", "created"]
     list_filter = ["status", "created"]
-    search_fields = ["user__email"]
+    search_fields = ["owner__email"]
     date_hierarchy = "created"
     readonly_fields = ["created", "modified"]
-    actions = ["mark_applied"]
-
-    @admin.action(description="Mark applied (creates a REDEEMED ledger entry)")
-    def mark_applied(self, request, queryset):
-        applied = 0
-        for redemption in queryset.filter(status=RedemptionRequestStatus.PENDING):
-            ReferralCredit.objects.create(
-                user=redemption.user,
-                entry_type=CreditEntryType.REDEEMED,
-                amount=redemption.amount_requested,
-                note=f"Redemption request #{redemption.pk} applied by {request.user}.",
-            )
-            redemption.status = RedemptionRequestStatus.APPLIED
-            redemption.save(update_fields=["status"])
-            applied += 1
-        self.message_user(request, f"Marked {applied} redemption request(s) as applied.")

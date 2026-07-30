@@ -6,8 +6,8 @@ from kresh_energy_be.users.models import User
 
 from .emails import send_referral_signup_email
 from .models import Referral
+from .models import ReferralDiscount
 from .models import ReferralStatus
-from .models import RedemptionRequest
 
 
 class ReferralRegisterSerializer(RegisterSerializer):
@@ -88,6 +88,9 @@ class ReferredPersonSerializer(serializers.Serializer):
     email_masked = serializers.SerializerMethodField()
     status = serializers.CharField()
     created = serializers.DateTimeField()
+    reward_amount = serializers.SerializerMethodField()
+    reward_status = serializers.SerializerMethodField()
+    applied_at = serializers.SerializerMethodField()
 
     def get_email_masked(self, referral: Referral) -> str:
         email = referral.referred_user.email
@@ -95,35 +98,46 @@ class ReferredPersonSerializer(serializers.Serializer):
         masked = name[:4] + "***" if name else "***"
         return f"{masked}@{domain}" if domain else masked
 
+    def _referrer_discount(self, referral: Referral) -> ReferralDiscount | None:
+        # `discounts` is prefetched on the queryset built in
+        # MyReferralDashboardView — filter in Python to reuse the cache.
+        for discount in referral.discounts.all():
+            if discount.owner_id == referral.referrer_id:
+                return discount
+        return None
 
-class RedemptionRequestSummarySerializer(serializers.ModelSerializer):
+    def get_reward_amount(self, referral: Referral) -> str | None:
+        discount = self._referrer_discount(referral)
+        return discount.amount if discount else None
+
+    def get_reward_status(self, referral: Referral) -> str:
+        discount = self._referrer_discount(referral)
+        if discount is None:
+            return "pending"
+        return discount.status
+
+    def get_applied_at(self, referral: Referral):
+        discount = self._referrer_discount(referral)
+        return discount.applied_at if discount else None
+
+
+class ReferralDiscountSerializer(serializers.ModelSerializer):
     class Meta:
-        model = RedemptionRequest
-        fields = ["id", "amount_requested", "status", "created"]
-
-
-class RedemptionRequestCreateSerializer(serializers.ModelSerializer):
-    """Amount is computed server-side from the user's balance — never
-    accepted from the client, to prevent tampering."""
-
-    class Meta:
-        model = RedemptionRequest
-        fields = ["id", "quote_request", "amount_requested", "status", "created"]
-        read_only_fields = ["id", "amount_requested", "status", "created"]
+        model = ReferralDiscount
+        fields = ["id", "amount", "status", "quote_request", "applied_at", "created"]
 
 
 class ReferralDashboardSerializer(serializers.Serializer):
     """Assembled by the view, not a ModelSerializer — the shape spans
-    User, Referral, ReferralCredit and RedemptionRequest."""
+    User, Referral and ReferralDiscount."""
 
     referral_code = serializers.CharField()
     referral_link = serializers.CharField()
-    balance = serializers.DecimalField(max_digits=8, decimal_places=2)
     referrals = ReferredPersonSerializer(many=True)
     # Explicit DecimalField child so both amounts render as "25.00", not a
     # bare JSON number "25" (which loses the trailing zeros on the frontend).
     reward_amounts = serializers.DictField(
         child=serializers.DecimalField(max_digits=8, decimal_places=2),
     )
-    redemption_requests = RedemptionRequestSummarySerializer(many=True)
+    discounts = ReferralDiscountSerializer(many=True)
     referred_pending = serializers.BooleanField()

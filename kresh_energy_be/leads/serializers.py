@@ -1,4 +1,8 @@
+from django.utils import timezone
 from rest_framework import serializers
+
+from kresh_energy_be.referrals.models import ReferralDiscount
+from kresh_energy_be.referrals.models import ReferralDiscountStatus
 
 from .models import InspectionBooking
 from .models import QuoteRequest
@@ -17,6 +21,11 @@ class QuoteRequestSerializer(serializers.ModelSerializer):
         child=serializers.ImageField(),
         write_only=True,
         required=False,
+    )
+    referral_discount_id = serializers.IntegerField(
+        write_only=True,
+        required=False,
+        allow_null=True,
     )
 
     class Meta:
@@ -38,17 +47,41 @@ class QuoteRequestSerializer(serializers.ModelSerializer):
             "locale",
             "roof_photos",
             "roof_photo_uploads",
-            "redeem_credit",
+            "referral_discount_id",
             "created",
         ]
         read_only_fields = ["id", "created"]
 
+    def validate_referral_discount_id(self, value):
+        if value is None:
+            return value
+        request = self.context.get("request")
+        if request is None or not request.user.is_authenticated:
+            msg = "You must be signed in to apply a referral discount."
+            raise serializers.ValidationError(msg)
+        try:
+            discount = ReferralDiscount.objects.get(
+                pk=value,
+                owner=request.user,
+                status=ReferralDiscountStatus.AVAILABLE,
+            )
+        except ReferralDiscount.DoesNotExist:
+            msg = "This referral discount is not available to apply."
+            raise serializers.ValidationError(msg) from None
+        return discount
+
     def create(self, validated_data):
         uploads = validated_data.pop("roof_photo_uploads", [])
+        discount = validated_data.pop("referral_discount_id", None)
         quote = QuoteRequest.objects.create(**validated_data)
         QuoteRoofPhoto.objects.bulk_create(
             [QuoteRoofPhoto(quote=quote, image=image) for image in uploads],
         )
+        if discount is not None:
+            discount.status = ReferralDiscountStatus.APPLIED
+            discount.quote_request = quote
+            discount.applied_at = timezone.now()
+            discount.save(update_fields=["status", "quote_request", "applied_at"])
         return quote
 
 

@@ -201,22 +201,6 @@ class CalculatorConfig(TimeStampedModel):
     these here lets staff tune the estimator without a code deploy.
     """
 
-    # Tariffs
-    electricity_price = models.DecimalField(
-        _("Electricity price (€/kWh)"),
-        max_digits=6,
-        decimal_places=3,
-        default=0.350,
-        help_text=_("German household average, e.g. 0.350."),
-    )
-    feed_in_tariff = models.DecimalField(
-        _("Feed-in tariff (€/kWh)"),
-        max_digits=6,
-        decimal_places=3,
-        default=0.080,
-        help_text=_("Paid for surplus fed into the grid."),
-    )
-
     # Production
     specific_yield = models.PositiveIntegerField(
         _("Specific yield (kWh/kWp·yr)"),

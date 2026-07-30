@@ -105,89 +105,54 @@ class Referral(TimeStampedModel):
         return f"{self.referrer} → {self.referred_user} ({self.status})"
 
 
-class CreditEntryType(models.TextChoices):
-    EARNED_AS_REFERRER = "earned_referrer", _("Earned (referrer reward)")
-    EARNED_AS_REFERRED = "earned_referred", _("Earned (referred-person reward)")
-    REDEEMED = "redeemed", _("Redeemed")
+class ReferralDiscountStatus(models.TextChoices):
+    AVAILABLE = "available", _("Available")
+    APPLIED = "applied", _("Applied")
 
 
-class ReferralCredit(TimeStampedModel):
-    """Ledger row. Balance = sum(EARNED_*) - sum(REDEEMED), per user."""
+class ReferralDiscount(TimeStampedModel):
+    """One row = one fixed-€ discount voucher, earned from a single
+    qualifying referral. Used both for the referrer's own voucher (created
+    AVAILABLE, applied later by the referrer picking it on a future quote)
+    and the referred person's welcome voucher (usually created already
+    APPLIED against the quote/booking that triggered it).
 
-    user = models.ForeignKey(
-        "users.User",
-        verbose_name=_("User"),
-        related_name="referral_credits",
-        on_delete=models.CASCADE,
-    )
-    entry_type = models.CharField(
-        _("Entry type"),
-        max_length=20,
-        choices=CreditEntryType.choices,
-    )
-    amount = models.DecimalField(_("Amount (€)"), max_digits=8, decimal_places=2)
-    referral = models.ForeignKey(
-        Referral,
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="credit_entries",
-    )
-    note = models.CharField(_("Note"), max_length=255, blank=True)
-
-    class Meta:
-        verbose_name = _("Referral credit")
-        verbose_name_plural = _("Referral credits")
-        ordering = ["-created"]
-
-    def __str__(self) -> str:
-        return f"{self.user} — {self.get_entry_type_display()} — €{self.amount}"
-
-
-class RedemptionRequestStatus(models.TextChoices):
-    PENDING = "pending", _("Pending admin review")
-    APPLIED = "applied", _("Applied by admin")
-    REJECTED = "rejected", _("Rejected")
-
-
-class RedemptionRequest(TimeStampedModel):
-    """A referrer's request to apply their balance as a discount.
-
-    There is no payment/invoicing system in this codebase, so this is a
-    manual, admin-honored annotation — visible in Django Admin next to the
-    linked QuoteRequest — rather than an automated deduction.
+    There is no payment/invoicing system in this codebase — applying a
+    voucher just links it to a QuoteRequest; no price is automatically
+    deducted anywhere.
     """
 
-    user = models.ForeignKey(
+    owner = models.ForeignKey(
         "users.User",
-        verbose_name=_("User"),
-        related_name="redemption_requests",
+        verbose_name=_("Owner"),
+        related_name="referral_discounts",
         on_delete=models.CASCADE,
     )
-    amount_requested = models.DecimalField(
-        _("Amount requested (€)"),
-        max_digits=8,
-        decimal_places=2,
+    referral = models.ForeignKey(
+        Referral,
+        on_delete=models.CASCADE,
+        related_name="discounts",
+    )
+    amount = models.DecimalField(_("Amount (€)"), max_digits=8, decimal_places=2)
+    status = models.CharField(
+        _("Status"),
+        max_length=20,
+        choices=ReferralDiscountStatus.choices,
+        default=ReferralDiscountStatus.AVAILABLE,
     )
     quote_request = models.ForeignKey(
         "leads.QuoteRequest",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name="redemption_requests",
+        related_name="applied_referral_discount",
     )
-    status = models.CharField(
-        _("Status"),
-        max_length=20,
-        choices=RedemptionRequestStatus.choices,
-        default=RedemptionRequestStatus.PENDING,
-    )
-    admin_note = models.TextField(_("Admin note"), blank=True)
+    applied_at = models.DateTimeField(_("Applied at"), null=True, blank=True)
 
     class Meta:
-        verbose_name = _("Redemption request")
-        verbose_name_plural = _("Redemption requests")
+        verbose_name = _("Referral discount")
+        verbose_name_plural = _("Referral discounts")
         ordering = ["-created"]
 
     def __str__(self) -> str:
-        return f"{self.user} — €{self.amount_requested} ({self.status})"
+        return f"{self.owner} — €{self.amount} ({self.status})"

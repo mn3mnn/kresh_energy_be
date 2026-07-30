@@ -71,11 +71,9 @@ def build_knowledge_snapshot(lang: str) -> str:
 
     cfg = CalculatorConfig.get_instance()
     blocks.append(
-        "SOLAR SIZING ASSUMPTIONS (German market, for rough ballparks only — "
-        "always direct users to the on-site calculator at /calculator for exact "
-        "figures):\n"
-        f"- Electricity price: {cfg.electricity_price} €/kWh\n"
-        f"- Feed-in tariff: {cfg.feed_in_tariff} €/kWh\n"
+        "SOLAR SIZING ASSUMPTIONS (German market, for rough sizing ballparks "
+        "only, no pricing — always direct users to the on-site calculator at "
+        "/calculator for sizing and to /quote for pricing):\n"
         f"- Specific yield: {cfg.specific_yield} kWh per kWp per year\n"
         f"- Module size: {cfg.panel_kwp} kWp (~{cfg.panel_area_m2} m² each)\n"
         f"- Household base load: {cfg.base_consumption} kWh/yr "

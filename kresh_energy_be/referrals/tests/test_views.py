@@ -7,8 +7,8 @@ from rest_framework.test import APIClient
 
 from kresh_energy_be.users.tests.factories import UserFactory
 
-from ..models import CreditEntryType
-from ..models import ReferralCredit
+from ..models import ReferralDiscountStatus
+from .factories import ReferralDiscountFactory
 from .factories import ReferralFactory
 from .factories import set_reward_settings
 
@@ -56,10 +56,40 @@ class TestMyReferralDashboardView:
         assert response.status_code == 200
         assert response.data["referral_code"] == user.referral_code
         assert response.data["referral_code"] in response.data["referral_link"]
-        assert Decimal(response.data["balance"]) == Decimal("0.00")
         assert Decimal(response.data["reward_amounts"]["referrer"]) == Decimal("50.00")
         assert response.data["referrals"] == []
+        assert response.data["discounts"] == []
         assert response.data["referred_pending"] is False
+
+    def test_available_discounts_are_listed(self):
+        set_reward_settings(Decimal("50.00"), Decimal("25.00"))
+        user = UserFactory.create()
+        ReferralDiscountFactory.create(owner=user, amount=Decimal("50.00"))
+        client = APIClient()
+        client.force_authenticate(user=user)
+        response = client.get("/api/referrals/me/")
+        assert len(response.data["discounts"]) == 1
+        assert Decimal(response.data["discounts"][0]["amount"]) == Decimal("50.00")
+        assert response.data["discounts"][0]["status"] == ReferralDiscountStatus.AVAILABLE
+
+    def test_referral_row_shows_its_own_reward(self):
+        set_reward_settings(Decimal("50.00"), Decimal("25.00"))
+        referrer = UserFactory.create()
+        referred = UserFactory.create(referred_by=referrer)
+        referral = ReferralFactory.create(referrer=referrer, referred_user=referred)
+        ReferralDiscountFactory.create(
+            owner=referrer,
+            referral=referral,
+            amount=Decimal("50.00"),
+            status=ReferralDiscountStatus.AVAILABLE,
+        )
+
+        client = APIClient()
+        client.force_authenticate(user=referrer)
+        response = client.get("/api/referrals/me/")
+        row = response.data["referrals"][0]
+        assert Decimal(row["reward_amount"]) == Decimal("50.00")
+        assert row["reward_status"] == "available"
 
     def test_referred_pending_true_before_reward_granted(self):
         set_reward_settings(Decimal("50.00"), Decimal("25.00"))
@@ -96,30 +126,3 @@ class TestMyReferralDashboardView:
         client.force_authenticate(user=referred)
         response = client.get("/api/referrals/me/")
         assert response.data["referred_pending"] is False
-
-
-class TestRedemptionRequestViewSet:
-    def test_rejects_when_balance_is_zero(self):
-        user = UserFactory.create()
-        client = APIClient()
-        client.force_authenticate(user=user)
-        response = client.post("/api/referrals/redemptions/", {})
-        assert response.status_code == 400
-
-    def test_creates_pending_request_when_balance_available(self):
-        user = UserFactory.create()
-        ReferralCredit.objects.create(
-            user=user,
-            entry_type=CreditEntryType.EARNED_AS_REFERRER,
-            amount=Decimal("50.00"),
-        )
-        client = APIClient()
-        client.force_authenticate(user=user)
-        response = client.post("/api/referrals/redemptions/", {})
-        assert response.status_code == 201
-        assert Decimal(response.data["amount_requested"]) == Decimal("50.00")
-
-    def test_requires_authentication(self):
-        client = APIClient()
-        response = client.post("/api/referrals/redemptions/", {})
-        assert response.status_code in (401, 403)

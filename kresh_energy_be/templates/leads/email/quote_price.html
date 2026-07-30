@@ -1,0 +1,41 @@
+{% autoescape on %}{% if locale == "de" %}
+<p>Hallo {{ quote.full_name }},</p>
+
+<p>vielen Dank für dein Interesse an <strong>Kresh EcoSolaris</strong>! Auf Basis
+deiner Angaben haben wir dir ein persönliches Angebot erstellt.</p>
+
+<p><strong>Deine Angaben:</strong><br>
+Adresse: {{ quote.address }}<br>
+{% if quote.calc_system_size_kwp %}Geschätzte Anlagengröße: {{ quote.calc_system_size_kwp }} kWp<br>{% endif %}
+{% if quote.calc_roof_type %}Dachtyp: {{ quote.get_calc_roof_type_display }}<br>{% endif %}
+{% if quote.calc_monthly_bill %}Monatliche Stromrechnung: €{{ quote.calc_monthly_bill }}<br>{% endif %}
+{% if quote.wants_battery %}Batteriespeicher gewünscht<br>{% endif %}
+{% if quote.wants_ev_charger %}Wallbox / E-Auto-Laden gewünscht<br>{% endif %}
+</p>
+
+<p><strong>Dein Angebotspreis: €{{ price }}</strong></p>
+
+<p>Falls du Fragen hast, antworte einfach auf diese E-Mail.</p>
+
+<p>Dein Kresh EcoSolaris Team</p>
+{% else %}
+<p>Hi {{ quote.full_name }},</p>
+
+<p>Thank you for your interest in <strong>Kresh EcoSolaris</strong>! Based on the
+details you shared, we've put together your personal quote.</p>
+
+<p><strong>Your details:</strong><br>
+Address: {{ quote.address }}<br>
+{% if quote.calc_system_size_kwp %}Estimated system size: {{ quote.calc_system_size_kwp }} kWp<br>{% endif %}
+{% if quote.calc_roof_type %}Roof type: {{ quote.get_calc_roof_type_display }}<br>{% endif %}
+{% if quote.calc_monthly_bill %}Monthly electricity bill: €{{ quote.calc_monthly_bill }}<br>{% endif %}
+{% if quote.wants_battery %}Battery storage wanted<br>{% endif %}
+{% if quote.wants_ev_charger %}Wallbox / EV charging wanted<br>{% endif %}
+</p>
+
+<p><strong>Your quoted price: €{{ price }}</strong></p>
+
+<p>If you have any questions, just reply to this email.</p>
+
+<p>The Kresh EcoSolaris team</p>
+{% endif %}{% endautoescape %}

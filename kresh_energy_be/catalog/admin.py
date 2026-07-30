@@ -90,10 +90,6 @@ class CalculatorConfigAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (
-            "Tariffs",
-            {"fields": ("electricity_price", "feed_in_tariff")},
-        ),
-        (
             "Production",
             {"fields": ("specific_yield", "panel_kwp", "panel_area_m2")},
         ),

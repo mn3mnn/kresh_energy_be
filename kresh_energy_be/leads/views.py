@@ -8,7 +8,6 @@ from rest_framework.throttling import AnonRateThrottle
 from rest_framework.viewsets import GenericViewSet
 
 from kresh_energy_be.referrals.services import credit_referral_reward
-from kresh_energy_be.referrals.services import request_redemption
 
 from .emails import send_booking_confirmation_email
 from .emails import send_quote_confirmation_email
@@ -16,26 +15,6 @@ from .models import InspectionBooking
 from .models import QuoteRequest
 from .serializers import InspectionBookingSerializer
 from .serializers import QuoteRequestSerializer
-
-
-def _maybe_request_redemption(lead_instance, quote_for_link=None):
-    """If the submitter (already-registered referrer) asked to redeem their
-    referral credit on this submission, create the PENDING request. No-op
-    if they have no balance or didn't ask."""
-    if not lead_instance.redeem_credit or lead_instance.submitted_by_id is None:
-        return
-    redemption = request_redemption(lead_instance.submitted_by, quote_request=quote_for_link)
-    if redemption is None:
-        return
-    mail_managers(
-        subject=f"Referral credit redemption requested — {lead_instance.submitted_by.email}",
-        message=(
-            f"User: {lead_instance.submitted_by.email}\n"
-            f"Amount requested: €{redemption.amount_requested}\n"
-            f"Requested via: {lead_instance._meta.verbose_name} #{lead_instance.pk}\n"
-        ),
-        fail_silently=True,
-    )
 
 
 class LeadRateThrottle(AnonRateThrottle):
@@ -67,7 +46,6 @@ class QuoteRequestViewSet(CreateModelMixin, GenericViewSet):
         )
         send_quote_confirmation_email(quote)
         credit_referral_reward(quote)
-        _maybe_request_redemption(quote, quote_for_link=quote)
 
 
 class InspectionBookingViewSet(CreateModelMixin, GenericViewSet):
@@ -95,4 +73,3 @@ class InspectionBookingViewSet(CreateModelMixin, GenericViewSet):
         )
         send_booking_confirmation_email(booking)
         credit_referral_reward(booking)
-        _maybe_request_redemption(booking)

@@ -7,9 +7,9 @@ from factory.django import DjangoModelFactory
 
 from kresh_energy_be.users.tests.factories import UserFactory
 
-from ..models import CreditEntryType
 from ..models import Referral
-from ..models import ReferralCredit
+from ..models import ReferralDiscount
+from ..models import ReferralDiscountStatus
 from ..models import ReferralStatus
 
 
@@ -44,10 +44,11 @@ class ReferralFactory(DjangoModelFactory):
         model = Referral
 
 
-class ReferralCreditFactory(DjangoModelFactory):
-    user = SubFactory(UserFactory)
-    entry_type = CreditEntryType.EARNED_AS_REFERRER
+class ReferralDiscountFactory(DjangoModelFactory):
+    owner = SubFactory(UserFactory)
+    referral = SubFactory(ReferralFactory)
     amount = Decimal("50.00")
+    status = ReferralDiscountStatus.AVAILABLE
 
     class Meta:
-        model = ReferralCredit
+        model = ReferralDiscount

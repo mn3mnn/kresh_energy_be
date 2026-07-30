@@ -77,8 +77,6 @@ class CalculatorConfigSerializer(serializers.ModelSerializer):
     into a nested ``usable_roof_factor`` object to match the ``solar.ts`` shape.
     """
 
-    electricity_price = serializers.FloatField(read_only=True)
-    feed_in_tariff = serializers.FloatField(read_only=True)
     panel_kwp = serializers.FloatField(read_only=True)
     panel_area_m2 = serializers.FloatField(read_only=True)
     self_consumption_no_battery = serializers.FloatField(read_only=True)
@@ -88,8 +86,6 @@ class CalculatorConfigSerializer(serializers.ModelSerializer):
     class Meta:
         model = CalculatorConfig
         fields = [
-            "electricity_price",
-            "feed_in_tariff",
             "specific_yield",
             "panel_kwp",
             "panel_area_m2",

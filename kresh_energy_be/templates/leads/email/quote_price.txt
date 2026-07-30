@@ -1,0 +1,35 @@
+{% autoescape off %}{% if locale == "de" %}Hallo {{ quote.full_name }},
+
+vielen Dank für dein Interesse an Kresh EcoSolaris! Auf Basis deiner Angaben
+haben wir dir ein persönliches Angebot erstellt.
+
+Deine Angaben:
+Adresse: {{ quote.address }}
+{% if quote.calc_system_size_kwp %}Geschätzte Anlagengröße: {{ quote.calc_system_size_kwp }} kWp
+{% endif %}{% if quote.calc_roof_type %}Dachtyp: {{ quote.get_calc_roof_type_display }}
+{% endif %}{% if quote.calc_monthly_bill %}Monatliche Stromrechnung: €{{ quote.calc_monthly_bill }}
+{% endif %}{% if quote.wants_battery %}Batteriespeicher gewünscht
+{% endif %}{% if quote.wants_ev_charger %}Wallbox / E-Auto-Laden gewünscht
+{% endif %}
+Dein Angebotspreis: €{{ price }}
+
+Falls du Fragen hast, antworte einfach auf diese E-Mail.
+
+Dein Kresh EcoSolaris Team{% else %}Hi {{ quote.full_name }},
+
+Thank you for your interest in Kresh EcoSolaris! Based on the details you
+shared, we've put together your personal quote.
+
+Your details:
+Address: {{ quote.address }}
+{% if quote.calc_system_size_kwp %}Estimated system size: {{ quote.calc_system_size_kwp }} kWp
+{% endif %}{% if quote.calc_roof_type %}Roof type: {{ quote.get_calc_roof_type_display }}
+{% endif %}{% if quote.calc_monthly_bill %}Monthly electricity bill: €{{ quote.calc_monthly_bill }}
+{% endif %}{% if quote.wants_battery %}Battery storage wanted
+{% endif %}{% if quote.wants_ev_charger %}Wallbox / EV charging wanted
+{% endif %}
+Your quoted price: €{{ price }}
+
+If you have any questions, just reply to this email.
+
+The Kresh EcoSolaris team{% endif %}{% endautoescape %}

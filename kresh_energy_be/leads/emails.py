@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
@@ -13,6 +15,10 @@ _QUOTE_SUBJECTS = {
 _BOOKING_SUBJECTS = {
     "de": "Deine Terminanfrage bei Kresh EcoSolaris ist eingegangen",
     "en": "We've received your Kresh EcoSolaris inspection booking",
+}
+_QUOTE_PRICE_SUBJECTS = {
+    "de": "Dein persönliches Angebot von Kresh EcoSolaris",
+    "en": "Your personal quote from Kresh EcoSolaris",
 }
 
 
@@ -54,4 +60,17 @@ def send_booking_confirmation_email(booking: InspectionBooking) -> None:
         booking.locale,
         booking.email,
         {"booking": booking},
+    )
+
+
+def send_quote_price_email(quote: QuoteRequest, price: Decimal) -> None:
+    """Send the admin-entered price to the customer. Triggered manually from
+    the QuoteRequest admin change page (see QuoteRequestAdmin.response_change)
+    — this is not sent automatically on submission."""
+    _send(
+        _QUOTE_PRICE_SUBJECTS,
+        "leads/email/quote_price",
+        quote.locale,
+        quote.email,
+        {"quote": quote, "price": price},
     )
