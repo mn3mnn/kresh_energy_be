@@ -89,8 +89,8 @@ class QuoteRequest(TimeStampedModel):
         null=True,
         blank=True,
         help_text=_(
-            "Price sent to the customer. Fill in before sending the "
-            "priced-quote email.",
+            "Set automatically by the “Send quote” action — not "
+            "editable directly.",
         ),
     )
     quoted_price_sent_at = models.DateTimeField(

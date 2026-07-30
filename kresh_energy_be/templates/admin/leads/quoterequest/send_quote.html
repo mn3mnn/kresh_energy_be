@@ -1,0 +1,44 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% translate "Home" %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+&rsaquo; <a href="{% url 'admin:leads_quoterequest_changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>
+&rsaquo; <a href="{% url 'admin:leads_quoterequest_change' object.pk %}">{{ object }}</a>
+&rsaquo; {% translate "Send quote" %}
+</div>
+{% endblock %}
+
+{% block content %}
+<h1>{% blocktranslate with name=object.full_name %}Send quote to {{ name }}{% endblocktranslate %}</h1>
+<p class="help">
+  {% translate "Enter the price, review the email below, edit it if needed, then send. The Regenerate button refreshes the text for a different price." %}
+</p>
+
+<form method="post">
+  {% csrf_token %}
+  <fieldset class="module aligned">
+    <div class="form-row">
+      <div>
+        {{ form.quoted_price.errors }}
+        <label for="{{ form.quoted_price.id_for_label }}">{{ form.quoted_price.label }}</label>
+        {{ form.quoted_price }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        {{ form.email_body.errors }}
+        <label for="{{ form.email_body.id_for_label }}">{{ form.email_body.label }}</label>
+        {{ form.email_body }}
+      </div>
+    </div>
+  </fieldset>
+  <div class="submit-row">
+    <input type="submit" name="_refresh" value="{% translate 'Regenerate email for this price' %}">
+    <input type="submit" name="_send" value="{% translate 'Send quote email' %}" class="default">
+    <a href="{% url 'admin:leads_quoterequest_change' object.pk %}" class="button cancel-link">{% translate "Cancel" %}</a>
+  </div>
+</form>
+{% endblock %}

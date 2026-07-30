@@ -5,7 +5,7 @@
   {{ block.super }}
   {% if change %}
   <div class="submit-row">
-    <input type="submit" value="{% trans 'Send quote email' %}" name="_send_quote_email" class="default">
+    <a href="{% url 'admin:leads_quoterequest_send_quote' object_id %}" class="button">{% trans 'Send quote' %}</a>
   </div>
   {% endif %}
 {% endblock %}

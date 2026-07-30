@@ -1,6 +1,7 @@
 from decimal import Decimal
 
 from django.conf import settings
+from django.core.mail import EmailMessage
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils import translation
@@ -63,14 +64,33 @@ def send_booking_confirmation_email(booking: InspectionBooking) -> None:
     )
 
 
-def send_quote_price_email(quote: QuoteRequest, price: Decimal) -> None:
-    """Send the admin-entered price to the customer. Triggered manually from
-    the QuoteRequest admin change page (see QuoteRequestAdmin.response_change)
-    — this is not sent automatically on submission."""
-    _send(
-        _QUOTE_PRICE_SUBJECTS,
-        "leads/email/quote_price",
-        quote.locale,
-        quote.email,
-        {"quote": quote, "price": price},
+def quote_price_email_subject(quote: QuoteRequest) -> str:
+    locale = quote.locale if quote.locale == "en" else "de"
+    return _QUOTE_PRICE_SUBJECTS[locale]
+
+
+def render_quote_price_email_body(quote: QuoteRequest, price: Decimal) -> str:
+    """Render the plain-text quote-price email body for preview/editing in
+    the admin's "Send quote" action — doesn't send anything."""
+    locale = quote.locale if quote.locale == "en" else "de"
+    with translation.override(locale):
+        return render_to_string(
+            "leads/email/quote_price.txt",
+            {"quote": quote, "price": price, "locale": locale},
+        )
+
+
+def send_quote_price_email_text(quote: QuoteRequest, body: str) -> None:
+    """Send the operator-reviewed/edited quote-price email body verbatim.
+    Plain text only: the edited text is the single source of truth, so we
+    don't also generate a separate HTML alternative that could drift from
+    it. Triggered from QuoteRequestAdmin's "Send quote" action view."""
+    if not quote.email:
+        return
+    message = EmailMessage(
+        subject=quote_price_email_subject(quote),
+        body=body,
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        to=[quote.email],
     )
+    message.send(fail_silently=True)
