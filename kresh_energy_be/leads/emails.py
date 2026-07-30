@@ -1,7 +1,6 @@
 from decimal import Decimal
 
 from django.conf import settings
-from django.core.mail import EmailMessage
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils import translation
@@ -81,16 +80,25 @@ def render_quote_price_email_body(quote: QuoteRequest, price: Decimal) -> str:
 
 
 def send_quote_price_email_text(quote: QuoteRequest, body: str) -> None:
-    """Send the operator-reviewed/edited quote-price email body verbatim.
-    Plain text only: the edited text is the single source of truth, so we
-    don't also generate a separate HTML alternative that could drift from
-    it. Triggered from QuoteRequestAdmin's "Send quote" action view."""
+    """Send the operator-reviewed/edited quote-price email body. The plain
+    text part is the edited text verbatim (the single source of truth);
+    the HTML part is *mechanically derived* from that same text (wrapped
+    in a branded shell, paragraphs/line breaks converted, auto-escaped) —
+    never independently edited, so the two can't drift apart. Triggered
+    from QuoteRequestAdmin's "Send quote" action view."""
     if not quote.email:
         return
-    message = EmailMessage(
-        subject=quote_price_email_subject(quote),
+    locale = quote.locale if quote.locale == "en" else "de"
+    subject = quote_price_email_subject(quote)
+    html_body = render_to_string(
+        "leads/email/quote_price_shell.html",
+        {"body": body, "subject": subject, "locale": locale},
+    )
+    message = EmailMultiAlternatives(
+        subject=subject,
         body=body,
         from_email=settings.DEFAULT_FROM_EMAIL,
         to=[quote.email],
     )
+    message.attach_alternative(html_body, "text/html")
     message.send(fail_silently=True)
