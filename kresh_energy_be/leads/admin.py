@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 from .emails import send_quote_price_email
 from .models import InspectionBooking
@@ -28,11 +29,11 @@ class QuoteRequestAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (
-            "Contact",
+            _("Contact"),
             {"fields": ("full_name", "phone", "email", "address", "notes")},
         ),
         (
-            "Calculator snapshot",
+            _("Calculator snapshot"),
             {
                 "fields": (
                     "calc_monthly_bill",
@@ -44,41 +45,45 @@ class QuoteRequestAdmin(admin.ModelAdmin):
             },
         ),
         (
-            "Files",
+            _("Files"),
             {"fields": ("electricity_bill", "meter_photo")},
         ),
         (
-            "Status",
+            _("Status"),
             {"fields": ("status", "submitted_by", "locale")},
         ),
         (
-            "Pricing",
+            _("Pricing"),
             {"fields": ("discount_reminder", "quoted_price", "quoted_price_sent_at")},
         ),
         (
-            "Metadata",
+            _("Metadata"),
             {"fields": ("created", "modified")},
         ),
     )
 
-    @admin.display(description="Referral discount to account for")
+    @admin.display(description=_("Referral discount to account for"))
     def discount_reminder(self, obj):
         if not obj.pk:
-            return "None"
+            return _("None")
         discount = obj.applied_referral_discount.first()
         if not discount:
-            return "None"
-        return (
-            f"€{discount.amount} (voucher #{discount.pk}, owner: {discount.owner.email}) "
-            "— NOT auto-subtracted, factor manually into quoted_price."
-        )
+            return _("None")
+        return _(
+            "€%(amount)s (voucher #%(pk)s, owner: %(email)s) "
+            "— NOT auto-subtracted, factor manually into quoted_price.",
+        ) % {
+            "amount": discount.amount,
+            "pk": discount.pk,
+            "email": discount.owner.email,
+        }
 
     def response_change(self, request, obj):
         if "_send_quote_email" in request.POST:
             if not obj.quoted_price:
                 self.message_user(
                     request,
-                    "Set a quoted price before sending.",
+                    _("Set a quoted price before sending."),
                     level=messages.ERROR,
                 )
                 return redirect(request.path)
@@ -86,7 +91,10 @@ class QuoteRequestAdmin(admin.ModelAdmin):
             obj.quoted_price_sent_at = timezone.now()
             obj.status = LeadStatus.QUOTED
             obj.save(update_fields=["quoted_price_sent_at", "status"])
-            self.message_user(request, f"Priced quote email sent to {obj.email}.")
+            self.message_user(
+                request,
+                _("Priced quote email sent to %(email)s.") % {"email": obj.email},
+            )
             return redirect(request.path)
         return super().response_change(request, obj)
 

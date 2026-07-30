@@ -1,0 +1,608 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-30 18:09+0000\n"
+"PO-Revision-Date: 2026-07-30 18:09+0000\n"
+"Last-Translator: Kresh Energy <admin@kresh-ng.de>\n"
+"Language-Team: Kresh Energy <admin@kresh-ng.de>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "German"
+msgstr "Deutsch"
+
+msgid "English"
+msgstr "Englisch"
+
+msgid "Arabic"
+msgstr "Arabisch"
+
+msgid "Assistant"
+msgstr "Assistent"
+
+msgid "Preview"
+msgstr "Vorschau"
+
+msgid "Production"
+msgstr "Ertrag"
+
+msgid "Consumption"
+msgstr "Verbrauch"
+
+msgid "Self-consumption"
+msgstr "Eigenverbrauch"
+
+msgid "Usable-roof factors"
+msgstr "Nutzbare Dachflächenfaktoren"
+
+msgid "Catalog"
+msgstr "Katalog"
+
+msgid "Residential"
+msgstr "Privat"
+
+msgid "Commercial"
+msgstr "Gewerbe"
+
+msgid "Residential & Commercial"
+msgstr "Privat & Gewerbe"
+
+msgid "Slug"
+msgstr "Slug"
+
+msgid "Icon"
+msgstr "Icon"
+
+msgid "lucide-react icon name, e.g. 'sun-medium'."
+msgstr "Name des lucide-react-Icons, z. B. 'sun-medium'."
+
+msgid "Audience"
+msgstr "Zielgruppe"
+
+msgid "Order"
+msgstr "Reihenfolge"
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Title (DE)"
+msgstr "Titel (DE)"
+
+msgid "Title (EN)"
+msgstr "Titel (EN)"
+
+msgid "Title (AR)"
+msgstr "Titel (AR)"
+
+msgid "Summary (DE)"
+msgstr "Zusammenfassung (DE)"
+
+msgid "Summary (EN)"
+msgstr "Zusammenfassung (EN)"
+
+msgid "Summary (AR)"
+msgstr "Zusammenfassung (AR)"
+
+msgid "Description (DE)"
+msgstr "Beschreibung (DE)"
+
+msgid "Description (EN)"
+msgstr "Beschreibung (EN)"
+
+msgid "Description (AR)"
+msgstr "Beschreibung (AR)"
+
+msgid "Body (DE)"
+msgstr "Inhalt (DE)"
+
+msgid "Long-form landing-page content. Separate paragraphs with a blank line."
+msgstr "Ausführlicher Landingpage-Inhalt. Absätze durch eine Leerzeile trennen."
+
+msgid "Body (EN)"
+msgstr "Inhalt (EN)"
+
+msgid "Body (AR)"
+msgstr "Inhalt (AR)"
+
+msgid "Service"
+msgstr "Leistung"
+
+msgid "Services"
+msgstr "Leistungen"
+
+msgid "City"
+msgstr "Stadt"
+
+msgid "System size (kWp)"
+msgstr "Anlagengröße (kWp)"
+
+msgid "Number of panels"
+msgstr "Anzahl der Module"
+
+msgid "Image"
+msgstr "Bild"
+
+msgid "Completed on"
+msgstr "Fertiggestellt am"
+
+msgid "Featured"
+msgstr "Hervorgehoben"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Projects"
+msgstr "Projekte"
+
+msgid "General"
+msgstr "Allgemein"
+
+msgid "Installation"
+msgstr "Installation"
+
+msgid "Warranty"
+msgstr "Garantie"
+
+msgid "Maintenance"
+msgstr "Wartung"
+
+msgid "Battery & storage"
+msgstr "Batterie & Speicher"
+
+msgid "Energy consumption"
+msgstr "Energieverbrauch"
+
+msgid "Permits & approvals"
+msgstr "Genehmigungen"
+
+msgid "Technical"
+msgstr "Technisch"
+
+msgid "Category"
+msgstr "Kategorie"
+
+msgid "Question (DE)"
+msgstr "Frage (DE)"
+
+msgid "Question (EN)"
+msgstr "Frage (EN)"
+
+msgid "Question (AR)"
+msgstr "Frage (AR)"
+
+msgid "Answer (DE)"
+msgstr "Antwort (DE)"
+
+msgid "Answer (EN)"
+msgstr "Antwort (EN)"
+
+msgid "Answer (AR)"
+msgstr "Antwort (AR)"
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid "FAQs"
+msgstr "FAQs"
+
+msgid "Author name"
+msgstr "Name des Autors"
+
+msgid "Rating"
+msgstr "Bewertung"
+
+msgid "Avatar"
+msgstr "Avatar"
+
+msgid "Role (DE)"
+msgstr "Rolle (DE)"
+
+msgid "Role (EN)"
+msgstr "Rolle (EN)"
+
+msgid "Role (AR)"
+msgstr "Rolle (AR)"
+
+msgid "Quote (DE)"
+msgstr "Zitat (DE)"
+
+msgid "Quote (EN)"
+msgstr "Zitat (EN)"
+
+msgid "Quote (AR)"
+msgstr "Zitat (AR)"
+
+msgid "Testimonial"
+msgstr "Kundenstimme"
+
+msgid "Testimonials"
+msgstr "Kundenstimmen"
+
+msgid "City / region"
+msgstr "Stadt / Region"
+
+msgid "Postal code"
+msgstr "Postleitzahl"
+
+msgid "Latitude"
+msgstr "Breitengrad"
+
+msgid "Longitude"
+msgstr "Längengrad"
+
+msgid "Contact phone"
+msgstr "Kontakttelefon"
+
+msgid "Contact email"
+msgstr "Kontakt-E-Mail"
+
+msgid "Service area"
+msgstr "Servicegebiet"
+
+msgid "Service areas"
+msgstr "Servicegebiete"
+
+msgid "Specific yield (kWh/kWp·yr)"
+msgstr "Spezifischer Ertrag (kWh/kWp·Jahr)"
+
+msgid "Annual yield per kWp in Germany."
+msgstr "Jährlicher Ertrag pro kWp in Deutschland."
+
+msgid "Panel power (kWp)"
+msgstr "Modulleistung (kWp)"
+
+msgid "Per-module peak power, e.g. 0.430 for a 430 Wp module."
+msgstr "Spitzenleistung pro Modul, z. B. 0,430 für ein 430-Wp-Modul."
+
+msgid "Panel area (m²)"
+msgstr "Modulfläche (m²)"
+
+msgid "Usable area per module incl. framing."
+msgstr "Nutzbare Fläche pro Modul inkl. Rahmen."
+
+msgid "Base consumption (kWh/yr)"
+msgstr "Grundverbrauch (kWh/Jahr)"
+
+msgid "Household base load before per-member additions."
+msgstr "Grundlast des Haushalts vor personenbezogenen Zuschlägen."
+
+msgid "Per-member consumption (kWh/yr)"
+msgstr "Verbrauch pro Person (kWh/Jahr)"
+
+msgid "EV consumption (kWh/yr)"
+msgstr "E-Auto-Verbrauch (kWh/Jahr)"
+
+msgid "Added when the customer wants an EV charger."
+msgstr "Wird hinzugefügt, wenn der Kunde eine Wallbox wünscht."
+
+msgid "Self-consumption without battery"
+msgstr "Eigenverbrauch ohne Batterie"
+
+msgid "Fraction 0–1, e.g. 0.30."
+msgstr "Anteil 0–1, z. B. 0,30."
+
+msgid "Self-consumption with battery"
+msgstr "Eigenverbrauch mit Batterie"
+
+msgid "Fraction 0–1, e.g. 0.65."
+msgstr "Anteil 0–1, z. B. 0,65."
+
+msgid "Usable roof factor – pitched"
+msgstr "Nutzbarer Dachflächenfaktor – Schrägdach"
+
+msgid "Usable roof factor – flat"
+msgstr "Nutzbarer Dachflächenfaktor – Flachdach"
+
+msgid "Usable roof factor – other"
+msgstr "Nutzbarer Dachflächenfaktor – Sonstiges"
+
+msgid "Calculator configuration"
+msgstr "Rechner-Konfiguration"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Calculator snapshot"
+msgstr "Rechner-Momentaufnahme"
+
+msgid "Files"
+msgstr "Dateien"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Pricing"
+msgstr "Preisgestaltung"
+
+msgid "Metadata"
+msgstr "Metadaten"
+
+msgid "Referral discount to account for"
+msgstr "Zu berücksichtigender Empfehlungsrabatt"
+
+msgid "None"
+msgstr "Keiner"
+
+#, python-format
+msgid ""
+"€%(amount)s (voucher #%(pk)s, owner: %(email)s) — NOT auto-subtracted, "
+"factor manually into quoted_price."
+msgstr "€%(amount)s (Gutschein #%(pk)s, Inhaber: %(email)s) — wird NICHT automatisch abgezogen, bitte manuell in den Angebotspreis einrechnen."
+
+msgid "Set a quoted price before sending."
+msgstr "Vor dem Versand einen Angebotspreis festlegen."
+
+#, python-format
+msgid "Priced quote email sent to %(email)s."
+msgstr "Preisangebot per E-Mail an %(email)s gesendet."
+
+msgid "Leads"
+msgstr "Anfragen"
+
+msgid "New"
+msgstr "Neu"
+
+msgid "Contacted"
+msgstr "Kontaktiert"
+
+msgid "Quoted"
+msgstr "Angebot erstellt"
+
+msgid "Won"
+msgstr "Gewonnen"
+
+msgid "Lost"
+msgstr "Verloren"
+
+msgid "Pitched roof"
+msgstr "Schrägdach"
+
+msgid "Flat roof"
+msgstr "Flachdach"
+
+msgid "Other"
+msgstr "Sonstiges"
+
+msgid "Full name"
+msgstr "Vollständiger Name"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Additional notes"
+msgstr "Zusätzliche Anmerkungen"
+
+msgid "Electricity bill"
+msgstr "Stromrechnung"
+
+msgid "Meter photo"
+msgstr "Zählerfoto"
+
+msgid "Monthly bill (€)"
+msgstr "Monatliche Rechnung (€)"
+
+msgid "Estimated system size (kWp)"
+msgstr "Geschätzte Anlagengröße (kWp)"
+
+msgid "Roof type"
+msgstr "Dachtyp"
+
+msgid "Wants battery"
+msgstr "Wünscht Batterie"
+
+msgid "Wants EV charger"
+msgstr "Wünscht Wallbox"
+
+msgid "Locale"
+msgstr "Sprache"
+
+msgid "Submitted by"
+msgstr "Eingereicht von"
+
+msgid "Quoted price (€)"
+msgstr "Angebotspreis (€)"
+
+msgid ""
+"Price sent to the customer. Fill in before sending the priced-quote email."
+msgstr "An den Kunden gesendeter Preis. Vor dem Versand der Preisangebots-E-Mail ausfüllen."
+
+msgid "Priced quote email sent at"
+msgstr "Preisangebots-E-Mail gesendet am"
+
+msgid "Quote request"
+msgstr "Angebotsanfrage"
+
+msgid "Quote requests"
+msgstr "Angebotsanfragen"
+
+msgid "Roof photo"
+msgstr "Dachfoto"
+
+msgid "Morning (08:00–12:00)"
+msgstr "Vormittag (08:00–12:00)"
+
+msgid "Afternoon (12:00–16:00)"
+msgstr "Nachmittag (12:00–16:00)"
+
+msgid "Evening (16:00–19:00)"
+msgstr "Abend (16:00–19:00)"
+
+msgid "Requested"
+msgstr "Angefragt"
+
+msgid "Confirmed"
+msgstr "Bestätigt"
+
+msgid "Completed"
+msgstr "Abgeschlossen"
+
+msgid "Cancelled"
+msgstr "Storniert"
+
+msgid "Inspection address"
+msgstr "Besichtigungsadresse"
+
+msgid "Preferred date"
+msgstr "Wunschtermin"
+
+msgid "Preferred time"
+msgstr "Wunschzeit"
+
+msgid "Apply referral credit to this request"
+msgstr "Empfehlungsguthaben auf diese Anfrage anwenden"
+
+msgid ""
+"Set when the submitter asked to redeem their referral credit balance against "
+"this request."
+msgstr "Wird gesetzt, wenn der Antragsteller sein Empfehlungsguthaben auf diese Anfrage anrechnen lassen möchte."
+
+msgid "Inspection booking"
+msgstr "Besichtigungstermin"
+
+msgid "Inspection bookings"
+msgstr "Besichtigungstermine"
+
+msgid "Referrals"
+msgstr "Empfehlungen"
+
+msgid "Referrer reward (€)"
+msgstr "Prämie für Empfehlenden (€)"
+
+msgid "Credited to the referrer when a referred person qualifies."
+msgstr "Wird dem Empfehlenden gutgeschrieben, sobald eine empfohlene Person qualifiziert ist."
+
+msgid "Referred-person reward (€)"
+msgstr "Prämie für empfohlene Person (€)"
+
+msgid ""
+"Auto-applied as a discount on the referred person's own qualifying quote/"
+"booking."
+msgstr "Wird automatisch als Rabatt auf die qualifizierende Angebotsanfrage/den Termin der empfohlenen Person angewendet."
+
+msgid "Referral program active"
+msgstr "Empfehlungsprogramm aktiv"
+
+msgid "Referral reward settings"
+msgstr "Einstellungen für Empfehlungsprämien"
+
+msgid "Signed up"
+msgstr "Registriert"
+
+msgid "Lead submitted"
+msgstr "Anfrage eingereicht"
+
+msgid "Rewarded"
+msgstr "Belohnt"
+
+msgid "Referrer"
+msgstr "Empfehlender"
+
+msgid "Referred user"
+msgstr "Empfohlener Nutzer"
+
+msgid "Code used at signup"
+msgstr "Bei der Registrierung verwendeter Code"
+
+msgid "Rewarded at"
+msgstr "Belohnt am"
+
+msgid "Referral"
+msgstr "Empfehlung"
+
+msgid "Available"
+msgstr "Verfügbar"
+
+msgid "Applied"
+msgstr "Angewendet"
+
+msgid "Owner"
+msgstr "Inhaber"
+
+msgid "Amount (€)"
+msgstr "Betrag (€)"
+
+msgid "Applied at"
+msgstr "Angewendet am"
+
+msgid "Referral discount"
+msgstr "Empfehlungsrabatt"
+
+msgid "Referral discounts"
+msgstr "Empfehlungsrabatte"
+
+msgid "Django site admin"
+msgstr "Django-Seitenverwaltung"
+
+msgid "Django administration"
+msgstr "Django-Administration"
+
+msgid "Language"
+msgstr "Sprache"
+
+msgid "Go"
+msgstr "Los"
+
+msgid "Send quote email"
+msgstr "Angebots-E-Mail senden"
+
+msgid "Sign In"
+msgstr "Anmelden"
+
+msgid "Sign Out"
+msgstr "Abmelden"
+
+msgid "Sign Up"
+msgstr "Registrieren"
+
+msgid "Personal info"
+msgstr "Persönliche Informationen"
+
+msgid "Permissions"
+msgstr "Berechtigungen"
+
+msgid "Important dates"
+msgstr "Wichtige Daten"
+
+msgid "Users"
+msgstr "Benutzer"
+
+msgid "This username has already been taken."
+msgstr "Dieser Benutzername ist bereits vergeben."
+
+msgid "Name of User"
+msgstr "Name des Benutzers"
+
+msgid "Phone number"
+msgstr "Telefonnummer"
+
+msgid "My referral code"
+msgstr "Mein Empfehlungscode"
+
+msgid "Auto-generated on first save; shared with referred friends."
+msgstr "Wird beim ersten Speichern automatisch generiert und mit empfohlenen Freunden geteilt."
+
+msgid "Referred by"
+msgstr "Empfohlen von"
+
+msgid "Referral reward already granted"
+msgstr "Empfehlungsprämie bereits gewährt"
+
+msgid ""
+"Set once this user's referrer has been credited for referring them (fires on "
+"this user's first quote/booking submission, not on signup)."
+msgstr "Wird gesetzt, sobald der Empfehlende für die Empfehlung dieses Nutzers gutgeschrieben wurde (ausgelöst bei der ersten Angebots-/Terminanfrage dieses Nutzers, nicht bei der Registrierung)."

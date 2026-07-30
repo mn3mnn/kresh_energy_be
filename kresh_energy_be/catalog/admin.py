@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.html import format_html
+from django.utils.translation import gettext_lazy as _
 
 from .models import FAQ
 from .models import CalculatorConfig
@@ -43,7 +44,7 @@ class ProjectAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title_de",)}
     readonly_fields = ["image_preview"]
 
-    @admin.display(description="Preview")
+    @admin.display(description=_("Preview"))
     def image_preview(self, obj):
         if obj.image:
             return format_html(
@@ -90,11 +91,11 @@ class CalculatorConfigAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (
-            "Production",
+            _("Production"),
             {"fields": ("specific_yield", "panel_kwp", "panel_area_m2")},
         ),
         (
-            "Consumption",
+            _("Consumption"),
             {
                 "fields": (
                     "base_consumption",
@@ -104,7 +105,7 @@ class CalculatorConfigAdmin(admin.ModelAdmin):
             },
         ),
         (
-            "Self-consumption",
+            _("Self-consumption"),
             {
                 "fields": (
                     "self_consumption_no_battery",
@@ -113,7 +114,7 @@ class CalculatorConfigAdmin(admin.ModelAdmin):
             },
         ),
         (
-            "Usable-roof factors",
+            _("Usable-roof factors"),
             {
                 "fields": (
                     "usable_roof_factor_pitched",

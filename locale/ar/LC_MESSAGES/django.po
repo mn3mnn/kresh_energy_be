@@ -1,0 +1,608 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-30 18:09+0000\n"
+"PO-Revision-Date: 2026-07-30 18:09+0000\n"
+"Last-Translator: Kresh Energy <admin@kresh-ng.de>\n"
+"Language-Team: Kresh Energy <admin@kresh-ng.de>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+msgid "German"
+msgstr "الألمانية"
+
+msgid "English"
+msgstr "الإنجليزية"
+
+msgid "Arabic"
+msgstr "العربية"
+
+msgid "Assistant"
+msgstr "المساعد"
+
+msgid "Preview"
+msgstr "معاينة"
+
+msgid "Production"
+msgstr "الإنتاج"
+
+msgid "Consumption"
+msgstr "الاستهلاك"
+
+msgid "Self-consumption"
+msgstr "الاستهلاك الذاتي"
+
+msgid "Usable-roof factors"
+msgstr "عوامل مساحة السطح القابلة للاستخدام"
+
+msgid "Catalog"
+msgstr "الكتالوج"
+
+msgid "Residential"
+msgstr "سكني"
+
+msgid "Commercial"
+msgstr "تجاري"
+
+msgid "Residential & Commercial"
+msgstr "سكني وتجاري"
+
+msgid "Slug"
+msgstr "الرابط المختصر"
+
+msgid "Icon"
+msgstr "الأيقونة"
+
+msgid "lucide-react icon name, e.g. 'sun-medium'."
+msgstr "اسم أيقونة lucide-react، مثال: 'sun-medium'."
+
+msgid "Audience"
+msgstr "الفئة المستهدفة"
+
+msgid "Order"
+msgstr "الترتيب"
+
+msgid "Active"
+msgstr "نشط"
+
+msgid "Title (DE)"
+msgstr "العنوان (DE)"
+
+msgid "Title (EN)"
+msgstr "العنوان (EN)"
+
+msgid "Title (AR)"
+msgstr "العنوان (AR)"
+
+msgid "Summary (DE)"
+msgstr "الملخص (DE)"
+
+msgid "Summary (EN)"
+msgstr "الملخص (EN)"
+
+msgid "Summary (AR)"
+msgstr "الملخص (AR)"
+
+msgid "Description (DE)"
+msgstr "الوصف (DE)"
+
+msgid "Description (EN)"
+msgstr "الوصف (EN)"
+
+msgid "Description (AR)"
+msgstr "الوصف (AR)"
+
+msgid "Body (DE)"
+msgstr "المحتوى (DE)"
+
+msgid "Long-form landing-page content. Separate paragraphs with a blank line."
+msgstr "محتوى طويل لصفحة الهبوط. افصل الفقرات بسطر فارغ."
+
+msgid "Body (EN)"
+msgstr "المحتوى (EN)"
+
+msgid "Body (AR)"
+msgstr "المحتوى (AR)"
+
+msgid "Service"
+msgstr "الخدمة"
+
+msgid "Services"
+msgstr "الخدمات"
+
+msgid "City"
+msgstr "المدينة"
+
+msgid "System size (kWp)"
+msgstr "حجم النظام (كيلوواط ذروة)"
+
+msgid "Number of panels"
+msgstr "عدد الألواح"
+
+msgid "Image"
+msgstr "الصورة"
+
+msgid "Completed on"
+msgstr "تاريخ الإنجاز"
+
+msgid "Featured"
+msgstr "مميز"
+
+msgid "Project"
+msgstr "المشروع"
+
+msgid "Projects"
+msgstr "المشاريع"
+
+msgid "General"
+msgstr "عام"
+
+msgid "Installation"
+msgstr "التركيب"
+
+msgid "Warranty"
+msgstr "الضمان"
+
+msgid "Maintenance"
+msgstr "الصيانة"
+
+msgid "Battery & storage"
+msgstr "البطارية والتخزين"
+
+msgid "Energy consumption"
+msgstr "استهلاك الطاقة"
+
+msgid "Permits & approvals"
+msgstr "التصاريح والموافقات"
+
+msgid "Technical"
+msgstr "تقني"
+
+msgid "Category"
+msgstr "الفئة"
+
+msgid "Question (DE)"
+msgstr "السؤال (DE)"
+
+msgid "Question (EN)"
+msgstr "السؤال (EN)"
+
+msgid "Question (AR)"
+msgstr "السؤال (AR)"
+
+msgid "Answer (DE)"
+msgstr "الإجابة (DE)"
+
+msgid "Answer (EN)"
+msgstr "الإجابة (EN)"
+
+msgid "Answer (AR)"
+msgstr "الإجابة (AR)"
+
+msgid "FAQ"
+msgstr "الأسئلة الشائعة"
+
+msgid "FAQs"
+msgstr "الأسئلة الشائعة"
+
+msgid "Author name"
+msgstr "اسم الكاتب"
+
+msgid "Rating"
+msgstr "التقييم"
+
+msgid "Avatar"
+msgstr "الصورة الرمزية"
+
+msgid "Role (DE)"
+msgstr "الدور (DE)"
+
+msgid "Role (EN)"
+msgstr "الدور (EN)"
+
+msgid "Role (AR)"
+msgstr "الدور (AR)"
+
+msgid "Quote (DE)"
+msgstr "الاقتباس (DE)"
+
+msgid "Quote (EN)"
+msgstr "الاقتباس (EN)"
+
+msgid "Quote (AR)"
+msgstr "الاقتباس (AR)"
+
+msgid "Testimonial"
+msgstr "شهادة العميل"
+
+msgid "Testimonials"
+msgstr "شهادات العملاء"
+
+msgid "City / region"
+msgstr "المدينة / المنطقة"
+
+msgid "Postal code"
+msgstr "الرمز البريدي"
+
+msgid "Latitude"
+msgstr "خط العرض"
+
+msgid "Longitude"
+msgstr "خط الطول"
+
+msgid "Contact phone"
+msgstr "هاتف التواصل"
+
+msgid "Contact email"
+msgstr "بريد التواصل الإلكتروني"
+
+msgid "Service area"
+msgstr "منطقة الخدمة"
+
+msgid "Service areas"
+msgstr "مناطق الخدمة"
+
+msgid "Specific yield (kWh/kWp·yr)"
+msgstr "الإنتاجية النوعية (كيلوواط ساعة/كيلوواط ذروة·سنة)"
+
+msgid "Annual yield per kWp in Germany."
+msgstr "الإنتاجية السنوية لكل كيلوواط ذروة في ألمانيا."
+
+msgid "Panel power (kWp)"
+msgstr "قدرة اللوح (كيلوواط ذروة)"
+
+msgid "Per-module peak power, e.g. 0.430 for a 430 Wp module."
+msgstr "أقصى قدرة لكل لوح، مثال: 0.430 للوح بقدرة 430 واط ذروة."
+
+msgid "Panel area (m²)"
+msgstr "مساحة اللوح (م²)"
+
+msgid "Usable area per module incl. framing."
+msgstr "المساحة القابلة للاستخدام لكل لوح متضمنة الإطار."
+
+msgid "Base consumption (kWh/yr)"
+msgstr "الاستهلاك الأساسي (كيلوواط ساعة/سنة)"
+
+msgid "Household base load before per-member additions."
+msgstr "الحمل الأساسي للمنزل قبل إضافات الأفراد."
+
+msgid "Per-member consumption (kWh/yr)"
+msgstr "استهلاك الفرد (كيلوواط ساعة/سنة)"
+
+msgid "EV consumption (kWh/yr)"
+msgstr "استهلاك السيارة الكهربائية (كيلوواط ساعة/سنة)"
+
+msgid "Added when the customer wants an EV charger."
+msgstr "تُضاف عند رغبة العميل في شاحن سيارة كهربائية."
+
+msgid "Self-consumption without battery"
+msgstr "الاستهلاك الذاتي بدون بطارية"
+
+msgid "Fraction 0–1, e.g. 0.30."
+msgstr "نسبة بين 0 و1، مثال: 0.30."
+
+msgid "Self-consumption with battery"
+msgstr "الاستهلاك الذاتي مع بطارية"
+
+msgid "Fraction 0–1, e.g. 0.65."
+msgstr "نسبة بين 0 و1، مثال: 0.65."
+
+msgid "Usable roof factor – pitched"
+msgstr "عامل مساحة السطح القابلة للاستخدام – سطح مائل"
+
+msgid "Usable roof factor – flat"
+msgstr "عامل مساحة السطح القابلة للاستخدام – سطح مستوٍ"
+
+msgid "Usable roof factor – other"
+msgstr "عامل مساحة السطح القابلة للاستخدام – أخرى"
+
+msgid "Calculator configuration"
+msgstr "إعدادات الحاسبة"
+
+msgid "Contact"
+msgstr "التواصل"
+
+msgid "Calculator snapshot"
+msgstr "لقطة الحاسبة"
+
+msgid "Files"
+msgstr "الملفات"
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Pricing"
+msgstr "التسعير"
+
+msgid "Metadata"
+msgstr "البيانات الوصفية"
+
+msgid "Referral discount to account for"
+msgstr "خصم الإحالة الواجب مراعاته"
+
+msgid "None"
+msgstr "لا يوجد"
+
+#, python-format
+msgid ""
+"€%(amount)s (voucher #%(pk)s, owner: %(email)s) — NOT auto-subtracted, "
+"factor manually into quoted_price."
+msgstr "€%(amount)s (قسيمة رقم %(pk)s، المالك: %(email)s) — لا يُخصم تلقائيًا، يجب احتسابه يدويًا ضمن سعر العرض."
+
+msgid "Set a quoted price before sending."
+msgstr "حدد سعر العرض قبل الإرسال."
+
+#, python-format
+msgid "Priced quote email sent to %(email)s."
+msgstr "تم إرسال بريد إلكتروني بعرض السعر إلى %(email)s."
+
+msgid "Leads"
+msgstr "العملاء المحتملون"
+
+msgid "New"
+msgstr "جديد"
+
+msgid "Contacted"
+msgstr "تم التواصل"
+
+msgid "Quoted"
+msgstr "تم إرسال عرض السعر"
+
+msgid "Won"
+msgstr "تم الفوز به"
+
+msgid "Lost"
+msgstr "خسر"
+
+msgid "Pitched roof"
+msgstr "سطح مائل"
+
+msgid "Flat roof"
+msgstr "سطح مستوٍ"
+
+msgid "Other"
+msgstr "أخرى"
+
+msgid "Full name"
+msgstr "الاسم الكامل"
+
+msgid "Phone"
+msgstr "الهاتف"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Address"
+msgstr "العنوان"
+
+msgid "Additional notes"
+msgstr "ملاحظات إضافية"
+
+msgid "Electricity bill"
+msgstr "فاتورة الكهرباء"
+
+msgid "Meter photo"
+msgstr "صورة العداد"
+
+msgid "Monthly bill (€)"
+msgstr "الفاتورة الشهرية (€)"
+
+msgid "Estimated system size (kWp)"
+msgstr "الحجم التقديري للنظام (كيلوواط ذروة)"
+
+msgid "Roof type"
+msgstr "نوع السطح"
+
+msgid "Wants battery"
+msgstr "يرغب في بطارية"
+
+msgid "Wants EV charger"
+msgstr "يرغب في شاحن سيارة كهربائية"
+
+msgid "Locale"
+msgstr "اللغة"
+
+msgid "Submitted by"
+msgstr "أُرسل بواسطة"
+
+msgid "Quoted price (€)"
+msgstr "سعر العرض (€)"
+
+msgid ""
+"Price sent to the customer. Fill in before sending the priced-quote email."
+msgstr "السعر المُرسَل إلى العميل. يجب تعبئته قبل إرسال بريد عرض السعر."
+
+msgid "Priced quote email sent at"
+msgstr "تاريخ إرسال بريد عرض السعر"
+
+msgid "Quote request"
+msgstr "طلب عرض سعر"
+
+msgid "Quote requests"
+msgstr "طلبات عروض الأسعار"
+
+msgid "Roof photo"
+msgstr "صورة السطح"
+
+msgid "Morning (08:00–12:00)"
+msgstr "صباحًا (08:00–12:00)"
+
+msgid "Afternoon (12:00–16:00)"
+msgstr "ظهرًا (12:00–16:00)"
+
+msgid "Evening (16:00–19:00)"
+msgstr "مساءً (16:00–19:00)"
+
+msgid "Requested"
+msgstr "مطلوب"
+
+msgid "Confirmed"
+msgstr "مؤكد"
+
+msgid "Completed"
+msgstr "مكتمل"
+
+msgid "Cancelled"
+msgstr "ملغى"
+
+msgid "Inspection address"
+msgstr "عنوان المعاينة"
+
+msgid "Preferred date"
+msgstr "التاريخ المفضل"
+
+msgid "Preferred time"
+msgstr "الوقت المفضل"
+
+msgid "Apply referral credit to this request"
+msgstr "تطبيق رصيد الإحالة على هذا الطلب"
+
+msgid ""
+"Set when the submitter asked to redeem their referral credit balance against "
+"this request."
+msgstr "يُضبط عندما يطلب مقدّم الطلب استخدام رصيد الإحالة الخاص به مقابل هذا الطلب."
+
+msgid "Inspection booking"
+msgstr "حجز معاينة"
+
+msgid "Inspection bookings"
+msgstr "حجوزات المعاينة"
+
+msgid "Referrals"
+msgstr "الإحالات"
+
+msgid "Referrer reward (€)"
+msgstr "مكافأة المُحيل (€)"
+
+msgid "Credited to the referrer when a referred person qualifies."
+msgstr "تُضاف إلى رصيد المُحيل عند تأهل الشخص المُحال."
+
+msgid "Referred-person reward (€)"
+msgstr "مكافأة الشخص المُحال (€)"
+
+msgid ""
+"Auto-applied as a discount on the referred person's own qualifying quote/"
+"booking."
+msgstr "تُطبَّق تلقائيًا كخصم على طلب عرض السعر أو الحجز المؤهِّل الخاص بالشخص المُحال."
+
+msgid "Referral program active"
+msgstr "برنامج الإحالة نشط"
+
+msgid "Referral reward settings"
+msgstr "إعدادات مكافآت الإحالة"
+
+msgid "Signed up"
+msgstr "مسجَّل"
+
+msgid "Lead submitted"
+msgstr "تم إرسال الطلب"
+
+msgid "Rewarded"
+msgstr "تمت المكافأة"
+
+msgid "Referrer"
+msgstr "المُحيل"
+
+msgid "Referred user"
+msgstr "المستخدم المُحال"
+
+msgid "Code used at signup"
+msgstr "الكود المستخدم عند التسجيل"
+
+msgid "Rewarded at"
+msgstr "تاريخ المكافأة"
+
+msgid "Referral"
+msgstr "الإحالة"
+
+msgid "Available"
+msgstr "متاح"
+
+msgid "Applied"
+msgstr "مُطبَّق"
+
+msgid "Owner"
+msgstr "المالك"
+
+msgid "Amount (€)"
+msgstr "المبلغ (€)"
+
+msgid "Applied at"
+msgstr "تاريخ التطبيق"
+
+msgid "Referral discount"
+msgstr "خصم الإحالة"
+
+msgid "Referral discounts"
+msgstr "خصومات الإحالة"
+
+msgid "Django site admin"
+msgstr "إدارة موقع Django"
+
+msgid "Django administration"
+msgstr "إدارة Django"
+
+msgid "Language"
+msgstr "اللغة"
+
+msgid "Go"
+msgstr "الانتقال"
+
+msgid "Send quote email"
+msgstr "إرسال بريد عرض السعر"
+
+msgid "Sign In"
+msgstr "تسجيل الدخول"
+
+msgid "Sign Out"
+msgstr "تسجيل الخروج"
+
+msgid "Sign Up"
+msgstr "إنشاء حساب"
+
+msgid "Personal info"
+msgstr "المعلومات الشخصية"
+
+msgid "Permissions"
+msgstr "الصلاحيات"
+
+msgid "Important dates"
+msgstr "تواريخ مهمة"
+
+msgid "Users"
+msgstr "المستخدمون"
+
+msgid "This username has already been taken."
+msgstr "اسم المستخدم هذا مُستخدم بالفعل."
+
+msgid "Name of User"
+msgstr "اسم المستخدم"
+
+msgid "Phone number"
+msgstr "رقم الهاتف"
+
+msgid "My referral code"
+msgstr "كود الإحالة الخاص بي"
+
+msgid "Auto-generated on first save; shared with referred friends."
+msgstr "يُنشأ تلقائيًا عند أول حفظ؛ يُشارك مع الأصدقاء المُحالين."
+
+msgid "Referred by"
+msgstr "تمت الإحالة بواسطة"
+
+msgid "Referral reward already granted"
+msgstr "تم منح مكافأة الإحالة بالفعل"
+
+msgid ""
+"Set once this user's referrer has been credited for referring them (fires on "
+"this user's first quote/booking submission, not on signup)."
+msgstr "يُضبط بمجرد أن يحصل المُحيل على مكافأة إحالة هذا المستخدم (يُفعَّل عند أول طلب عرض سعر أو حجز لهذا المستخدم، وليس عند التسجيل)."
