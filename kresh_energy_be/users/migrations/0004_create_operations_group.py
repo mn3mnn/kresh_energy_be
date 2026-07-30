@@ -7,6 +7,7 @@ OPERATIONS_PERMISSIONS = [
     ("leads", "change_quoterequest"),
     ("leads", "view_inspectionbooking"),
     ("leads", "change_inspectionbooking"),
+    ("leads", "view_quoteroofphoto"),
     ("referrals", "view_referral"),
     ("referrals", "view_referraldiscount"),
     ("referrals", "view_referralrewardsettings"),

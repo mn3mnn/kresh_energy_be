@@ -18,14 +18,43 @@ class QuoteRoofPhotoInline(admin.TabularInline):
 
 @admin.register(QuoteRequest)
 class QuoteRequestAdmin(admin.ModelAdmin):
-    list_display = ["full_name", "phone", "email", "status", "created"]
-    list_editable = ["status"]
+    list_display = ["full_name", "phone", "email", "status", "quoted_price", "created"]
+    list_editable = ["status", "quoted_price"]
     list_filter = ["status", "wants_battery", "wants_ev_charger", "created"]
     search_fields = ["full_name", "phone", "email", "address"]
     date_hierarchy = "created"
     readonly_fields = ["created", "modified", "discount_reminder"]
     inlines = [QuoteRoofPhotoInline]
     change_form_template = "admin/leads/quoterequest/change_form.html"
+
+    # Non-superuser staff (the "Operations" group) may only change status
+    # and quoted_price on an existing request, then use the "Send quote
+    # email" action — everything else is shown but locked read-only.
+    OPERATIONS_ONLY_READONLY_FIELDS = [
+        "full_name",
+        "phone",
+        "email",
+        "address",
+        "notes",
+        "calc_monthly_bill",
+        "calc_system_size_kwp",
+        "calc_roof_type",
+        "wants_battery",
+        "wants_ev_charger",
+        "electricity_bill",
+        "meter_photo",
+        "submitted_by",
+        "locale",
+        "quoted_price_sent_at",
+    ]
+
+    def get_readonly_fields(self, request, obj=None):
+        readonly_fields = list(super().get_readonly_fields(request, obj))
+        if not request.user.is_superuser and request.user.groups.filter(
+            name="Operations",
+        ).exists():
+            readonly_fields += self.OPERATIONS_ONLY_READONLY_FIELDS
+        return readonly_fields
 
     fieldsets = (
         (
