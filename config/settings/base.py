@@ -354,11 +354,10 @@ OPENAI_BASE_URL = env("OPENAI_BASE_URL", default="")
 OPENAI_MAX_TOKENS = env.int("OPENAI_MAX_TOKENS", default=500)
 # Human-handoff contact details surfaced by the assistant.
 # Single source of truth lives in the frontend `src/lib/config.ts` (siteConfig);
-# these env vars must mirror those contact values. Defaults match the current
-# placeholders — override per environment.
-COMPANY_PHONE = env("COMPANY_PHONE", default="+49 30 1234567")
-COMPANY_WHATSAPP = env("COMPANY_WHATSAPP", default="+49 1512 3456789")
-COMPANY_EMAIL = env("COMPANY_EMAIL", default="info@kresh-ng.de")
+# these env vars must mirror those contact values.
+COMPANY_PHONE = env("COMPANY_PHONE", default="+49 160 6321641")
+COMPANY_WHATSAPP = env("COMPANY_WHATSAPP", default="+49 160 6321641")
+COMPANY_EMAIL = env("COMPANY_EMAIL", default="admin@kresh-ng.de")
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
 CORS_URLS_REGEX = r"^/api/.*$"
