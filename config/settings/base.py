@@ -368,7 +368,7 @@ CORS_ALLOWED_ORIGINS = env.list(
 )
 
 # Frontend origin, used server-side only to build absolute referral links
-# (e.g. https://energy.kresh-ng.de/en/refer?ref=CODE). Not exposed to clients.
+# (e.g. https://ecosolaris.kresh-ng.de/en/refer?ref=CODE). Not exposed to clients.
 FRONTEND_URL = env("DJANGO_FRONTEND_URL", default="http://localhost:3000")
 
 # By Default swagger ui is available only to admin user(s). You can change permission classes to change that

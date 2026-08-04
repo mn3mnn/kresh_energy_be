@@ -17,9 +17,9 @@ ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[".kresh-ng.de"])
 CSRF_TRUSTED_ORIGINS = env.list(
     "DJANGO_CSRF_TRUSTED_ORIGINS",
     default=[
-        "https://energy.kresh-ng.de",
-        "https://www.energy.kresh-ng.de",
-        "https://energy-api.kresh-ng.de",
+        "https://ecosolaris.kresh-ng.de",
+        "https://www.ecosolaris.kresh-ng.de",
+        "https://ecosolaris-api.kresh-ng.de",
     ],
 )
 
@@ -212,7 +212,7 @@ LOGGING = {
 # -------------------------------------------------------------------------------
 # Tools that generate code samples can use SERVERS to point to the correct domain
 SPECTACULAR_SETTINGS["SERVERS"] = [
-    {"url": "https://energy-api.kresh-ng.de", "description": "Production server"},
+    {"url": "https://ecosolaris-api.kresh-ng.de", "description": "Production server"},
 ]
 # Your stuff...
 # ------------------------------------------------------------------------------

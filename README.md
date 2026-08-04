@@ -1,6 +1,6 @@
 # Kresh Energy — Backend (API)
 
-REST API for the [Kresh Energy](https://energy.kresh-ng.de) solar-energy website
+REST API for the [Kresh Energy](https://ecosolaris.kresh-ng.de) solar-energy website
 (German market). Built on **Django 6 + Django REST Framework**, it powers the public
 marketing site, captures leads (quote requests & on-site inspection bookings), serves
 admin-editable catalog content, and exposes an **AI assistant** endpoint.
@@ -99,7 +99,7 @@ production variables (see `.envs/.production/`):
 | `DJANGO_AWS_STORAGE_BUCKET_NAME`        | Public media bucket                                |
 | `DJANGO_AWS_PRIVATE_STORAGE_BUCKET_NAME`| Private lead-upload bucket (signed URLs)           |
 | `DJANGO_AWS_S3_ENDPOINT_URL`            | `https://<account>.r2.cloudflarestorage.com`       |
-| `DJANGO_AWS_S3_CUSTOM_DOMAIN`           | `energy-media.kresh-ng.de` (public bucket)         |
+| `DJANGO_AWS_S3_CUSTOM_DOMAIN`           | `ecosolaris-media.kresh-ng.de` (public bucket)         |
 | `EMAIL_HOST` / `EMAIL_HOST_USER` / `…_PASSWORD` | Hostinger SMTP (port 465, SSL)             |
 | `OPENAI_API_KEY` / `OPENAI_MODEL` / `OPENAI_BASE_URL` | AI assistant provider                 |
 | `DJANGO_NUM_PROXIES`                    | `1` (behind Traefik) for correct per-IP throttling |
@@ -107,7 +107,7 @@ production variables (see `.envs/.production/`):
 ### Media storage (split R2)
 
 - **Public bucket** — marketing images (`Project.image`, `Testimonial.avatar`), served
-  from `energy-media.kresh-ng.de` with no query-string auth.
+  from `ecosolaris-media.kresh-ng.de` with no query-string auth.
 - **Private bucket** — sensitive lead uploads (electricity bills, meter/roof photos),
   served via **signed, expiring URLs** and not publicly listable. Selected per-field via
   `kresh_energy_be/common/storages.py` (`PrivateMediaStorage`), which falls back to the
@@ -121,10 +121,10 @@ GHCR registry, and the VPS pulls + migrates + restarts over SSH.
 
 - **Edge:** this project owns Traefik (binds 80/443, Let's Encrypt), plus `django`,
   `postgres`, `redis`, and an `awscli` helper. Routing is via the Traefik file provider
-  (`compose/production/traefik/traefik.yml`): `energy-api.kresh-ng.de → django:5000`,
-  `energy.kresh-ng.de → frontend:3000` (the frontend runs from a separate repo on the
-  shared external `kresh_web` Docker network). `energy.kresh-ng.com` / `.org` 301-redirect
-  to `energy.kresh-ng.de`.
+  (`compose/production/traefik/traefik.yml`): `ecosolaris-api.kresh-ng.de → django:5000`,
+  `ecosolaris.kresh-ng.de → frontend:3000` (the frontend runs from a separate repo on the
+  shared external `kresh_web` Docker network). `ecosolaris.kresh-ng.com` / `.org` 301-redirect
+  to `ecosolaris.kresh-ng.de`.
 - **First-time VPS bootstrap:** `scripts/setup_server.sh` (installs Docker, creates the
   `kresh_web` network, configures UFW, generates a deploy key, prints the required GitHub
   secrets).

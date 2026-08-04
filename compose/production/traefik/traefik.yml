@@ -27,19 +27,19 @@ certificatesResolvers:
 
 http:
   routers:
-    # energy.kresh-ng.de -> Next.js frontend (runs in the kresh_energy_fe compose project,
+    # ecosolaris.kresh-ng.de -> Next.js frontend (runs in the kresh_energy_fe compose project,
     # reachable over the shared external "kresh_web" docker network).
     frontend-router:
-      rule: 'Host(`energy.kresh-ng.de`) || Host(`www.energy.kresh-ng.de`)'
+      rule: 'Host(`ecosolaris.kresh-ng.de`) || Host(`www.ecosolaris.kresh-ng.de`)'
       entryPoints:
         - web-secure
       service: frontend
       tls:
         certResolver: letsencrypt
 
-    # energy-api.kresh-ng.de -> Django (DRF API, admin, static & media).
+    # ecosolaris-api.kresh-ng.de -> Django (DRF API, admin, static & media).
     api-router:
-      rule: 'Host(`energy-api.kresh-ng.de`)'
+      rule: 'Host(`ecosolaris-api.kresh-ng.de`)'
       entryPoints:
         - web-secure
       middlewares:
@@ -49,10 +49,10 @@ http:
         # https://doc.traefik.io/traefik/routing/routers/#certresolver
         certResolver: letsencrypt
 
-    # Brand-protection domains: energy.kresh-ng.com / .org 301-redirect to the
-    # canonical energy.kresh-ng.de. No app runs behind these.
+    # Brand-protection domains: ecosolaris.kresh-ng.com / .org 301-redirect to the
+    # canonical ecosolaris.kresh-ng.de. No app runs behind these.
     redirect-com-router:
-      rule: 'Host(`energy.kresh-ng.com`)'
+      rule: 'Host(`ecosolaris.kresh-ng.com`)'
       entryPoints:
         - web-secure
       middlewares:
@@ -62,7 +62,7 @@ http:
         certResolver: letsencrypt
 
     redirect-org-router:
-      rule: 'Host(`energy.kresh-ng.org`)'
+      rule: 'Host(`ecosolaris.kresh-ng.org`)'
       entryPoints:
         - web-secure
       middlewares:
@@ -81,8 +81,8 @@ http:
     redirect-canonical:
       # https://doc.traefik.io/traefik/middlewares/http/redirectregex/
       redirectRegex:
-        regex: '^https://energy\.kresh-ng\.(?:com|org)(/.*)?$'
-        replacement: 'https://energy.kresh-ng.de${1}'
+        regex: '^https://ecosolaris\.kresh-ng\.(?:com|org)(/.*)?$'
+        replacement: 'https://ecosolaris.kresh-ng.de${1}'
         permanent: true
 
   services:
