@@ -8,6 +8,7 @@ and referral-reward system, and exposes an AI sales/support assistant.
 The frontend lives in a separate repository; the two are deployed side by side on one VPS.
 
 [![CI](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white)](.github/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 [![Python 3.14](https://img.shields.io/badge/python-3.14-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Django 6](https://img.shields.io/badge/django-6.0-092E20?logo=django&logoColor=white)](https://www.djangoproject.com/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
@@ -200,6 +201,10 @@ The app runs on a single VPS:
 
 Postgres backups and restores use the scripts in `compose/production/postgres/maintenance/`.
 See [`DOCKER.md`](DOCKER.md) for container details.
+
+## License
+
+Released under the [MIT License](LICENSE). You're free to use, modify and distribute the code.
 
 ## Author
 

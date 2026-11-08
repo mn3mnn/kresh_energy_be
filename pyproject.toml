@@ -3,7 +3,7 @@ name = "kresh_energy_be"
 version = "0.1.0"
 description = "Kresh Energy Backend"
 readme = "README.md"
-license = { text = "Not open source" }
+license = { text = "MIT" }
 authors = [
   { name = "Monem", email = "abdoeladawy4@gmail.com" },
 ]
