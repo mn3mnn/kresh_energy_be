@@ -329,3 +329,10 @@ kresh_energy_be/media/
 .env
 .envs/*
 !.envs/.local/
+
+# Local secrets: copy .envs/.local/.django.example to .envs/.local/.django
+.envs/.local/.django
+
+# IDE / personal notes
+.idea/
+MyTODO.md

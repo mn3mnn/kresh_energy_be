@@ -3,7 +3,7 @@
 USE_DOCKER=yes
 IPYTHONDIR=/app/.ipython
 
-OPENAI_API_KEY=sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+OPENAI_API_KEY=your-openrouter-key
 
 # OpenRouter (OpenAI-compatible gateway) for the AI assistant
 OPENAI_BASE_URL=https://openrouter.ai/api/v1

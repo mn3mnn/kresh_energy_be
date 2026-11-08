@@ -1,135 +1,206 @@
-# Kresh Energy — Backend (API)
+# Kresh Energy — Backend API
 
-REST API for the [Kresh Energy](https://ecosolaris.kresh-ng.de) solar-energy website
-(German market). Built on **Django 6 + Django REST Framework**, it powers the public
-marketing site, captures leads (quote requests & on-site inspection bookings), serves
-admin-editable catalog content, and exposes an **AI assistant** endpoint.
+REST API behind [**ecosolaris.kresh-ng.de**](https://ecosolaris.kresh-ng.de), a solar-energy
+company website for the German market. It serves admin-editable marketing content,
+captures leads (quote requests and on-site inspection bookings), runs a customer account
+and referral-reward system, and exposes an AI sales/support assistant.
 
-[![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
+The frontend lives in a separate repository; the two are deployed side by side on one VPS.
+
+[![CI](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white)](.github/workflows/ci.yml)
+[![Python 3.14](https://img.shields.io/badge/python-3.14-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Django 6](https://img.shields.io/badge/django-6.0-092E20?logo=django&logoColor=white)](https://www.djangoproject.com/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 
-## Stack
+---
 
-| Layer        | Choice                                                             |
-| ------------ | ----------------------------------------------------------------- |
-| Language     | Python 3.14                                                        |
-| Framework    | Django 6, Django REST Framework                                    |
-| API docs     | drf-spectacular (OpenAPI 3, Swagger/Redoc)                         |
-| Database     | PostgreSQL                                                         |
-| Cache/queue  | Redis                                                              |
-| Media        | Cloudflare R2 (S3-compatible) via django-storages — split buckets |
-| Email        | Hostinger SMTP (SSL)                                               |
-| AI assistant | OpenAI-compatible Chat Completions                                 |
-| Edge         | Traefik + Let's Encrypt (production)                               |
-| Runtime      | gunicorn + uvicorn worker                                          |
-| Tooling      | uv, Ruff, mypy, pytest                                             |
+## Features
 
-## Domain model
+- **Content API.** Services, reference projects, FAQs, testimonials, service areas and
+  savings-calculator settings, all edited in the Django admin with DE/EN fields and an
+  `is_active` toggle.
+- **Lead capture.** Quote requests with file uploads (electricity bill, meter photo, roof
+  photos) and inspection bookings. Customers get a branded confirmation email in their
+  own language.
+- **"Send quote" admin workflow.** Staff enter a price, preview and edit the email in the
+  admin, and send it as a branded HTML email with a plain-text fallback. The send time is
+  recorded on the quote.
+- **Customer accounts.** Email-only signup with mandatory verification (django-allauth),
+  exposed as JSON endpoints through dj-rest-auth with token auth.
+- **Referral programme.** Every user gets a referral code. When a referred user submits
+  their first quote or booking, both sides receive a discount voucher. Reward amounts are
+  set in a singleton settings model, and both sides are notified by email.
+- **AI assistant.** A chat endpoint that builds its system prompt from live catalog data,
+  calls any OpenAI-compatible provider (OpenRouter in development) and hands off to a
+  human when it can't answer. It has three throttles: burst, hourly, and a global daily cap.
+- **Multilingual.** German (default), English and Arabic (RTL), for the API, the emails
+  and the admin dashboard.
+- **Split media storage.** Public marketing images and private lead uploads live in
+  separate Cloudflare R2 buckets. Private files are only served through signed URLs
+  that expire.
 
-- **`catalog`** — admin-editable marketing content, all with an `is_active` flag and
-  DE/EN fields:
-  - `Service`, `Project` (references/case studies), `FAQ`, `Testimonial`,
-    `ServiceArea` (coverage), `CalculatorConfig` (drives the frontend savings
-    calculator).
-- **`leads`** — customer submissions:
-  - `QuoteRequest` (+ `QuoteRoofPhoto`) with sensitive uploads (electricity bill,
-    meter photo, roof photos); `InspectionBooking` (on-site visit scheduling).
-- **`assistant`** — RAG-style sales/support chat: builds a system prompt from live
-  catalog context and proxies to an OpenAI-compatible model, with a human-handoff
-  message when it can't answer.
+## Tech stack
 
-## API surface
+| Area           | Tools                                                                       |
+| -------------- | --------------------------------------------------------------------------- |
+| Language       | Python 3.14                                                                 |
+| Framework      | Django 6, Django REST Framework                                             |
+| Auth           | django-allauth (email login, MFA-ready), dj-rest-auth, DRF token auth       |
+| API docs       | drf-spectacular (OpenAPI 3 + Swagger UI)                                    |
+| Database       | PostgreSQL (psycopg 3)                                                      |
+| Cache          | Redis (django-redis, hiredis) in production; in-memory locally              |
+| Storage        | Cloudflare R2 (S3-compatible) via django-storages; WhiteNoise for static    |
+| Email          | SMTP (Hostinger) in production; console backend locally                     |
+| AI             | `openai` SDK against any OpenAI-compatible Chat Completions API             |
+| Server         | Gunicorn + Uvicorn worker (ASGI)                                            |
+| Infrastructure | Docker Compose, Traefik + Let's Encrypt, GHCR, single VPS                   |
+| CI/CD          | GitHub Actions (lint, migrations check, tests, build → deploy over SSH)     |
+| Tooling        | uv, Ruff, mypy (django-stubs), pytest + factory-boy, djLint, pre-commit, just |
 
-All routes are under `/api/`. Reads are public; writes are public but rate-limited.
+## Project structure
 
-| Endpoint                     | Method   | Purpose                              |
-| ---------------------------- | -------- | ------------------------------------ |
-| `/api/services/`             | GET      | Active services                      |
-| `/api/projects/`             | GET      | Reference projects                   |
-| `/api/faqs/`                 | GET      | FAQs                                 |
-| `/api/testimonials/`         | GET      | Testimonials                         |
-| `/api/service-areas/`        | GET      | Coverage areas                       |
-| `/api/calculator-config/`    | GET      | Savings-calculator parameters        |
-| `/api/quotes/`               | POST     | Submit a quote request (+ photos)    |
-| `/api/bookings/`             | POST     | Book an on-site inspection           |
-| `/api/assistant/chat/`       | POST     | AI assistant chat turn               |
-| `/api/schema/` `…/docs/`     | GET      | OpenAPI schema + Swagger UI          |
+```
+.
+├── config/                    # Django project config
+│   ├── settings/              #   base / local / production / test
+│   ├── api_router.py          #   all /api/ routes
+│   └── urls.py                #   admin, auth, schema & docs URLs
+├── kresh_energy_be/           # Application code
+│   ├── catalog/               #   Services, projects, FAQs, testimonials, areas, calculator config
+│   ├── leads/                 #   Quote requests, roof photos, inspection bookings, emails, "send quote" admin
+│   ├── referrals/             #   Referral codes, rewards settings, discount vouchers, reward service
+│   ├── assistant/             #   AI chat: catalog context builder, prompt, OpenAI-compatible client
+│   ├── users/                 #   Custom User model, allauth adapters, users API
+│   ├── common/                #   Shared serializers, private/public storage backends
+│   ├── templates/             #   Admin overrides + localized HTML/text email templates
+│   └── fixtures/seed.json     #   Initial catalog content
+├── locale/                    # de / ar translations (gettext)
+├── compose/                   # Dockerfiles & scripts (local, production: django, postgres, traefik, aws)
+├── docker-compose.local.yml   # Local stack
+├── docker-compose.production.yml
+├── scripts/setup_server.sh    # First-time VPS bootstrap
+├── .github/workflows/         # ci.yml, deploy.yml
+├── docs/                      # Sphinx docs
+└── justfile                   # Shortcuts for common Docker commands
+```
 
-## Local development
+## API overview
 
-Requires Docker + Docker Compose.
+All routes are under `/api/`. Content reads are public. Lead, referral-check and assistant
+writes are public but rate-limited. Account endpoints need a token.
+
+| Endpoint                                 | Method      | Auth   | Purpose                               |
+| ---------------------------------------- | ----------- | ------ | ------------------------------------- |
+| `/api/services/`                         | GET         | —      | Active services                       |
+| `/api/projects/`                         | GET         | —      | Reference projects                    |
+| `/api/faqs/`                             | GET         | —      | FAQs                                  |
+| `/api/testimonials/`                     | GET         | —      | Testimonials                          |
+| `/api/service-areas/`                    | GET         | —      | Coverage areas                        |
+| `/api/calculator-config/`                | GET         | —      | Savings-calculator parameters         |
+| `/api/quotes/`                           | POST        | opt.   | Submit a quote request (+ photos)     |
+| `/api/bookings/`                         | POST        | opt.   | Book an on-site inspection            |
+| `/api/assistant/chat/`                   | POST        | —      | One AI assistant chat turn            |
+| `/api/referrals/check-code/`             | POST        | —      | Check that a referral code is valid   |
+| `/api/referrals/me/`                     | GET         | token  | The signed-in user's referral dashboard |
+| `/api/auth/registration/`                | POST        | —      | Sign up (email verification follows)  |
+| `/api/auth/login/` · `logout/` · `password/…` | POST   | —/token | Login, logout, password flows        |
+| `/api/users/me/`                         | GET         | token  | Current user                          |
+| `/api/schema/` · `/api/docs/`            | GET         | —      | OpenAPI schema · Swagger UI           |
+
+Leads submitted while signed in are linked to the user, and those are the submissions
+that trigger referral rewards.
+
+## Getting started
+
+Prerequisites: Docker and Docker Compose. [`just`](https://github.com/casey/just) is optional.
 
 ```bash
-# Build & start the local stack (Django, Postgres, Redis, mailpit, docs)
+git clone <this-repo> && cd kresh_energy_be
+cp .envs/.local/.django.example .envs/.local/.django
+
+# Build and start Django + Postgres
 docker compose -f docker-compose.local.yml up --build
 
-# Create an admin user
+# In another shell: create an admin user and load the starter content
 docker compose -f docker-compose.local.yml run --rm django python manage.py createsuperuser
-
-# Seed catalog content (services, FAQs, projects, testimonials, service areas)
 docker compose -f docker-compose.local.yml run --rm django python manage.py loaddata seed
 ```
 
-- API: <http://localhost:8000/api/>
-- Admin: <http://localhost:8000/AdminZ22Dj/>
-- API docs: <http://localhost:8000/api/docs/>
+| URL                              | What                         |
+| -------------------------------- | ---------------------------- |
+| <http://localhost:8000/api/>     | API root                     |
+| <http://localhost:8000/api/docs/>| Swagger UI                   |
+| <http://localhost:8000/admin/>   | Django admin                 |
 
-Emails in development are captured by mailpit instead of being sent.
+In development, outgoing emails are printed to the Django container logs.
 
-### Quality checks
+Local environment variables live in `.envs/.local/`. To try the assistant, set
+`OPENAI_API_KEY`, `OPENAI_BASE_URL` and `OPENAI_MODEL` in `.envs/.local/.django`. Git
+ignores that file, so your key stays local.
+
+With `just`: `just up`, `just manage <cmd>`, `just pytest`, `just logs`, `just down`.
+
+### Tests and quality checks
 
 ```bash
-docker compose -f docker-compose.local.yml run --rm django python manage.py check
-docker compose -f docker-compose.local.yml run --rm django python manage.py makemigrations --check
 docker compose -f docker-compose.local.yml run --rm django pytest
 docker compose -f docker-compose.local.yml run --rm django mypy kresh_energy_be
+docker compose -f docker-compose.local.yml run --rm django python manage.py makemigrations --check
+pre-commit run --all-files   # Ruff, djLint and file hygiene hooks
+```
+
+CI runs pre-commit, then the migration check and the full test suite in Docker, on every
+push and pull request to `main`.
+
+### Translations
+
+```bash
+docker compose -f docker-compose.local.yml run --rm django python manage.py makemessages -l de -l ar
+docker compose -f docker-compose.local.yml run --rm django python manage.py compilemessages
 ```
 
 ## Configuration
 
-Settings are environment-driven (`config/settings/{base,local,production}.py`). Key
-production variables (see `.envs/.production/`):
+Settings are driven by environment variables (`config/settings/{base,local,production}.py`,
+using django-environ). The main production variables are:
 
-| Variable                                | Purpose                                            |
-| --------------------------------------- | -------------------------------------------------- |
-| `DJANGO_SECRET_KEY`                     | Django secret                                      |
-| `DJANGO_ALLOWED_HOSTS`                  | e.g. `.kresh-ng.de`                                |
-| `DATABASE_URL`                          | Postgres DSN                                        |
-| `DJANGO_AWS_ACCESS_KEY_ID` / `…_SECRET` | Cloudflare R2 credentials                          |
-| `DJANGO_AWS_STORAGE_BUCKET_NAME`        | Public media bucket                                |
-| `DJANGO_AWS_PRIVATE_STORAGE_BUCKET_NAME`| Private lead-upload bucket (signed URLs)           |
-| `DJANGO_AWS_S3_ENDPOINT_URL`            | `https://<account>.r2.cloudflarestorage.com`       |
-| `DJANGO_AWS_S3_CUSTOM_DOMAIN`           | `ecosolaris-media.kresh-ng.de` (public bucket)         |
-| `EMAIL_HOST` / `EMAIL_HOST_USER` / `…_PASSWORD` | Hostinger SMTP (port 465, SSL)             |
-| `OPENAI_API_KEY` / `OPENAI_MODEL` / `OPENAI_BASE_URL` | AI assistant provider                 |
-| `DJANGO_NUM_PROXIES`                    | `1` (behind Traefik) for correct per-IP throttling |
+| Variable                                         | Purpose                                         |
+| ------------------------------------------------ | ----------------------------------------------- |
+| `DJANGO_SECRET_KEY`, `DJANGO_ADMIN_URL`          | Secret key, admin path (not the default one)    |
+| `DJANGO_ALLOWED_HOSTS`                           | e.g. `.kresh-ng.de`                             |
+| `DATABASE_URL`, `REDIS_URL`                      | Postgres / Redis                                |
+| `DJANGO_AWS_ACCESS_KEY_ID` / `…_SECRET_ACCESS_KEY` | Cloudflare R2 credentials                     |
+| `DJANGO_AWS_STORAGE_BUCKET_NAME`                 | Public media bucket                             |
+| `DJANGO_AWS_PRIVATE_STORAGE_BUCKET_NAME`         | Private lead-upload bucket (signed URLs)        |
+| `DJANGO_AWS_S3_ENDPOINT_URL`, `DJANGO_AWS_S3_CUSTOM_DOMAIN` | R2 endpoint, public media domain     |
+| `EMAIL_HOST`, `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD` | SMTP (port 465, SSL)                      |
+| `OPENAI_API_KEY`, `OPENAI_BASE_URL`, `OPENAI_MODEL`, `OPENAI_MAX_TOKENS` | AI assistant provider   |
+| `ASSISTANT_THROTTLE_BURST` / `_HOUR` / `_GLOBAL` | Assistant rate limits                          |
+| `DJANGO_NUM_PROXIES`                             | `1` behind Traefik, so per-IP throttling sees real client IPs |
 
-### Media storage (split R2)
-
-- **Public bucket** — marketing images (`Project.image`, `Testimonial.avatar`), served
-  from `ecosolaris-media.kresh-ng.de` with no query-string auth.
-- **Private bucket** — sensitive lead uploads (electricity bills, meter/roof photos),
-  served via **signed, expiring URLs** and not publicly listable. Selected per-field via
-  `kresh_energy_be/common/storages.py` (`PrivateMediaStorage`), which falls back to the
-  local filesystem when no private bucket is configured — so local/CI need no R2
-  credentials.
+If no private bucket is configured, private uploads fall back to the local filesystem,
+so local development and CI don't need R2 credentials.
 
 ## Deployment
 
-Runs on a single dedicated VPS. GitHub Actions builds the image, pushes it to a private
-GHCR registry, and the VPS pulls + migrates + restarts over SSH.
+The app runs on a single VPS:
 
-- **Edge:** this project owns Traefik (binds 80/443, Let's Encrypt), plus `django`,
-  `postgres`, `redis`, and an `awscli` helper. Routing is via the Traefik file provider
-  (`compose/production/traefik/traefik.yml`): `ecosolaris-api.kresh-ng.de → django:5000`,
-  `ecosolaris.kresh-ng.de → frontend:3000` (the frontend runs from a separate repo on the
-  shared external `kresh_web` Docker network). `ecosolaris.kresh-ng.com` / `.org` 301-redirect
-  to `ecosolaris.kresh-ng.de`.
-- **First-time VPS bootstrap:** `scripts/setup_server.sh` (installs Docker, creates the
-  `kresh_web` network, configures UFW, generates a deploy key, prints the required GitHub
-  secrets).
-- **Deploy:** trigger the **Deploy** workflow (`workflow_dispatch`) — **backend first**,
-  then the frontend. After the first deploy, seed catalog content once with
-  `loaddata seed` (do not automate this; fixed PKs would overwrite admin edits).
+1. **Bootstrap (once):** `scripts/setup_server.sh` installs Docker, creates the shared
+   `kresh_web` network, configures UFW, generates a deploy key and prints the GitHub
+   secrets you need to add.
+2. **Deploy:** run the **Deploy** workflow (`workflow_dispatch`). It builds the
+   production image, pushes it to GHCR, then connects to the VPS over SSH to pull,
+   migrate and restart. Deploy the backend first, then the frontend.
+3. **Edge:** this stack owns Traefik (ports 80/443, Let's Encrypt). It routes
+   `ecosolaris-api.kresh-ng.de` to Django and `ecosolaris.kresh-ng.de` to the frontend
+   container on the shared network. The `.com` and `.org` domains redirect to `.de`.
+4. **Seed once** after the first deploy with `loaddata seed`. Don't automate this step:
+   the fixtures use fixed primary keys and would overwrite edits made in the admin.
 
-See `DOCKER.md` for container details.
+Postgres backups and restores use the scripts in `compose/production/postgres/maintenance/`.
+See [`DOCKER.md`](DOCKER.md) for container details.
+
+## Author
+
+Built by **Monem**: [abdoeladawy4@gmail.com](mailto:abdoeladawy4@gmail.com)
